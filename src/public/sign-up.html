@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Maintenance Tracker | SignUp</title>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <section class="container">
+            <div class="header-brand">
+                <a href="index.html">Maintenance Tracker</a>
+            </div>
+            <nav>
+                <ul class="header-nav" role="navigation">
+                    <li class="nav-left"><a href="index.html">Home</a></li>
+                </ul>
+            </nav>
+        </section>
+    </header>
+    <div id="loader-wrapper"></div>
+    <main class="container" id="main">
+        <section class="form-card"> 
+            <div class="card-head primary">
+                Create an Account
+            </div>
+            <form name="signUpForm" action="dashboard.html">
+                    <div id="signupError"></div>
+
+                <div class="form-section">
+                    <input type="text" id="firstName" name="firstName" placeholder="First Name..." required> 
+                    <div id="firstNameError"></div>
+                </div>
+
+                <div class="form-section">
+                    <input type="text" id="lastName" name="lastName" placeholder="Last Name..." required> 
+                    <div id="lastNameError"></div>
+                </div>
+
+                <div class="form-section">
+                    <input type="email" id="email" name="email" placeholder="Email address..." required> 
+                    <div id="emailError"></div>              
+                </div>          
+
+                <div class="form-section">
+                    <input type="password" id="password" name="password" placeholder="Password..." required>
+                    <div id="passwordError"></div>
+                </div>          
+
+                <div class="form-section">
+                    <input type="password" id="passwordConfirmation" name="passwordConfirmation" placeholder="Confirm Password..." required>
+                    <div id="passwordConfirmationError"></div>
+                </div>          
+
+                <div class="form-section">       
+                    <input type="submit" value="Submit">
+                </div>
+            </form>
+            <p>Already have an account? <a href="login.html">Login</a></p>
+        </section>
+        
+    </main>
+    <section class="footer" id="footer">
+        <div class="container">
+            <div class="columns">
+                <div class="column">
+                    <strong>Designed with love by <a href="https://facebook.com/veraclins" target="_blank">Veraclins</a></strong>
+                    <p>Follow us on <a href="https://twitter.com/icstps" target="_blank"> Twitter</a></p>
+                </div>
+                <div class="column centered">
+                    <strong>Important Links</strong>
+                    <nav>
+                        <ul>
+                            <li>| <a href="index.html">Home</a></li>
+                            <li>| <a href="sign-up.html">Create Account</a></li>
+                            <li>| <a href="login.html">Login </a> |</li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <p class="centered">
+            Copyright &copy;<script>document.write(new Date().getFullYear());</script> <a href="https://facebook.com/veraclins" target="_blank">Veraclins</a> | All rights reserved
+            </p>
+        </div>
+    </section>
+    <script src="js/app.js"></script>
+    <script src="js/signup.js"></script>
+</body>
+</html>
