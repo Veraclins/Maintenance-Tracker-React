@@ -1,5 +1,11 @@
 const prepTablesQuery = `
+  DO $$
+  BEGIN
   CREATE TYPE status AS ENUM ('approved', 'disapproved', 'pending', 'resolved');
+  EXCEPTION
+  WHEN duplicate_object THEN null;
+  END
+  $$;
   DROP TABLE IF EXISTS requests;
   DROP TABLE IF EXISTS users;
   CREATE TABLE users(

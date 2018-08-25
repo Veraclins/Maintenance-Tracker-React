@@ -18,6 +18,7 @@ app.use(cors());
 // Routes handler
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDoc));
 app.use('/api/v1', v1Route);
+app.use('/', (req, res) => res.redirect('/api/v1'));
 
 app.listen(process.env.PORT || 3000);
 
