@@ -17,10 +17,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
 // Routes handler
-app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDoc));
 app.use('/api/v1', v1Route);
-app.all('/', (req, res) => res.sendFile('index.html'));
 
 app.listen(process.env.PORT || 3000);
 
