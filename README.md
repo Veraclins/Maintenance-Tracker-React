@@ -4,7 +4,7 @@ A maintenance tracker app using an Expressjs REST API and React Frontend
 
 ## Introduction
 
-[![Build Status](https://travis-ci.org/Veraclins/Maintenance-Tracker-React.svg?branch=develop)](https://travis-ci.org/Veraclins/Maintenance-Tracker-React) [![Coverage Status](https://coveralls.io/repos/github/Veraclins/Maintenance-Tracker-React/badge.svg?branch=develop)](https://coveralls.io/github/Veraclins/Maintenance-Tracker-React?branch=develop) [![Maintainability](https://api.codeclimate.com/v1/badges/3185baf2767d48b4f0b3/maintainability)](https://codeclimate.com/github/Veraclins/Maintenance-Tracker-React/maintainability)
+[![Build Status](https://travis-ci.org/Veraclins/Maintenance-Tracker-React.svg?branch=develop)](https://travis-ci.org/Veraclins/Maintenance-Tracker-React) [![Maintainability](https://api.codeclimate.com/v1/badges/3185baf2767d48b4f0b3/maintainability)](https://codeclimate.com/github/Veraclins/Maintenance-Tracker-React/maintainability)
 
 Maintenance tracker is an app that makes managing of repair/maintenance operations very easy and seamless.
 With a very intuitive  [frontend](https://veraclins-m-tracker.herokuapp.com) and a robust `Express js` [REST API](https://veraclins-m-tracker.herokuapp.com/api/v1), the app is very easy to use. 
