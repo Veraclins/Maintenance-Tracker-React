@@ -4,8 +4,8 @@
   "description": "A maintenance tracker app using an Expressjs REST API and React Frontend",
   "main": "src/index.js",
   "scripts": {
-    "start": "babel-node src/server.js --presets babel-preset-env",
-    "dev": "nodemon src/server.js --exec babel-node --presets babel-preset-env",
+    "start": "babel-node src/index.js --presets babel-preset-env",
+    "dev": "nodemon src/index.js --exec babel-node --presets babel-preset-env",
     "test": "cross-env NODE_ENV=test nyc mocha --file test/prep/PrepDb.js --exit",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "coveralls": "nyc --reporter=lcov --reporter=text-lcov npm test"

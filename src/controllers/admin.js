@@ -13,7 +13,7 @@ export const requestApproval = (req, res, status) => {
   const qString = 'UPDATE requests SET status=($1), updated_at=($2) WHERE (id=($3) AND (status=($4) OR status=($5))) RETURNING *';
   const { requestId } = req.params;
   const values = [status, 'NOW()', requestId, 'pending', 'approved'];
-  if (validParam(res, requestId)) {
+  if (validParam(requestId)) {
     const query = {
       text: qString,
       values,
@@ -33,7 +33,7 @@ export const disapproveRequest = (req, res) => {
 
 export const resolveRequest = (req, res) => {
   const { requestId } = req.params;
-  if (validParam(res, requestId)) {
+  if (validParam(requestId)) {
     const query = {
       text: 'UPDATE requests SET status=($1), updated_at=($2) WHERE (id=($3) AND status=($4)) RETURNING *',
       values: ['resolved', 'NOW()', requestId, 'approved'],

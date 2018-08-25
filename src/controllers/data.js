@@ -2,7 +2,7 @@ import prepTablesQuery from '../database/queries/prep-tables';
 import pool from '../database';
 
 
-async function prepTable(req, res) {
+const prepTable = async (req, res) => {
   const client = await pool.connect();
   try {
     const response = await client.query(prepTablesQuery);
@@ -10,6 +10,6 @@ async function prepTable(req, res) {
   } finally {
     client.release();
   }
-}
+};
 
 export default prepTable;

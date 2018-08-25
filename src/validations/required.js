@@ -1,4 +1,4 @@
-function required(req, res, requiredInput) {
+const required = (req, res, requiredInput) => {
   const errors = {};
   const input = {};
 
@@ -14,8 +14,9 @@ function required(req, res, requiredInput) {
   });
   if (Object.keys(errors).length !== 0) {
     res.status(400).send({ Error: 'Validation error(s)', errors });
+    return false;
   }
   return input;
-}
+};
 
 export default required;

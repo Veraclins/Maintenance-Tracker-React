@@ -1,6 +1,6 @@
 import { querySingle } from './queries/query';
 
-export const validParam = (res, param) => {
+export const validParam = (param) => {
   if (!/[0-9]/.test(param)) {
     return false;
   }

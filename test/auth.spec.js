@@ -24,7 +24,7 @@ describe('POST request to /api/v1/auth/signup', () => {
       });
   });
 
-  it('should fail is the email is already registered', (done) => {
+  it('should fail if the email is already registered', (done) => {
     chai.request(server)
       .post('/api/v1/auth/signup')
       .send({
@@ -51,6 +51,18 @@ describe('POST request to /api/v1/auth/signup', () => {
         lastName: 'Sa',
         password: 'pass',
         passwordConfirmation: 'passwor',
+      })
+      .end((err, res) => {
+        expect(res.status).to.be.equal(400);
+        expect(res.body).to.be.an('object');
+        done();
+      });
+  });
+  it('it should return error message and a status 400 if some required fields are not supplied', (done) => {
+    chai.request(server)
+      .post('/api/v1/auth/signup')
+      .send({
+        email: 'andelacom',
       })
       .end((err, res) => {
         expect(res.status).to.be.equal(400);
@@ -85,6 +97,19 @@ describe('POST request to /api/v1/auth/login', () => {
       })
       .end((err, res) => {
         expect(res.status).to.be.equal(400);
+        done();
+      });
+  });
+
+  it('it should return error message and a status 400 if some required fields are not supplied', (done) => {
+    chai.request(server)
+      .post('/api/v1/auth/login')
+      .send({
+        email: 'andela@mail.com',
+      })
+      .end((err, res) => {
+        expect(res.status).to.be.equal(400);
+        expect(res.body).to.be.an('object');
         done();
       });
   });

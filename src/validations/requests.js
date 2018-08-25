@@ -9,6 +9,7 @@ const validateRequest = (req, res, next) => {
   // Checks that all fields are present
   const field = ['title', 'device', 'description'];
   const request = required(req, res, field);
+  if (!request) return;
   const {
     title, device, description,
   } = request;
