@@ -1,0 +1,510 @@
+{
+  "swagger": "2.3.1",
+  "info": {
+    "version": "1.0",
+    "title": "Veraclins Maintenance Tracker",
+    "description": "A simple API to manage mainenance and repair requests from users and make it very easy for both the users and admins to keep track of their maintenance work. To checkout the admin routes, use email = clinton@test.com, password = password."
+  },
+  "schemes": [
+    "https"
+  ],
+  "host": "veraclins-m-tracker.herokuapp.com",
+  "basePath": "/api/v1",
+  "paths": {
+    "/signup": {
+      "post": {
+        "summary": "Creates a User",
+        "description": "Adds a new user to the database.",
+        "parameters": [
+          {
+            "name": "User",
+            "in": "body",
+            "description": "The User to create.",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "User successfully created."
+          },
+          "400": {
+            "description": "Validation Errors."
+          },
+          "404": {
+            "description": "User not created."
+          }
+        }
+      }
+    },
+    "/login": {
+      "post": {
+        "summary": "Signs in a user",
+        "description": "Signs in a user and return a token.",
+        "parameters": [
+          {
+            "name": "User",
+            "in": "body",
+            "description": "The User to login.",
+            "schema": {
+              "required": [
+                "email",
+                "password"
+              ],
+              "properties": {
+                "email": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User successfully logged in."
+          },
+          "400": {
+            "description": "Validation Errors."
+          },
+          "404": {
+            "description": "User not logged."
+          }
+        }
+      }
+    },
+    "/users/requests": {
+      "get": {
+        "summary": "Gets all the requests for a logged in user",
+        "description": "Returns a list containing all the users's requests.",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "required": true,
+            "description": "The user's token",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of requests",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Requests"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Creates a Request",
+        "description": "Adds a new Request to the database.",
+        "parameters": [
+          {
+            "name": "requestId",
+            "in": "path",
+            "required": true,
+            "description": "The request's id",
+            "type": "number"
+          },
+          {
+            "name": "token",
+            "in": "header",
+            "required": true,
+            "description": "The user's token",
+            "type": "string"
+          },
+          {
+            "name": "Request",
+            "in": "body",
+            "description": "The Request to create.",
+            "schema": {
+              "required": [
+                "title",
+                "description",
+                "device"
+              ],
+              "properties": {
+                "title": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "device": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Request successfully created."
+          },
+          "400": {
+            "description": "Validation Errors."
+          },
+          "404": {
+            "description": "Request not created."
+          }
+        }
+      }
+    },
+    "/users/requests/{requestId}": {
+      "get": {
+        "summary": "Gets a given request of the logged in user",
+        "description": "Returns a single request for its id",
+        "parameters": [
+          {
+            "name": "requestId",
+            "in": "path",
+            "required": true,
+            "description": "The request's id",
+            "type": "number"
+          },
+          {
+            "name": "token",
+            "in": "header",
+            "required": true,
+            "description": "The user's token",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A Request",
+            "schema": {
+              "$ref": "#/definitions/Request"
+            }
+          },
+          "404": {
+            "description": "The Request does not exists."
+          }
+        }
+      },
+      "put": {
+        "summary": "Updates a Request",
+        "description": "Updates a request for its id",
+        "parameters": [
+          {
+            "name": "requestId",
+            "in": "path",
+            "required": true,
+            "description": "The request's id",
+            "type": "number"
+          },
+          {
+            "name": "token",
+            "in": "header",
+            "required": true,
+            "description": "The user's token",
+            "type": "string"
+          },
+          {
+            "name": "Request",
+            "in": "body",
+            "required": true,
+            "description": "The Request to create.",
+            "schema": {
+              "required": [
+                "title",
+                "description",
+                "device"
+              ],
+              "properties": {
+                "title": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "device": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A Request",
+            "schema": {
+              "$ref": "#/definitions/Request"
+            }
+          },
+          "400": {
+            "description": "Validation Errors."
+          },
+          "404": {
+            "description": "The Request does not exists."
+          }
+        }
+      }
+    },
+    "/requests": {
+      "get": {
+        "summary": "Gets all the requests in the application (Only available to admin users)",
+        "description": "Returns a list containing all requests in the application.",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "required": true,
+            "description": "The user's token",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of requests",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Requests"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/requests/{requestId}/approve": {
+      "put": {
+        "summary": "Approves a Request (Only available to admin users)",
+        "description": "Approves a request for its id",
+        "parameters": [
+          {
+            "name": "requestId",
+            "in": "path",
+            "required": true,
+            "description": "The request's id",
+            "type": "number"
+          },
+          {
+            "name": "token",
+            "in": "header",
+            "required": true,
+            "description": "The user's token",
+            "type": "string"
+          },
+          {
+            "name": "Request",
+            "in": "body",
+            "required": true,
+            "description": "The new status of the Request",
+            "schema": {
+              "required": [
+                "status"
+              ],
+              "properties": {
+                "status": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A Request",
+            "schema": {
+              "$ref": "#/definitions/Request"
+            }
+          },
+          "400": {
+            "description": "Validation Errors."
+          },
+          "404": {
+            "description": "The Request does not exists."
+          }
+        }
+      }
+    },
+    "/requests/{requestId}/disapprove": {
+      "put": {
+        "summary": "Disapproves a Request (Only available to admin users)",
+        "description": "Disapproves a request for its id",
+        "parameters": [
+          {
+            "name": "requestId",
+            "in": "path",
+            "required": true,
+            "description": "The request's id",
+            "type": "number"
+          },
+          {
+            "name": "token",
+            "in": "header",
+            "required": true,
+            "description": "The user's token",
+            "type": "string"
+          },
+          {
+            "name": "Request",
+            "in": "body",
+            "required": true,
+            "description": "The new status of the Request.",
+            "schema": {
+              "required": [
+                "status"
+              ],
+              "properties": {
+                "status": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A Request",
+            "schema": {
+              "$ref": "#/definitions/Request"
+            }
+          },
+          "400": {
+            "description": "Validation Errors."
+          },
+          "404": {
+            "description": "The Request does not exists."
+          }
+        }
+      }
+    },
+    "/requests/{requestId}/resolve": {
+      "put": {
+        "summary": "Resolves a Request (Only available to admin users)",
+        "description": "Resolves a request for its id",
+        "parameters": [
+          {
+            "name": "requestId",
+            "in": "path",
+            "required": true,
+            "description": "The request's id",
+            "type": "number"
+          },
+          {
+            "name": "token",
+            "in": "header",
+            "required": true,
+            "description": "The user's token",
+            "type": "string"
+          },
+          {
+            "name": "Request",
+            "in": "body",
+            "required": true,
+            "description": "The new status of the Request.",
+            "schema": {
+              "required": [
+                "status"
+              ],
+              "properties": {
+                "status": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A Request",
+            "schema": {
+              "$ref": "#/definitions/Request"
+            }
+          },
+          "400": {
+            "description": "Validation Errors."
+          },
+          "404": {
+            "description": "The Request does not exists."
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "User": {
+      "required": [
+        "firstName",
+        "lastName",
+        "email",
+        "password",
+        "PasswordConfirmation"
+      ],
+      "properties": {
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "passwordConfirmation": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "Request": {
+      "required": [
+        "title",
+        "description",
+        "device"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "User_id": {
+          "type": "integer"
+        },
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "device": {
+          "type": "number"
+        },
+        "status": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "Requests": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Request"
+      }
+    }
+  }
+}

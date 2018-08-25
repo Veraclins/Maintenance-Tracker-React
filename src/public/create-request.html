@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Maintenance Tracker | Create Request</title>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <section class="container">
+            <div class="header-brand">
+                <a href="index.html">Maintenance Tracker</a>
+            </div>
+            <nav>
+                <ul class="header-nav" role="navigation">
+                    <li><a href="dashboard.html" id="dashboard">Dashboard</a></li>
+                    <li class="nav-left"><a href="admin-index.html" id="admin">Admin Page</a></li>
+                    <li><a href="#!" onclick="logout()">Logout</a></li>
+                </ul>
+            </nav>
+        </section>
+    </header>
+    <div id="loader-wrapper"></div>
+    <main class="container" id="main">
+        <section class="form-card">
+            <div class="card-head primary">
+                Create a Request
+            </div>
+            <form name="requestForm" action="">
+                
+                <div id="createError"></div>
+
+                <div class="form-section">
+                    <input type="text" id="title" name="title" onkeyup="counter('title')" placeholder="Title of the request..." required>
+                    <div id="titleError"></div>
+                    <div id="titleCounter"></div>
+                </div>              
+
+                <div class="form-section">
+                    <select id="device" name="device">
+                        <option value="">Select Device Type</option>
+                        <option value="Laptop">Laptop PC</option>
+                        <option value="Desktop">Desktop PC</option>
+                        <option value="Smartphone">Smartphone</option>
+                        <option value="Tablet">Tablet PC</option>
+                        <option value="Others">Others</option>
+                    </select>
+                    <div id="deviceError"></div>
+                </div>  
+
+                <div class="form-section">
+                    <textarea id="description" name="description" onkeyup="counter('description')" placeholder="Describe the repair/maintnenance request giving as much details as possible" required></textarea>  
+                    <div id="descriptionError"></div>
+                    <div id="descriptionCounter"></div>
+                </div>
+                
+                <div class="form-section">
+                    <input type="submit" value="Submit">
+                </div>
+            </form>
+        </section>
+        
+    </main>
+    <section class="footer" id="footer">
+        <div class="container">
+            <div class="columns">
+                <div class="column">
+                    <strong>Designed with love by <a href="https://facebook.com/veraclins" target="_blank">Veraclins</a></strong>
+                    <p>Follow us on <a href="https://twitter.com/icstps" target="_blank"> Twitter</a></p>
+                </div>
+                <div class="column centered">
+                    <strong>Important Links</strong>
+                    <nav>
+                        <ul>
+                            <li>| <a href="index.html">Home</a></li>
+                            <li>| <a href="sign-up.html">Create Account</a></li>
+                            <li>| <a href="login.html">Login </a> |</li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <p class="centered">
+            Copyright &copy;<script>document.write(new Date().getFullYear());</script> <a href="https://facebook.com/veraclins" target="_blank">Veraclins</a> | All rights reserved
+            </p>
+        </div>
+    </section>
+    <script src="js/app.js"></script>
+    <script src="js/create-request.js"></script>
+    <script>
+        logger();
+    </script>
+</body>
+</html>

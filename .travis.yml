@@ -1,0 +1,32 @@
+language: node_js
+node_js:
+- "node"
+cache:
+  directories:
+    - "node_modules"
+env:
+  - CXX=g++-4.8
+  - CC_TEST_REPORTER_ID=c1e5f78d5937bc11368125439360a86caba1181b6c7d53d4ae2a544cb1485d16
+addons:
+  chrome: stable
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - g++-4.8
+
+dist: trusty
+before_script:
+  - npm --global install nyc
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
+
+script: npm install && npm run test
+
+after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+
+notifications:
+  email: false
+after_success: npm run coverage

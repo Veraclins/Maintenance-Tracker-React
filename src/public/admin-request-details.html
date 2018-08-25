@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Maintenance Tracker | Request Details</title>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body onload="adminReqDetails()"> 
+    <header>
+        <section class="container">
+            <div class="header-brand">
+                <a href="index.html">Maintenance Tracker</a>
+            </div>
+            <nav>
+                <ul class="header-nav" role="navigation">
+                    <li><a href="dashboard.html" id="dashboard">Dashboard</a></li>
+                    <li class="nav-left"><a href="admin-index.html" id="admin">Admin Page</a></li>
+                    <li><a href="#!" onclick="logout()">Logout</a></li>
+                </ul>
+            </nav>
+        </section>
+    </header>
+    <div id="loader-wrapper"></div>
+    <main class="container"  id="main">
+        <div id="adminErr">
+            <section class="card">
+                <div class="columns">
+                    <div class="column">
+                        <div class="card-body centered">
+                            <a href="admin-view-request.html" class=" button primary">All Requests</a>
+                        </div> 
+                    </div>
+                    <div class="column">
+                        <div class="card-body centered">
+                            <a href="admin-pending-request.html" class=" button primary">Pending Requests</a>
+                        </div> 
+                    </div>
+                    <div class="column">
+                        <div class="card-body centered">
+                            <a href="admin-approved-request.html" class=" button primary">Approved Requests</a>
+                        </div> 
+                    </div>
+                    <div class="column">
+                        <div class="card-body centered">
+                            <a href="admin-resolved-request.html" class=" button primary">Resolved Requests</a>
+                        </div> 
+                    </div>
+                </div>
+            </section>
+            
+            <section class="card small-card">
+                <!-- The request details will be injected here -->
+                <div id="adminDetail"></div>
+
+                <div id="updError"></div>
+            </section>
+        </div>    
+    </main>
+    <section class="footer" id="footer">
+        <div class="container">
+            <div class="columns">
+                <div class="column">
+                    <strong>Designed with love by <a href="https://facebook.com/veraclins" target="_blank">Veraclins</a></strong>
+                    <p>Follow us on <a href="https://twitter.com/icstps" target="_blank"> Twitter</a></p>
+                </div>
+                <div class="column centered">
+                    <strong>Important Links</strong>
+                    <nav>
+                        <ul>
+                            <li>| <a href="index.html">Home</a></li>
+                            <li>| <a href="sign-up.html">Create Account</a></li>
+                            <li>| <a href="login.html">Login </a> |</li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <p class="centered">
+            Copyright &copy;<script>document.write(new Date().getFullYear());</script> <a href="https://facebook.com/veraclins" target="_blank">Veraclins</a> | All rights reserved
+            </p>
+        </div>
+    </section>
+    <script src="js/app.js"></script>
+    <script src="js/admin-request.js"></script>
+    <script>
+        logger();
+    </script>
+</body>
+</html>
