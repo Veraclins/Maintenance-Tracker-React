@@ -6,28 +6,28 @@ export const signUp = (req, res) => {
   const {
     email, firstName, lastName, password,
   } = req.body;
-  const hashedPassword = bcrypt.hashSync(password, 8);
   const query = {
     text: 'INSERT INTO users (email, first_name, last_name, password) VALUES($1, $2, $3, $4) RETURNING *',
-    values: [email, firstName, lastName, hashedPassword],
+    values: [email, firstName, lastName, bcrypt.hashSync(password, 8)],
   };
   querySingle({ text: 'SELECT * FROM users WHERE email=($1)', values: [email] })
     .then((response) => {
       if (response) {
-        res.status(400).send({ Error: 'The email provided is already registered. Please try again' });
-      } else {
-        querySingle(query, res)
-          .then((data) => {
-            if (data.id) {
-              const { id, role, created_at: createdAt } = data;
-              const user = {
-                id, role, firstName, lastName, createdAt,
-              };
-              const token = createToken(user);
-              res.status(201).send({ token, user });
-            }
-          });
+        return res.status(400).send({
+          Error: 'The email provided is already registered. Please try again',
+        });
       }
+      return querySingle(query, res)
+        .then((data) => {
+          if (data.id) {
+            const { id, role, created_at: createdAt } = data;
+            const user = {
+              id, role, firstName, lastName, createdAt,
+            };
+            const token = createToken(user);
+            res.status(201).send({ token, user });
+          }
+        });
     });
 };
 
@@ -41,21 +41,18 @@ export const login = (req, res) => {
   querySingle(query)
     .then((request) => { // eslint-disable-line
       if (request) {
-        const passwordIsValid = bcrypt.compareSync(password, request.password);
-        if (!passwordIsValid) {
-          res.status(401).send(unauthenticatedError);
-        } else {
-          const {
-            id, role, first_name, last_name, created_at, // eslint-disable-line
-          } = request;
-          const user = {
-            id, role, firstName: first_name, lastName: last_name, createdAt: created_at,
-          };
-          const token = createToken(user);
-          return res.send({ token, user });
+        if (!bcrypt.compareSync(password, request.password)) {
+          return res.status(401).send(unauthenticatedError);
         }
-      } else {
-        return res.status(401).send(unauthenticatedError);
+        const {
+          id, role, first_name: firstName, last_name: lastName, created_at: createdAt,
+        } = request;
+        const user = {
+          id, role, firstName, lastName, createdAt,
+        };
+        const token = createToken(user);
+        return res.send({ token, user });
       }
+      return res.status(401).send(unauthenticatedError);
     });
 };

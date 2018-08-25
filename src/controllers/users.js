@@ -28,7 +28,7 @@ export const createRequest = (req, res) => {
 
 export const getRequestById = (req, res) => {
   const { requestId } = req.params;
-  if (validParam(res, requestId)) {
+  if (validParam(requestId)) {
     const userId = req.user.id;
     const query = {
       text: 'SELECT * FROM requests WHERE (id=($1) AND user_id=($2))',
@@ -46,7 +46,7 @@ export const UpdateRequest = (req, res) => {
   } = req.body;
   const userId = req.user.id;
   const { requestId } = req.params;
-  if (validParam(res, requestId)) {
+  if (validParam(requestId)) {
     const query = {
       text: 'UPDATE requests SET title=($1), device=($2), description=($3), updated_at=($4) WHERE (id=($5) AND user_id=($6) AND (status=($7) OR status=($8))) RETURNING *',
       values: [title, device, description, 'NOW()', requestId, userId, 'pending', 'disapproved'],

@@ -11,6 +11,7 @@ export const validateSignUp = (req, res, next) => {
   // regex gotten from https://stackoverflow.com/questions/46155/how-to-validate-an-email-address-in-javascript
   const field = ['firstName', 'lastName', 'email', 'password', 'passwordConfirmation'];
   const user = required(req, res, field);
+  if (!user) return;
   const {
     firstName, lastName, email, password, passwordConfirmation,
   } = user;
@@ -29,6 +30,7 @@ export const validateLogin = (req, res, next) => {
   // Checks that all fields are present
   const field = ['email', 'password'];
   const user = required(req, res, field);
+  if (!user) return;
   const { email, password } = user;
 
   /* eslint-disable no-useless-escape */

@@ -1,6 +1,6 @@
 import pool from '..';
 
-export async function querySingle(query) {
+export const querySingle = async (query) => {
   const client = await pool.connect();
   try {
     const response = await client.query(query);
@@ -8,9 +8,9 @@ export async function querySingle(query) {
   } finally {
     client.release();
   }
-}
+};
 
-export async function queryAll(query) {
+export const queryAll = async (query) => {
   const client = await pool.connect();
   try {
     const response = await client.query(query);
@@ -19,4 +19,4 @@ export async function queryAll(query) {
   } finally {
     client.release();
   }
-}
+};
