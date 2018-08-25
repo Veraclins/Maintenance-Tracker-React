@@ -1,7 +1,6 @@
 import { } from 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
-import path from 'path';
 import logger from 'morgan';
 import bodyParser from 'body-parser';
 import swaggerUi from 'swagger-ui-express';
