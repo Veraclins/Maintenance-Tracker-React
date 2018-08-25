@@ -1,0 +1,79 @@
+{
+  "name": "maintenance-tracker-react",
+  "version": "1.0.0",
+  "description": "A maintenance tracker app using an Expressjs REST API and React Frontend",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "babel-node src/server.js --presets babel-preset-env",
+    "dev": "nodemon src/server.js --exec babel-node --presets babel-preset-env",
+    "test": "cross-env NODE_ENV=test nyc mocha --file test/prep/PrepDb.js --exit",
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
+    "coveralls": "nyc --reporter=lcov --reporter=text-lcov npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Veraclins/Maintenance-Tracker-React.git"
+  },
+  "keywords": [
+    "API",
+    "Es6+",
+    "RESTFUL",
+    "Andela",
+    "TDD",
+    "React",
+    "Expressjs",
+    "Nodejs"
+  ],
+  "author": "Agada Clinton Innocent (Veracity)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Veraclins/Maintenance-Tracker-React/issues"
+  },
+  "homepage": "https://github.com/Veraclins/Maintenance-Tracker-React#readme",
+  "dependencies": {
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-register": "^6.26.0",
+    "bcrypt": "^3.0.0",
+    "body-parser": "^1.18.3",
+    "chai": "^4.1.2",
+    "chai-http": "^4.0.0",
+    "cors": "^2.8.4",
+    "dotenv": "^5.0.1",
+    "express": "^4.16.3",
+    "jsonwebtoken": "^8.2.1",
+    "mocha": "^5.1.1",
+    "morgan": "^1.9.0",
+    "pg": "^7.4.3",
+    "swagger-ui-express": "latest"
+  },
+  "devDependencies": {
+    "nodemon": "^1.17.4",
+    "babel-cli": "^6.26.0",
+    "babel-plugin-istanbul": "^4.1.6",
+    "coveralls": "^3.0.1",
+    "cross-env": "^5.1.5",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-react": "^7.11.1",
+    "nyc": "^11.8.0"
+  },
+  "engines": {
+    "node": "8.7.0"
+  },
+  "nyc": {
+    "require": [
+      "babel-register",
+      "babel-polyfill"
+    ],
+    "reporter": [
+      "lcov",
+      "text"
+    ],
+    "sourceMap": false,
+    "instrument": false
+  }
+}
