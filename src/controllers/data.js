@@ -7,8 +7,6 @@ async function prepTable(req, res) {
   try {
     const response = await client.query(prepTablesQuery);
     return res.status(200).send({ response });
-  } catch (error) {
-    return res.status(500).send({ Error: error.message });
   } finally {
     client.release();
   }

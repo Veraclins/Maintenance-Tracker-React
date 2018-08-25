@@ -10,23 +10,17 @@ export function createToken(user) {
 }
 
 /* eslint-disable consistent-return */
-export const verifyToken = async (req, res, next) => {
+export const verifyToken = (req, res, next) => {
   const token = req.headers['x-access-token'];
-  try {
-    if (!token) {
-      res.status(400).send({ Error: 'You must supply an access token' });
-    } else {
-      await jwt.verify(token, secret, (err, decoded) => {
-        if (decoded) {
-          const { id } = decoded;
-          req.user = { id };
-          next();
-        } else {
-          res.status(401).send({ Error: 'Your access is invalid or expired. Please login again' });
-        }
-      });
-    }
-  } catch (err) {
-    next(err);
+  if (!token) {
+    return res.status(400).send({ Error: 'You must supply an access token' });
   }
+  return jwt.verify(token, secret, (err, decoded) => {
+    if (decoded) {
+      const { id } = decoded;
+      req.user = { id };
+      return next();
+    }
+    return res.status(401).send({ Error: 'Your access is invalid or expired. Please login again' });
+  });
 };

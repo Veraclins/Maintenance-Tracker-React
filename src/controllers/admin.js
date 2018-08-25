@@ -6,38 +6,39 @@ const error = {
 };
 export const adminGetAllRequests = (req, res) => {
   queryAll('SELECT * FROM requests ORDER BY updated_at DESC')
-    .then(data => res.status(200).send(data))
-    .catch(err => res.status(500).send({ Error: err.message }));
+    .then(data => res.status(200).send(data));
 };
 
-const qString = 'UPDATE requests SET status=($1), updated_at=($2) WHERE (id=($3) AND (status=($4) OR status=($5))) RETURNING *';
-export const approveRequest = (req, res) => {
+export const requestApproval = (req, res, status) => {
+  const qString = 'UPDATE requests SET status=($1), updated_at=($2) WHERE (id=($3) AND (status=($4) OR status=($5))) RETURNING *';
   const { requestId } = req.params;
-  validParam(res, requestId);
-  const query = {
-    text: qString,
-    values: ['approved', 'NOW()', requestId, 'pending', 'disapproved'],
-  };
-  handleRequest(res, query, error);
+  const values = [status, 'NOW()', requestId, 'pending', 'approved'];
+  if (validParam(res, requestId)) {
+    const query = {
+      text: qString,
+      values,
+    };
+    return handleRequest(res, query, error);
+  }
+  return res.status(400).send({ Error: 'Request id must be a number' });
+};
+
+export const approveRequest = (req, res) => {
+  requestApproval(req, res, 'approved');
 };
 
 export const disapproveRequest = (req, res) => {
-  const { requestId } = req.params;
-  validParam(res, requestId);
-  const query = {
-    text: qString,
-    values: ['disapproved', 'NOW()', requestId, 'pending', 'approved'],
-  };
-  handleRequest(res, query, error);
+  requestApproval(req, res, 'disapproved');
 };
-
 
 export const resolveRequest = (req, res) => {
   const { requestId } = req.params;
-  validParam(res, requestId);
-  const query = {
-    text: 'UPDATE requests SET status=($1), updated_at=($2) WHERE (id=($3) AND status=($4)) RETURNING *',
-    values: ['resolved', 'NOW()', requestId, 'approved'],
-  };
-  handleRequest(res, query, error);
+  if (validParam(res, requestId)) {
+    const query = {
+      text: 'UPDATE requests SET status=($1), updated_at=($2) WHERE (id=($3) AND status=($4)) RETURNING *',
+      values: ['resolved', 'NOW()', requestId, 'approved'],
+    };
+    return handleRequest(res, query, error);
+  }
+  return res.status(400).send({ Error: 'Request id must be a number' });
 };

@@ -11,9 +11,7 @@ import swaggerDoc from './swagger.json';
 const app = express();
 
 // Middlewares
-app.use(logger(app.get('env') === 'production' ? 'combined' : 'dev', {
-  skip: () => app.get('env') === 'test',
-}));
+app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
@@ -24,7 +22,6 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDoc));
 app.use('/api/v1', v1Route);
 app.all('/', (req, res) => res.sendFile('index.html'));
 
-/* eslint-disable no-console */
-export const server = app.listen(process.env.PORT || 30000);
+app.listen(process.env.PORT || 3000);
 
 export default app;

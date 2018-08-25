@@ -19,9 +19,9 @@ export const signUp = (req, res) => {
         querySingle(query, res)
           .then((data) => {
             if (data.id) {
-              const { id, role, created_at } = data; // eslint-disable-line camelcase
+              const { id, role, created_at: createdAt } = data;
               const user = {
-                id, role, firstName, lastName, createdAt: created_at,
+                id, role, firstName, lastName, createdAt,
               };
               const token = createToken(user);
               res.status(201).send({ token, user });

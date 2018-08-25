@@ -1,6 +1,6 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
-import { server } from '../../src/';
+import server from '../../src/';
 
 const expect = chai.expect; // eslint-disable-line prefer-destructuring
 chai.use(chaiHttp);
