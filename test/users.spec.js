@@ -95,7 +95,7 @@ describe('POST request to /api/v1/users/requests', () => {
       .send({
         title: 'Gene',
         description: 'Although.',
-        device: 'Geet',
+        device: '',
       })
       .end((err, res) => {
         expect(res.status).to.be.equal(400);
