@@ -1,11 +1,13 @@
 import { Router } from 'express';
-import { adminGetAllRequests, approveRequest, disapproveRequest, resolveRequest } from '../../controllers/admin';
+import {
+  adminGetAllRequests, approveRequest, disapproveRequest, resolveRequest,
+} from '../../controllers/admin';
 
 const adminRoute = Router();
 
 // Used for routes that start with /api/v1/requests
 // /api/v1/requests is already prepended to the route
-// Thes routes are only available to the admin(s)
+// These routes are only available to the admin(s)
 
 
 adminRoute.get('/', adminGetAllRequests);
