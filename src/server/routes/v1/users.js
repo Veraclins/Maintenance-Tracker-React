@@ -1,12 +1,14 @@
 import { Router } from 'express';
-import { getAllRequests, createRequest, getRequestById, UpdateRequest } from '../../controllers/users';
+import {
+  getAllRequests, createRequest, getRequestById, UpdateRequest,
+} from '../../controllers/users';
 import validateRequest from '../../validations/requests';
 
 
 const usersRoute = Router();
 
-// Used for routes that start with /api/v1/users
-// /api/v1/users is already prepended to the route
+// Used for routes that start with /api/v1/v1/users
+// /api/v1/v1/users is already prepended to the route
 // Used by logged in users only
 
 

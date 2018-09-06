@@ -9,8 +9,8 @@ import isAdmin from '../../middlewares/isAdmin';
 const routes = Router();
 
 
-// Used for routs that start with /api/v1
-// /api/v1 is already prepended to the route
+// Used for routs that start with /api/v1/v1
+// /api/v1/v1 is already prepended to the route
 
 routes.use('/users', verifyToken, usersRoute);
 

@@ -23,3 +23,6 @@ dist
 
 # package lock file
 package-lock.json
+
+# Vscode 
+.vscode/

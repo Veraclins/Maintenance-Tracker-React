@@ -1,33 +1,17 @@
-import React, { Component } from 'react';
-import './app.css';
-import ReactImage from './react.png';
+import React from 'react';
+import PropTypes from 'prop-types';
+import { ConnectedRouter } from 'connected-react-router';
+import './styles/styles.css';
+import routes from './routes/routes';
 
-export default class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { username: null };
-  }
+const App = ({ history }) => (
+  <ConnectedRouter history={history}>
+    { routes }
+  </ConnectedRouter>
+);
 
-  componentDidMount() {
-    fetch('/api/getUsername')
-      .then(res => res.json())
-      .then(user => this.setState({ username: user.username }));
-  }
+App.propTypes = {
+  history: PropTypes.shape({}).isRequired,
+};
 
-  render() {
-    return (
-      <div>
-        {this.state.username ? (
-          <h1>
-            Hello and welcome
-            {' '}
-            {this.state.username}
-          </h1>
-        ) : (
-          <h1>Loading.. please wait!</h1>
-        )}
-        <img src={ReactImage} alt="react" />
-      </div>
-    );
-  }
-}
+export default App;

@@ -7,11 +7,11 @@
     "prestart": "npm run build",
     "start": "babel-node dist/server/index.js",
     "build:client": "webpack",
-    "build:server": "babel src/server -D --out-dir dist/server",
+    "build:server": "babel src/server -D --out-dir dist/server --source-maps",
     "client": "webpack-dev-server --mode development --devtool inline-source-map --hot",
     "server": "nodemon src/server/index.js --exec babel-node --presets babel-preset-env",
-    "test:server": "cross-env NODE_ENV=test nyc mocha --file test/server/prep/PrepDb.js --exit",
-    "test:client": "jest --coverage",
+    "test:server": "cross-env NODE_ENV=test nyc --reporter=lcov --reporter=text mocha --file test/prep/PrepDb.js --exit",
+    "test:client": "jest --coverage -u",
     "test": "npm run test:server && npm run test:client",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "coveralls": "nyc --reporter=lcov --reporter=text-lcov npm test",
@@ -43,34 +43,47 @@
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "babel-register": "^6.26.0",
+    "babel-runtime": "^6.26.0",
     "bcrypt": "^3.0.0",
     "body-parser": "^1.18.3",
+    "connected-react-router": "^4.4.1",
     "cors": "^2.8.4",
     "dotenv": "^5.0.1",
+    "enzyme": "^3.6.0",
+    "enzyme-adapter-react-16": "^1.5.0",
+    "enzyme-to-json": "^3.3.4",
     "express": "^4.16.3",
+    "file-loader": "^2.0.0",
+    "history": "^4.7.2",
     "jsonwebtoken": "^8.2.1",
     "morgan": "^1.9.0",
     "pg": "^7.4.3",
-    "react": "^16.4.2",
-    "react-dom": "^16.4.2",
-    "swagger-ui-express": "^4.0.0"
+    "prop-types": "^15.6.2",
+    "react": "^16.5.0",
+    "react-dom": "^16.5.0",
+    "react-redux": "^5.0.7",
+    "react-router": "^4.3.1",
+    "react-router-dom": "^4.3.1",
+    "react-test-renderer": "^16.5.0",
+    "redux": "^4.0.0",
+    "swagger-ui-express": "^4.0.1"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
+    "babel-eslint": "^9.0.0",
     "babel-loader": "^7.1.5",
     "babel-plugin-istanbul": "^4.1.6",
     "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-react": "^6.24.1",
     "chai": "^4.1.2",
-    "chai-http": "^4.0.0",
+    "chai-http": "^4.2.0",
     "clean-webpack-plugin": "^0.1.19",
     "concurrently": "^4.0.1",
-    "coveralls": "^3.0.1",
+    "coveralls": "^3.0.2",
     "cross-env": "^5.1.5",
     "css-loader": "^1.0.0",
-    "enzyme": "^3.5.0",
-    "enzyme-adapter-react-16": "^1.3.0",
-    "enzyme-to-json": "^3.3.4",
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-airbnb-base": "^13.1.0",
@@ -80,16 +93,15 @@
     "html-webpack-plugin": "^3.2.0",
     "jest": "^23.5.0",
     "mocha": "^5.2.0",
-    "nodemon": "^1.17.4",
+    "nodemon": "^1.18.4",
     "nyc": "^11.8.0",
-    "prop-types": "^15.6.2",
     "redux-mock-store": "^1.5.3",
     "rimraf": "^2.6.2",
     "style-loader": "^0.22.1",
     "url-loader": "^1.1.1",
-    "webpack": "^4.17.1",
+    "webpack": "^4.17.2",
     "webpack-cli": "^3.1.0",
-    "webpack-dev-server": "^3.1.6"
+    "webpack-dev-server": "^3.1.8"
   },
   "engines": {
     "node": "8.7.0"
@@ -103,14 +115,34 @@
       "lcov",
       "text"
     ],
+    "plugins": [
+      "istanbul"
+    ],
     "sourceMap": false,
     "instrument": false
   },
   "jest": {
-    "setupTestFrameworkScriptFile": "<rootDir>__tests__/setup/setupEnzyme.js",
-    "testPathIgnorePatterns": [
-      "<rootDir>/__tests__/setup/"
+    "setupTestFrameworkScriptFile": "<rootDir>/src/client/setupTests.js",
+    "testMatch": [
+      "**/src/client/tests/**/*.js?(x)",
+      "**/src/client/?(*.)+(spec|test).js?(x)"
     ],
-    "testRegex": "./__tests__/.*.js$"
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ],
+    "collectCoverageFrom": [
+      "**/src/client/?(*).js?(x)"
+    ],
+    "coverageReporters": [
+      "cobertura",
+      "lcov",
+      "html",
+      "text",
+      "text-summary"
+    ],
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/src/client/mocks/fileMock.js",
+      "\\.(css|scss)$": "<rootDir>/src/client/mocks/styleMock.js"
+    }
   }
 }

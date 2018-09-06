@@ -10,6 +10,9 @@ module.exports = {
     path: path.join(__dirname, outputDirectory),
     filename: 'bundle.js',
   },
+  resolve: {
+    extensions: ['.js', '.jsx'],
+  },
   module: {
     rules: [
       {
@@ -24,7 +27,7 @@ module.exports = {
         use: ['style-loader', 'css-loader'],
       },
       {
-        test: /\.(png|woff|woff2|eot|ttf|svg)$/,
+        test: /\.(jpe?g|png|woff|woff2|eot|otf|ttf|svg)$/,
         loader: 'url-loader?limit=100000',
       },
     ],

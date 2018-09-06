@@ -1,5 +1,7 @@
 {
     "extends": "airbnb",
+    "parser": "babel-eslint",
+    "plugins": ["react"],
     "env": {
       "node": true,
       "browser": true,
@@ -21,15 +23,22 @@
       }
     },
     "rules": {
-      "consistent-return": 0,
-      "no-param-reassign": 0,
-      "one-var": 0,
-      "one-var-declaration-per-line": 0,
-      "new-cap": 0,
       "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
       "import/no-unresolved": [2, { "commonjs": true }],
       "no-shadow": ["error", { "allow": ["req", "res", "err"] }],
-      "curly": ["error", "multi-line"]
+      "curly": ["error", "multi-line"],
+      "no-underscore-dangle": ["error", { "allow": ["__REDUX_DEVTOOLS_EXTENSION__", "__REDUX_DEVTOOLS_EXTENSION_COMPOSE__"] }],
+        "import/extensions": 0,
+        "require-jsdoc": 0,
+        "valid-jsdoc": 0,
+        "react/jsx-one-expression-per-line": 0,
+        "jsx-a11y/click-events-have-key-events": 0,
+        "jsx-a11y/no-noninteractive-element-interactions": 0,
+        "react/forbid-prop-types": ["error", { "allow": ["object"] }],
+        "jsx-a11y/anchor-is-valid": [ "error", {
+          "components": [ "Link", "NavLink" ],
+          "specialLink": [ "to" ]
+        }]
     }
   }
   

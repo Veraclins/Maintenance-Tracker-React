@@ -1,13 +1,24 @@
 {
-    "presets": ["env", "react"],
-    "plugins": ["transform-class-properties"],
-    "sourceMaps": true,
-    "retainLines": true,
-    "env": {
-        "test": {
-          "plugins": [
-            "istanbul"
+  "presets": ["env", "react"],
+  "plugins": [
+    "transform-class-properties",
+    "transform-object-rest-spread",
+    ["transform-runtime", {
+      "polyfill": false,
+      "regenerator": true
+    }]
+  ],
+  "sourceMaps": true,
+  "retainLines": true,
+  "env": {
+    "test": {
+      "plugins": [
+        ["istanbul", {
+          "exclude": [
+            "**/src/client/"
           ]
-        }
+        }]
+      ]
     }
+  }
 }
