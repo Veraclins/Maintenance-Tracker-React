@@ -1,9 +1,13 @@
 import { combineReducers } from 'redux';
-import loginUser from '../features/authentication/authReducer';
+import authReducer from '../features/authentication/authReducer';
+import requestsReducer from '../features/requests/requestsReducer';
+import commonReducer from './common/commonReducer';
 
 
-const rootReducer = combineReducers({
-  login: loginUser,
+export const appReducer = combineReducers({
+  auth: authReducer,
+  requests: requestsReducer,
+  common: commonReducer,
 });
 
-export default rootReducer;
+export default appReducer;

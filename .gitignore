@@ -26,3 +26,5 @@ package-lock.json
 
 # Vscode 
 .vscode/
+src/client/.DS_Store
+.DS_Store

@@ -23,20 +23,44 @@ exports[`renders without crashing 1`] = `
     }
   }
 >
-  <div>
-    <Header />
+  <Connect(Header) />
+  <main
+    className="main-app-body"
+  >
     <Switch>
       <Route
         component={[Function]}
+        path="/requests/create"
+      />
+      <Route
+        component={[Function]}
         exact={true}
-        path="/"
+        path="/dashboard"
       />
       <Route
         component={[Function]}
         path="/login"
       />
+      <Route
+        component={[Function]}
+        path="/signup"
+      />
+      <Route
+        component={[Function]}
+        exact={true}
+        path="/requests"
+      />
+      <Route
+        component={[Function]}
+        path="/requests/:requestId"
+      />
+      <Route
+        component={[Function]}
+        exact={true}
+        path="/"
+      />
     </Switch>
-    <Footer />
-  </div>
+  </main>
+  <Footer />
 </Connect(ConnectedRouter)>
 `;

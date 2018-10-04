@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test the login presentation component renders without crashing 1`] = `
+<div
+  className="social col-md-6 pt-4"
+>
+  <br />
+  <div
+    className="text-center mb-4"
+  >
+    <em>
+      Or connect with your favourite social media account
+    </em>
+  </div>
+  <div
+    className="text-center mb-1"
+  >
+    <Link
+      replace={false}
+      to="/oauth2/facebook"
+    >
+      <img
+        alt="logo"
+        className="mb-2 mt-2"
+        height="59"
+        src="Button_Facebook.svg"
+        width="250"
+      />
+    </Link>
+  </div>
+  <div
+    className="text-center mb-1"
+  >
+    <Link
+      replace={false}
+      to="/login"
+    >
+      <img
+        alt="logo"
+        className="mb-2 mt-2"
+        height="59"
+        src="Button_Twitter.svg"
+        width="250"
+      />
+    </Link>
+  </div>
+  <div
+    className="text-center mb-1"
+  >
+    <Link
+      replace={false}
+      to="/oauth2/google"
+    >
+      <img
+        alt="logo"
+        className="mb-2 mt-2"
+        height="59"
+        src="Button_Google.svg"
+        width="250"
+      />
+    </Link>
+  </div>
+</div>
+`;

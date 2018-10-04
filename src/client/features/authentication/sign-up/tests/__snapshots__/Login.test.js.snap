@@ -1,0 +1,85 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test the login presentation component renders without crashing 1`] = `
+<div
+  className="container-fluid col-xl-6 col-lg-10 col-md-10 col-sm-6 col-xs-7"
+>
+  <form
+    className="form-login"
+    onSubmit={[Function]}
+  >
+    <br />
+    <div
+      className="text-center my-4"
+    >
+      <em>
+        Log into your account with email/username
+      </em>
+    </div>
+    <div
+      className="form-label-group mb-3"
+    >
+      <input
+        className="form-control form-input"
+        id="emailOrUsername"
+        onChange={[Function]}
+        placeholder="Enter your email or username"
+        required={true}
+        type="text"
+        value=""
+      />
+      <span
+        className="invalid-feedback"
+      />
+    </div>
+    <div
+      className="form-label-group mb-3"
+    >
+      <input
+        className="form-control form-input"
+        id="password"
+        onChange={[Function]}
+        placeholder="Enter your password"
+        required={true}
+        type="password"
+        value=""
+      />
+      <span
+        className="invalid-feedback"
+        key="0"
+      >
+        The password field is required
+      </span>
+    </div>
+    <button
+      className="btn mx-auto btn-block auth-submit-btn"
+      type="submit"
+    >
+      Sign in
+    </button>
+    <div
+      className="text-center my-4"
+    >
+      <p>
+        Don't have an account?
+         
+        <Link
+          className="login-text"
+          replace={false}
+          to="/signup"
+        >
+           Create One 
+        </Link>
+        <br />
+        <Link
+          className="login-text"
+          replace={false}
+          to="/password/reset"
+        >
+          Forgot Password?
+        </Link>
+      </p>
+    </div>
+  </form>
+</div>
+`;

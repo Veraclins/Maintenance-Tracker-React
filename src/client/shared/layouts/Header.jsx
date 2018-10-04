@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { PropTypes } from 'prop-types';
 
 import logo from '../../img/veratech-logo_burned.png';
+import { logoutUser } from '../../features/authentication/authAction';
 
 
 class Header extends Component {
@@ -9,6 +12,7 @@ class Header extends Component {
     super();
     this.state = {
       navbarActive: false,
+      activeSubMenu: '',
     };
   }
 
@@ -17,9 +21,19 @@ class Header extends Component {
     this.setState({ navbarActive: !navbarActive });
   }
 
+  openSubMenu = (e) => {
+    this.setState({ activeSubMenu: e.target.id });
+  }
+
+  closeNavbar = () => this.setState({ activeSubMenu: '', navbarActive: false });
+
+
   render() {
     /* eslint-disable jsx-a11y/anchor-is-valid */
-    const { navbarActive } = this.state;
+    const { navbarActive, activeSubMenu } = this.state;
+    const { logout, isLoggedIn, isAdmin } = this.props;
+    const subMenuActiveClass = 'has-submenu active_submenu';
+    const subMenuClass = 'has-submenu';
     return (
       <header>
         <div className="header_layout">
@@ -40,7 +54,6 @@ class Header extends Component {
                   ? 'nav_toggle active'
                   : 'nav_toggle'}
                 onClick={this.toggleNavbar}
-                role="navigation"
               >
                 <span />
                 <span />
@@ -49,76 +62,152 @@ class Header extends Component {
               </a>
               <div className={navbarActive ? 'menu-top-menu-container show' : 'menu-top-menu-container'}>
                 <ul id="top-menu" className="menu">
-                  <li
-                    id="menu-item-838"
-                    className="has-submenu menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-838"
-                  >
-                    <NavLink to="/requests">Requests</NavLink>
-                    <span className="arrow" />
-                    <div className="clear" />
-                    <ul className="sub-menu">
-                      <li
-                        id="menu-item-62750"
-                        className="menu-item menu-item-type-post_type menu-item-object-page menu-item-62750"
-                      >
-                        <NavLink to="/pending">
-                          Pending Requests
+                  {isLoggedIn ? (
+                    <React.Fragment>
+                      <li className="menu-item">
+                        <NavLink
+                          onClick={this.closeNavbar}
+                          to="/dashboard"
+                        >
+                          Dashboard
                         </NavLink>
                         <span className="arrow" />
                         <div className="clear" />
                       </li>
                       <li
-                        id="menu-item-62879"
-                        className="menu-item menu-item-type-post_type menu-item-object-page menu-item-62879"
+                        className={activeSubMenu === 'request-menu-toggle'
+                          ? subMenuActiveClass
+                          : subMenuClass
+                        }
                       >
-                        <NavLink to="/approved">
-                          Approved Requests
+                        <NavLink
+                          id="request-menu-toggle"
+                          to="#"
+                          onClick={this.openSubMenu}
+                        >
+                          Requests
                         </NavLink>
                         <span className="arrow" />
                         <div className="clear" />
+                        <ul className="sub-menu">
+                          <li className="menu-item">
+                            <NavLink
+                              onClick={this.closeNavbar}
+                              to="/requests/create"
+                            >
+                              Create a Request
+                            </NavLink>
+                            <span className="arrow" />
+                            <div className="clear" />
+                          </li>
+                          <li className="menu-item">
+                            <NavLink
+                              onClick={this.closeNavbar}
+                              to="/requests"
+                            >
+                              All Requests
+                            </NavLink>
+                            <span className="arrow" />
+                            <div className="clear" />
+                          </li>
+                          <li className="menu-item">
+                            <NavLink
+                              onClick={this.closeNavbar}
+                              to="/requests/pending"
+                            >
+                              Pending Requests
+                            </NavLink>
+                            <span className="arrow" />
+                            <div className="clear" />
+                          </li>
+                          <li className="menu-item">
+                            <NavLink
+                              onClick={this.closeNavbar}
+                              to="/requests/approved"
+                            >
+                              Approved Requests
+                            </NavLink>
+                            <span className="arrow" />
+                            <div className="clear" />
+                          </li>
+                          <li className="menu-item">
+                            <NavLink
+                              onClick={this.closeNavbar}
+                              to="/requests/disapproved"
+                            >
+                              Disapproved Requests
+                            </NavLink>
+                            <span className="arrow" />
+                            <div className="clear" />
+                          </li>
+                          <li className="menu-item">
+                            <NavLink
+                              onClick={this.closeNavbar}
+                              to="/requests/resolved"
+                            >
+                              Resolved Requests
+                            </NavLink>
+                            <span className="arrow" />
+                            <div className="clear" />
+                          </li>
+                        </ul>
                       </li>
-                      <li
-                        id="menu-item-840"
-                        className="menu-item menu-item-type-post_type menu-item-object-page menu-item-840"
+                    </React.Fragment>
+                  ) : false}
+                  {isAdmin ? (
+                    <li className="menu-item">
+                      <NavLink
+                        onClick={this.closeNavbar}
+                        to="/admin"
                       >
-                        <NavLink to="/disapproved">
-                          Disapproved Requests
-                        </NavLink>
+                        Admin Page
+                      </NavLink>
+                      <span className="arrow" />
+                      <div className="clear" />
+                    </li>
+                  ) : false}
+                  {!isLoggedIn
+                    ? (
+                      <React.Fragment>
+                        <li className="menu-item">
+                          <NavLink
+                            onClick={this.closeNavbar}
+                            to="/login"
+                          >
+                            Login
+                          </NavLink>
+                          <span className="arrow" />
+                          <div className="clear" />
+                        </li>
+                        <li className="menu-item">
+                          <NavLink
+                            onClick={this.closeNavbar}
+                            to="/signup"
+                          >
+                            Register
+                          </NavLink>
+                          <span className="arrow" />
+                          <div className="clear" />
+                        </li>
+                      </React.Fragment>
+                    )
+                    : (
+                      <li className="menu-item">
+                        <a
+                          className="buttons button_default"
+                          onClick={() => { this.closeNavbar(); logout(); }}
+                          href="#"
+                        >
+                          Logout
+                        </a>
                         <span className="arrow" />
                         <div className="clear" />
                       </li>
-                      <li
-                        id="menu-item-996"
-                        className="menu-item menu-item-type-post_type menu-item-object-page menu-item-996"
-                      >
-                        <NavLink to="/resolved">Resolved Requests</NavLink>
-                        <span className="arrow" />
-                        <div className="clear" />
-                      </li>
-                    </ul>
-                  </li>
-                  <li
-                    id="menu-item-716"
-                    className="menu-item menu-item-type-post_type menu-item-object-page menu-item-716"
-                  >
-                    <NavLink to="admin">
-                      Admin Page
-                    </NavLink>
-                    <span className="arrow" />
-                    <div className="clear" />
-                  </li>
-                  <li
-                    id="menu-item-53"
-                    className="menu-item menu-item-type-post_type menu-item-object-page menu-item-53"
-                  >
-                    <NavLink to="/login">Login</NavLink>
-                    <span className="arrow" />
-                    <div className="clear" />
-                  </li>
+                    )
+                  }
                 </ul>
               </div>
             </div>
-            <div className="clear" />
           </div>
         </div>
       </header>
@@ -126,4 +215,18 @@ class Header extends Component {
   }
 }
 
-export default Header;
+Header.propTypes = {
+  logout: PropTypes.func.isRequired,
+  isLoggedIn: PropTypes.bool.isRequired,
+  isAdmin: PropTypes.bool.isRequired,
+};
+
+const mapDispatchToProps = dispatch => ({
+  logout: () => dispatch(logoutUser()),
+});
+
+const mapStateToProps = state => ({
+  isLoggedIn: state.auth.isAuthenticated,
+  isAdmin: state.auth.isAdmin,
+});
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
