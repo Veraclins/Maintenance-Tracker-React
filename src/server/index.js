@@ -27,17 +27,6 @@ app.all('*', (req, res) => {
   });
 });
 
-// Error handler
-// no stack traces leaked to user in production
-app.use((err, req, res) => {
-  res.status(err.status || 500);
-  res.json({
-    errors: {
-      message: err.message,
-      error: process.env.NODE_ENV === 'production' ? {} : err,
-    },
-  });
-});
 app.listen(process.env.PORT || 3000);
 
 export default app;

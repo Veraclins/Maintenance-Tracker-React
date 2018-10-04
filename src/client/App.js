@@ -4,7 +4,7 @@ import { ConnectedRouter } from 'connected-react-router';
 import './styles/styles.css';
 import routes from './routes/routes';
 
-const App = ({ history }) => (
+export const App = ({ history }) => (
   <ConnectedRouter history={history}>
     { routes }
   </ConnectedRouter>

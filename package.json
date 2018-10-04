@@ -131,7 +131,8 @@
       "enzyme-to-json/serializer"
     ],
     "collectCoverageFrom": [
-      "**/src/client/?(*).js?(x)"
+      "**/src/client/?(*).js?(x)",
+      "!**/src/client/index.js"
     ],
     "coverageReporters": [
       "cobertura",

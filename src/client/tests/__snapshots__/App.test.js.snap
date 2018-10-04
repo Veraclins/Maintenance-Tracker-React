@@ -24,7 +24,7 @@ exports[`renders without crashing 1`] = `
   }
 >
   <div>
-    <NavBar />
+    <Header />
     <Switch>
       <Route
         component={[Function]}
@@ -36,6 +36,7 @@ exports[`renders without crashing 1`] = `
         path="/login"
       />
     </Switch>
+    <Footer />
   </div>
 </Connect(ConnectedRouter)>
 `;

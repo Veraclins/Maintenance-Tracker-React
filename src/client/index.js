@@ -5,7 +5,7 @@ import { createBrowserHistory } from 'history';
 import { connectRouter, routerMiddleware } from 'connected-react-router';
 import { Provider } from 'react-redux';
 
-import App from './App';
+import RootApp from './App';
 import rootReducer from './shared/rootReducer';
 
 const history = createBrowserHistory();
@@ -18,7 +18,7 @@ const store = createStore(
 
 ReactDOM.render(
   <Provider store={store}>
-    <App history={history} />
+    <RootApp history={history} />
   </Provider>,
   document.getElementById('root'),
 );

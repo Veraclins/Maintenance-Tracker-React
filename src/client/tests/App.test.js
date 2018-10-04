@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { createBrowserHistory } from 'history';
-import App from '../App';
+import { App } from '../App';
 
 const history = createBrowserHistory();
 

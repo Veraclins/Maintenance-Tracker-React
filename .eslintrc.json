@@ -6,6 +6,7 @@
       "node": true,
       "browser": true,
       "mocha": true,
+      "jasmine": true,
       "es6": true
     },
     "parserOptions": {
@@ -39,6 +40,10 @@
           "components": [ "Link", "NavLink" ],
           "specialLink": [ "to" ]
         }]
+    },
+    "globals": {
+      "window": true,
+      "jest": true
     }
   }
   

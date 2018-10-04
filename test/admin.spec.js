@@ -73,7 +73,7 @@ describe('GET request to /api/v1/requests', () => {
 describe('GET request to /api/v1/requests/2/approve', () => {
   it('Approve a request and return it', (done) => {
     chai.request(server)
-      .put('/api/v1/requests/2/approve')
+      .put('/api/v1/requests/4/approve')
       .set('x-access-token', adminToken)
       .end((err, res) => {
         expect(res.body).to.be.an('object');
@@ -141,7 +141,7 @@ describe('GET request to /api/v1/requests/2/approve', () => {
 describe('GET request to /api/v1/requests/3/disapprove', () => {
   it('Disapprove a request and return it', (done) => {
     chai.request(server)
-      .put('/api/v1/requests/3/disapprove')
+      .put('/api/v1/requests/1/disapprove')
       .set('x-access-token', adminToken)
       .end((err, res) => {
         expect(res.status).to.be.equal(200);
@@ -189,10 +189,10 @@ describe('GET request to /api/v1/requests/3/disapprove', () => {
   });
 });
 
-describe('GET request to /api/v1/requests/2/resolve', () => {
+describe('GET request to /api/v1/requests/4/resolve', () => {
   it('Resolve a request and return it', (done) => {
     chai.request(server)
-      .put('/api/v1/requests/2/resolve')
+      .put('/api/v1/requests/4/resolve')
       .set('x-access-token', adminToken)
       .end((err, res) => {
         expect(res.status).to.be.equal(200);
