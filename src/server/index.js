@@ -18,7 +18,14 @@ app.use(cors());
 // Routes handler
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDoc));
 app.use('/api/v1', v1Route);
-app.use('/', (req, res) => res.redirect('/api/v1'));
+
+// catch un-available routes
+app.all('*', (req, res) => {
+  res.status(404).json({
+    status: 'error',
+    message: 'Oh-oh! Seems like the page you requested does not exist. Please check the URL again.',
+  });
+});
 
 app.listen(process.env.PORT || 3000);
 

@@ -1,6 +1,6 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
-import server from '../src';
+import server from '../src/server';
 
 const expect = chai.expect; // eslint-disable-line prefer-destructuring
 chai.use(chaiHttp);
@@ -8,11 +8,11 @@ chai.use(chaiHttp);
 let token = '';
 const invalidToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo1LCJ1c2VybmFtZSI6IkpvaG5Bd2Vzb21lIn0sImlhdCI6MTUzNDM0NjY0NCwiZXhwIjoxNTM2OTM4NjQ0fQ.5qsYTl7XePfSIq2496-vfGmLCqST8otVJUEPfs7thJE';
 describe('Root route,', () => {
-  it('should respond with status 200', (done) => {
+  it('should respond with status 404 when user visits pages that is not found', (done) => {
     chai.request(server)
       .get('/')
       .end((err, res) => {
-        expect(res).to.have.status(200);
+        expect(res).to.have.status(404);
         done();
       });
   });
