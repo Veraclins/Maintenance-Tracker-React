@@ -24,7 +24,6 @@ const Footer = () => (
             <div className="footer-menu-container">
               <ul id="footer-menu" className="footer_nav_list">
                 <li
-                  id="menu-item-995"
                   className="menu-item menu-item-type-post_type menu-item-object-page menu-item-995"
                 >
                   <NavLink to="/dashboard">
@@ -32,13 +31,11 @@ const Footer = () => (
                   </NavLink>
                 </li>
                 <li
-                  id="menu-item-39"
                   className="menu-item menu-item-type-post_type menu-item-object-page menu-item-39"
                 >
                   <NavLink to="login">Login</NavLink>
                 </li>
                 <li
-                  id="menu-item-62473"
                   className="menu-item menu-item-type-custom menu-item-object-custom menu-item-62473"
                 >
                   <NavLink to="signup">
@@ -46,7 +43,6 @@ const Footer = () => (
                   </NavLink>
                 </li>
                 <li
-                  id="menu-item-37"
                   className="menu-item menu-item-type-post_type menu-item-object-page menu-item-37"
                 >
                   <NavLink to="requests">
@@ -81,8 +77,14 @@ const Footer = () => (
         <div className="footer_copyright">
           <p>
             <small>
-              Copyright © VeraTech 2018.
+              Designed with love by <strong><a href="https://twitter.com/icstps" rel="noopener noreferrer" target="_blank">Agada Clinton</a></strong>.
             </small>
+            {' '}
+            <span>
+              <small>
+                Copyright © VeraTech 2018.
+              </small>
+            </span>
           </p>
         </div>
       </div>

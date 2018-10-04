@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test the login presentation component renders without crashing 1`] = `
+<div
+  className="auth-nav"
+>
+  <footer
+    className="text-center"
+  >
+    <span
+      className="col-md-3 col-sm-2 col-xs-2 menu-item"
+    >
+      <Link
+        className="menu-link"
+        replace={false}
+        to="/"
+      >
+        HELP
+      </Link>
+    </span>
+    <span
+      className="col-md-3 col-sm-2 col-xs-2 menu-item"
+    >
+      <Link
+        className="menu-link"
+        replace={false}
+        to="/"
+      >
+        PRIVACY
+      </Link>
+    </span>
+    <span
+      className="col-md-3 col-sm-2 col-xs-2 menu-item"
+    >
+      <Link
+        className="menu-link"
+        replace={false}
+        to="/"
+      >
+        TERMS
+      </Link>
+    </span>
+    <span
+      className="col-md-3 col-sm-2 col-xs-2 menu-item"
+    >
+      <Link
+        className="menu-link"
+        replace={false}
+        to="/"
+      >
+        ABOUT
+      </Link>
+    </span>
+  </footer>
+</div>
+`;
