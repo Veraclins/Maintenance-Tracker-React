@@ -13,7 +13,10 @@ export function createToken(user) {
 export const verifyToken = (req, res, next) => {
   const token = req.headers['x-access-token'];
   if (!token) {
-    return res.status(400).send({ Error: 'You must supply an access token' });
+    return res.status(400).send({
+      status: 'error',
+      message: 'You must supply an access token',
+    });
   }
   return jwt.verify(token, secret, (err, decoded) => {
     if (decoded) {
@@ -21,6 +24,9 @@ export const verifyToken = (req, res, next) => {
       req.user = { id };
       return next();
     }
-    return res.status(401).send({ Error: 'Your access is invalid or expired. Please login again' });
+    return res.status(401).send({
+      status: 'error',
+      message: 'Your access is invalid or expired. Please login again',
+    });
   });
 };

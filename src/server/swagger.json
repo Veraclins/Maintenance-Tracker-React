@@ -433,17 +433,17 @@
   "definitions": {
     "User": {
       "required": [
-        "firstName",
-        "lastName",
+        "first_name",
+        "last_name",
         "email",
         "password",
         "PasswordConfirmation"
       ],
       "properties": {
-        "firstName": {
+        "first_name": {
           "type": "string"
         },
-        "lastName": {
+        "last_name": {
           "type": "string"
         },
         "email": {

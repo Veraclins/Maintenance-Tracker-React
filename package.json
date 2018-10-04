@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "prestart": "npm run build",
-    "start": "babel-node dist/server/index.js",
+    "start": "node dist/server/index.js",
     "build:client": "webpack",
     "build:server": "babel src/server -D --out-dir dist/server --source-maps",
     "client": "webpack-dev-server --mode development --devtool inline-source-map --hot",
