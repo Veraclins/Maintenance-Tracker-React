@@ -16,9 +16,10 @@ describe('GET request to /api/v1/requests', () => {
         password: 'password',
       })
       .end((err, res) => {
-        adminToken = res.body.token; // eslint-disable-line prefer-destructuring
+        ({ token: adminToken } = res.body.user);
         expect(res.status).to.be.equal(200);
-        expect(res.body).to.have.property('token');
+        expect(res.body).to.have.property('user');
+        expect(res.body).to.have.nested.property('user.token');
         done();
       });
   });
@@ -28,8 +29,8 @@ describe('GET request to /api/v1/requests', () => {
       .get('/api/v1/requests')
       .set('x-access-token', adminToken)
       .end((err, res) => {
-        expect(res.body).to.have.lengthOf.at.least(1);
-        expect(res.body).to.be.an('array');
+        expect(res.body.requests).to.have.lengthOf.at.least(1);
+        expect(res.body.requests).to.be.an('array');
         done();
       });
   });
@@ -42,10 +43,10 @@ describe('GET request to /api/v1/requests', () => {
         password: 'password',
       })
       .end((err, res) => {
-        token = res.body.token; // eslint-disable-line prefer-destructuring
+        ({ token } = res.body.user);
         expect(res.status).to.be.equal(200);
         expect(res.body).to.be.an('object');
-        expect(res.body).to.have.property('token');
+        expect(res.body).to.have.nested.property('user.token');
         done();
       });
   });
@@ -77,7 +78,8 @@ describe('GET request to /api/v1/requests/2/approve', () => {
       .set('x-access-token', adminToken)
       .end((err, res) => {
         expect(res.body).to.be.an('object');
-        expect(res.body).to.have.property('title');
+        expect(res.body).to.have.property('request');
+        expect(res.body.request).to.have.property('title');
         done();
       });
   });
@@ -114,7 +116,7 @@ describe('GET request to /api/v1/requests/2/approve', () => {
       })
       .end((err, res) => {
         expect(res).to.have.status(404);
-        expect(res.body).to.have.property('Error');
+        expect(res.body).to.have.property('status').to.equal('error');
         done();
       });
   });
@@ -132,7 +134,7 @@ describe('GET request to /api/v1/requests/2/approve', () => {
       })
       .end((err, res) => {
         expect(res).to.have.status(400);
-        expect(res.body).to.have.property('Error');
+        expect(res.body).to.have.property('status').to.equal('error');
         done();
       });
   });
@@ -146,7 +148,7 @@ describe('GET request to /api/v1/requests/3/disapprove', () => {
       .end((err, res) => {
         expect(res.status).to.be.equal(200);
         expect(res.body).to.be.an('object');
-        expect(res.body).to.have.property('title');
+        expect(res.body).to.have.property('request');
         done();
       });
   });
@@ -183,7 +185,7 @@ describe('GET request to /api/v1/requests/3/disapprove', () => {
       })
       .end((err, res) => {
         expect(res).to.have.status(404);
-        expect(res.body).to.have.property('Error');
+        expect(res.body).to.have.property('status').to.equal('error');
         done();
       });
   });
@@ -197,7 +199,7 @@ describe('GET request to /api/v1/requests/4/resolve', () => {
       .end((err, res) => {
         expect(res.status).to.be.equal(200);
         expect(res.body).to.be.an('object');
-        expect(res.body).to.have.property('title');
+        expect(res.body).to.have.property('request');
         done();
       });
   });
@@ -234,7 +236,7 @@ describe('GET request to /api/v1/requests/4/resolve', () => {
       })
       .end((err, res) => {
         expect(res).to.have.status(404);
-        expect(res.body).to.have.property('Error');
+        expect(res.body).to.have.property('status').to.equal('error');
         done();
       });
   });
@@ -252,7 +254,7 @@ describe('GET request to /api/v1/requests/4/resolve', () => {
       })
       .end((err, res) => {
         expect(res).to.have.status(400);
-        expect(res.body).to.have.property('Error');
+        expect(res.body).to.have.property('status').to.equal('error');
         done();
       });
   });

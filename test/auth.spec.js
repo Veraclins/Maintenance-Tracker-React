@@ -19,7 +19,7 @@ describe('POST request to /api/v1/auth/signup', () => {
       .end((err, res) => {
         expect(res.status).to.be.equal(201);
         expect(res.body).to.be.an('object');
-        expect(res.body).to.have.property('token');
+        expect(res.body).to.have.nested.property('user.token');
         done();
       });
   });
@@ -35,9 +35,9 @@ describe('POST request to /api/v1/auth/signup', () => {
         passwordConfirmation: 'password',
       })
       .end((err, res) => {
-        expect(res.status).to.be.equal(400);
+        expect(res.status).to.be.equal(409);
         expect(res.body).to.be.an('object');
-        expect(res.body).to.have.property('Error');
+        expect(res.body).to.have.property('status').to.equal('error');
         done();
       });
   });
@@ -83,7 +83,7 @@ describe('POST request to /api/v1/auth/login', () => {
       .end((err, res) => {
         expect(res.status).to.be.equal(200);
         expect(res.body).to.be.an('object');
-        expect(res.body).to.have.property('token');
+        expect(res.body).to.have.nested.property('user.token');
         done();
       });
   });
@@ -124,7 +124,7 @@ describe('POST request to /api/v1/auth/login', () => {
       .end((err, res) => {
         expect(res.status).to.be.equal(401);
         expect(res.body).to.be.an('object');
-        expect(res.body).to.have.property('Error');
+        expect(res.body).to.have.property('status').to.equal('error');
         done();
       });
   });
@@ -139,7 +139,7 @@ describe('POST request to /api/v1/auth/login', () => {
       .end((err, res) => {
         expect(res.status).to.be.equal(401);
         expect(res.body).to.be.an('object');
-        expect(res.body).to.have.property('Error');
+        expect(res.body).to.have.property('status').to.equal('error');
         done();
       });
   });

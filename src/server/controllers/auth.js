@@ -13,8 +13,9 @@ export const signUp = (req, res) => {
   querySingle({ text: 'SELECT * FROM users WHERE email=($1)', values: [email] })
     .then((response) => {
       if (response) {
-        return res.status(400).send({
-          Error: 'The email provided is already registered. Please try again',
+        return res.status(409).send({
+          status: 'error',
+          message: 'The email provided is already registered',
         });
       }
       return querySingle(query, res)
@@ -24,8 +25,9 @@ export const signUp = (req, res) => {
             const user = {
               id, role, firstName, lastName, createdAt,
             };
-            const token = createToken(user);
-            res.status(201).send({ token, user });
+            const token = createToken({ id, role });
+            user.token = token;
+            res.status(201).send({ user });
           }
         });
     });
@@ -37,7 +39,10 @@ export const login = (req, res) => {
     text: 'SELECT * FROM users WHERE email=($1)',
     values: [email],
   };
-  const unauthenticatedError = { Error: 'Incorrect details. Please be sure you typed them correctly' };
+  const unauthenticatedError = {
+    status: 'error',
+    message: 'Incorrect details. Please be sure you typed them correctly',
+  };
   querySingle(query)
     .then((request) => { // eslint-disable-line
       if (request) {
@@ -50,8 +55,9 @@ export const login = (req, res) => {
         const user = {
           id, role, firstName, lastName, createdAt,
         };
-        const token = createToken(user);
-        return res.send({ token, user });
+        const token = createToken({ id, role });
+        user.token = token;
+        return res.send({ user });
       }
       return res.status(401).send(unauthenticatedError);
     });

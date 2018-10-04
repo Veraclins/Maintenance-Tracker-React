@@ -2,11 +2,14 @@ import { queryAll } from '../database/queries/query';
 import { validParam, handleRequest } from '../database/handler';
 
 const error = {
-  Error: 'The given request id does not exist or it has already been approved or resolved. Please check again',
+  message: 'The given request id does not exist or it has already been approved or resolved. Please check again',
 };
 export const adminGetAllRequests = (req, res) => {
   queryAll('SELECT * FROM requests ORDER BY updated_at DESC')
-    .then(data => res.status(200).send(data));
+    .then(requests => res.status(200).send({
+      status: 'success',
+      requests,
+    }));
 };
 
 export const requestApproval = (req, res, status) => {
@@ -20,7 +23,10 @@ export const requestApproval = (req, res, status) => {
     };
     return handleRequest(res, query, error);
   }
-  return res.status(400).send({ Error: 'Request id must be a number' });
+  return res.status(400).send({
+    status: 'error',
+    message: 'Request id must be a number',
+  });
 };
 
 export const approveRequest = (req, res) => {
@@ -40,5 +46,8 @@ export const resolveRequest = (req, res) => {
     };
     return handleRequest(res, query, error);
   }
-  return res.status(400).send({ Error: 'Request id must be a number' });
+  return res.status(400).send({
+    status: 'error',
+    message: 'Request id must be a number',
+  });
 };

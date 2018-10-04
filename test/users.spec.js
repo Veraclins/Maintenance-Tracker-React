@@ -44,10 +44,10 @@ describe('POST request to /api/v1/auth/login', () => {
         password: 'password',
       })
       .end((err, res) => {
-        token = res.body.token; // eslint-disable-line prefer-destructuring
+        ({ token } = res.body.user);
         expect(res.status).to.be.equal(200);
         expect(res.body).to.be.an('object');
-        expect(res.body).to.have.property('token');
+        expect(res.body).to.have.nested.property('user.token');
         done();
       });
   });
@@ -66,7 +66,7 @@ describe('POST request to /api/v1/users/requests', () => {
       .end((err, res) => {
         expect(res.status).to.be.equal(201);
         expect(res.body).to.be.an('object');
-        expect(res.body).to.have.property('id');
+        expect(res.body).to.have.nested.property('request.id');
         done();
       });
   });
@@ -83,7 +83,7 @@ describe('POST request to /api/v1/users/requests', () => {
       .end((err, res) => {
         expect(res.status).to.be.equal(401);
         expect(res.body).to.be.an('object');
-        expect(res.body).to.have.property('Error');
+        expect(res.body).to.have.property('status').to.equal('error');
         done();
       });
   });
@@ -99,7 +99,7 @@ describe('POST request to /api/v1/users/requests', () => {
       })
       .end((err, res) => {
         expect(res.status).to.be.equal(400);
-        expect(res.body).to.have.property('Error');
+        expect(res.body).to.have.property('status').to.equal('error');
         done();
       });
   });
@@ -114,7 +114,7 @@ describe('POST request to /api/v1/users/requests', () => {
       })
       .end((err, res) => {
         expect(res.status).to.be.equal(400);
-        expect(res.body).to.have.property('Error');
+        expect(res.body).to.have.property('status').to.equal('error');
         done();
       });
   });
@@ -150,8 +150,8 @@ describe('GET request to /api/v1/users/requests', () => {
       .get('/api/v1/users/requests')
       .set('x-access-token', token)
       .end((err, res) => {
-        expect(res.body).to.have.lengthOf.at.least(1);
-        expect(res.body).to.be.an('array');
+        expect(res.body.requests).to.have.lengthOf.at.least(1);
+        expect(res.body.requests).to.be.an('array');
         done();
       });
   });
@@ -173,7 +173,7 @@ describe('GET request to /api/v1/users/requests/:requestId', () => {
       .set('x-access-token', token)
       .end((err, res) => {
         expect(res).to.have.status(200);
-        expect(res.body).to.have.property('title');
+        expect(res.body.request).to.have.property('title');
         done();
       });
   });
@@ -193,7 +193,7 @@ describe('GET request to /api/v1/users/requests/:requestId', () => {
       .set('x-access-token', token)
       .end((err, res) => {
         expect(res).to.have.status(404);
-        expect(res.body).to.have.property('Error');
+        expect(res.body).to.have.property('status').to.equal('error');
         done();
       });
   });
@@ -204,7 +204,7 @@ describe('GET request to /api/v1/users/requests/:requestId', () => {
       .set('x-access-token', token)
       .end((err, res) => {
         expect(res).to.have.status(400);
-        expect(res.body).to.have.property('Error');
+        expect(res.body).to.have.property('status').to.equal('error');
         done();
       });
   });
@@ -223,8 +223,8 @@ describe('PUT request to /api/v1/users/requests/:requestId', () => {
       .end((err, res) => {
         expect(res.status).to.be.equal(200);
         expect(res.body).to.be.an('object');
-        expect(res.body).to.have.property('user_id', 2);
-        expect(res.body).to.have.property('title');
+        expect(res.body.request).to.have.property('userId', 2);
+        expect(res.body.request).to.have.property('title');
         done();
       });
   });
@@ -240,7 +240,7 @@ describe('PUT request to /api/v1/users/requests/:requestId', () => {
       })
       .end((err, res) => {
         expect(res).to.have.status(404);
-        expect(res.body).to.have.property('Error');
+        expect(res.body).to.have.property('status').to.equal('error');
         done();
       });
   });
@@ -256,7 +256,7 @@ describe('PUT request to /api/v1/users/requests/:requestId', () => {
       })
       .end((err, res) => {
         expect(res).to.have.status(400);
-        expect(res.body).to.have.property('Error');
+        expect(res.body).to.have.property('status').to.equal('error');
         done();
       });
   });

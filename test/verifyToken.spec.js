@@ -1,6 +1,5 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
-import server from '../src/server';
 import { createToken, verifyToken } from '../src/server/middlewares/tokenHandler';
 
 const expect = chai.expect; // eslint-disable-line prefer-destructuring
@@ -10,7 +9,6 @@ let token = '';
 describe('Create Token', () => {
   it('should sign a token and return it', (done) => {
     token = createToken({ id: 1 });
-    console.log(token);
     expect(token).to.be.a('string');
     done();
   });
@@ -39,9 +37,8 @@ describe('Verify Token', () => {
 
   it('should return error if there is no token in the header', (done) => {
     const verified = verifyToken(req, res, next);
-    expect(token).to.be.a('string');
-    expect(res.body).to.be.an('object');
-    expect(res.body).to.have.property('Error');
+    expect(verified.body).to.be.an('object');
+    expect(verified.body).to.have.property('status').to.equal('error');
     done();
   });
 });

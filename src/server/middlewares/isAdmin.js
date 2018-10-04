@@ -11,7 +11,10 @@ export default async function isAdmin(req, res, next) {
   querySingle(query)
     .then((request) => {
       if (request && request.role !== 'Admin') {
-        return res.status(403).send({ Error: 'You are not authorized to perform this operation' });
+        return res.status(403).send({
+          status: 'error',
+          message: 'You are not authorized to perform this operation',
+        });
       }
       next();
     });

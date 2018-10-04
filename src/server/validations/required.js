@@ -13,7 +13,11 @@ const required = (req, res, requiredInput) => {
     }
   });
   if (Object.keys(errors).length !== 0) {
-    res.status(400).send({ Error: 'Validation error(s)', errors });
+    res.status(400).send({
+      status: 'error',
+      message: 'Validation error(s)',
+      errors,
+    });
     return false;
   }
   return input;

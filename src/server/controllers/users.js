@@ -1,5 +1,6 @@
 import { queryAll, querySingle } from '../database/queries/query';
 import { validParam, handleRequest } from '../database/handler';
+import { formatMultiple, formatSingle } from '../database/formatter';
 
 export const getAllRequests = (req, res) => {
   const userId = req.user.id;
@@ -8,7 +9,10 @@ export const getAllRequests = (req, res) => {
     values: [userId],
   };
   queryAll(query)
-    .then(data => res.status(200).send(data));
+    .then(requests => res.status(200).send({
+      status: 'success',
+      requests: formatMultiple(requests),
+    }));
 };
 
 export const createRequest = (req, res) => {
@@ -22,7 +26,10 @@ export const createRequest = (req, res) => {
   };
   querySingle(query)
     .then((request) => {
-      res.status(201).send(request);
+      res.status(201).send({
+        status: 'success',
+        request: formatSingle(request),
+      });
     });
 };
 
@@ -34,10 +41,13 @@ export const getRequestById = (req, res) => {
       text: 'SELECT * FROM requests WHERE (id=($1) AND user_id=($2))',
       values: [requestId, userId],
     };
-    const error = { Error: "You don't have a request with the given id. Please check again" };
+    const error = { message: "You don't have a request with the given id. Please check again" };
     return handleRequest(res, query, error);
   }
-  return res.status(400).send({ Error: 'Request id must be a number' });
+  return res.status(400).send({
+    status: 'error',
+    message: 'Request id must be a number',
+  });
 };
 
 export const UpdateRequest = (req, res) => {
@@ -51,8 +61,11 @@ export const UpdateRequest = (req, res) => {
       text: 'UPDATE requests SET title=($1), device=($2), description=($3), updated_at=($4) WHERE (id=($5) AND user_id=($6) AND (status=($7) OR status=($8))) RETURNING *',
       values: [title, device, description, 'NOW()', requestId, userId, 'pending', 'disapproved'],
     };
-    const error = { Error: "You don't have a request with the given id or it has already been approved. Please check again" };
+    const error = { message: "You don't have a request with the given id or it has already been approved. Please check again" };
     return handleRequest(res, query, error);
   }
-  return res.status(400).send({ Error: 'Request id must be a number' });
+  return res.status(400).send({
+    status: 'error',
+    message: 'Request id must be a number',
+  });
 };
