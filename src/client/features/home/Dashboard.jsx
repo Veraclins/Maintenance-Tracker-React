@@ -53,56 +53,6 @@ export const Dashboard = ({ isLoggedIn, user }) => (
             </div>
           </div>
           <div className="clear" />
-          <div className="timeline_buttons_section">
-            <div className="timeline_buttons timeline_button_left">
-              <div className="wow fadeInLeft">
-                {' '}
-                <Link
-                  to="/requests/pending"
-                  className="buttons button_blank"
-                >
-                  VIEW PENDING REQUESTS
-                </Link>
-              </div>
-            </div>
-            <div className="timeline_buttons timeline_button_right">
-              <div className="wow fadeInRight">
-                {' '}
-                <Link
-                  to="/requests/approved"
-                  className="buttons button_default"
-                >
-                  VIEW APPROVED REQUESTS
-                </Link>
-              </div>
-            </div>
-          </div>
-          <div className="clear" />
-          <div className="timeline_buttons_section">
-            <div className="timeline_buttons timeline_button_left">
-              <div className="wow fadeInLeft">
-                {' '}
-                <Link
-                  to="/requests/rejected"
-                  className="buttons button_default"
-                >
-                  VIEW REJECTED REQUESTS
-                </Link>
-              </div>
-            </div>
-            <div className="timeline_buttons timeline_button_right">
-              <div className="wow fadeInRight">
-                {' '}
-                <Link
-                  to="/requests/resolved"
-                  className="buttons button_blank"
-                >
-                  VIEW RESOLVED REQUESTS
-                </Link>
-              </div>
-            </div>
-          </div>
-          <div className="clear" />
         </div>
       </div>
       <div className="timeline_section_bg" />
