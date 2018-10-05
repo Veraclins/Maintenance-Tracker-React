@@ -52,7 +52,12 @@ exports[`renders without crashing 1`] = `
       />
       <Route
         component={[Function]}
+        exact={true}
         path="/requests/:requestId"
+      />
+      <Route
+        component={[Function]}
+        path="/requests/:requestId/edit"
       />
       <Route
         component={[Function]}

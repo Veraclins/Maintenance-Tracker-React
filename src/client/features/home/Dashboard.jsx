@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 
-const Dashboard = ({ isLoggedIn, user }) => (
+export const Dashboard = ({ isLoggedIn, user }) => (
   /* eslint-disable react/no-unescaped-entities */
   <section className="body_gradient home">
     <div className="dashboard_top">
@@ -11,7 +11,7 @@ const Dashboard = ({ isLoggedIn, user }) => (
         {isLoggedIn
           ? (
             <h1 className="home_welcome">
-              Welcome back <strong>{user.first_name} {user.last_name}</strong>
+              Welcome back <strong>{user.firstName} {user.lastName}</strong>
             </h1>
           ) : false
         }

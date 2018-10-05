@@ -37,10 +37,19 @@ export class ViewRequest extends Component {
                   <p className="single_request_body">
                     {request.description}
                   </p>
-                  <Link to={`/requests/${request.id}/update`} className="edit_request_link"> <span>EDIT</span></Link>
+                  {request.updatedAt > request.createdAt
+                    ? (<span className="edited_flag"><small>edited</small></span>)
+                    : false}
+                  <Link to={`/requests/${request.id}/edit`} className="edit_request_link"> <span>EDIT</span></Link>
                 </div>
               </div>
-            ) : <h3 className="single_request_title">No request with the given id</h3>}
+            ) : (
+              <div className="single_request_column">
+                <div className="single_request_info">
+                  <h3 className="no_request_found">You don{"'"}t have a request with that Id</h3>
+                </div>
+              </div>
+            )}
         </div>
       </div>
     );

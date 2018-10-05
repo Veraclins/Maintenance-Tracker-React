@@ -13,7 +13,7 @@
     "test:server": "cross-env NODE_ENV=test nyc --reporter=lcov --reporter=text mocha --file test/prep/PrepDb.js --exit",
     "test:client": "jest --coverage",
     "test": "npm run test:server && npm run test:client",
-    "update:snap": "npm test -- -u",
+    "update:snap": "jest --coverage -u",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "coveralls": "nyc --reporter=lcov --reporter=text-lcov npm test",
     "dev": "concurrently \"npm run server\" \"npm run client\"",

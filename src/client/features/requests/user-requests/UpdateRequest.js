@@ -3,19 +3,18 @@ import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import toastr from 'toastr';
 
-import { createRequest } from './userRequestsAction';
+import { updateRequest, getSingleRequest } from './userRequestsAction';
 import { clearValidationErrors } from '../requestsAction';
 
 import Form from '../../../shared/components/Form';
 import history from '../../../shared/utilities/history';
 
 const options = [
-  { value: '', label: 'Select Device Type' },
-  { value: 'Laptop', label: 'Laptop Pc' },
-  { value: 'Desktop', label: 'Desktop Pc' },
-  { value: 'Smartphone', label: 'Smartphone' },
-  { value: 'Tablet', label: 'Tablet Pc' },
-  { value: 'Others', label: 'Others' },
+  { value: 'Laptop', label: 'Laptop Pc', className: 'hs-input' },
+  { value: 'Desktop', label: 'Desktop Pc', className: 'hs-input' },
+  { value: 'Smartphone', label: 'Smartphone', className: 'hs-input' },
+  { value: 'Tablet', label: 'Tablet Pc', className: 'hs-input' },
+  { value: 'Others', label: 'Others', className: 'hs-input' },
 ];
 /**
  * @class Handles Account verification
@@ -27,13 +26,14 @@ const options = [
  * @requires verifyAccountActions
  * @requires AH_LOGO
  */
-export class CreateRequest extends Component {
-  constructor() {
-    super();
+export class UpdateRequest extends Component {
+  constructor(props) {
+    super(props);
+    const { request } = props;
     this.state = {
       input: {
         title: {
-          value: '',
+          value: request.title,
           placeholder: 'Enter the title of the request',
           required: true,
         },
@@ -43,17 +43,29 @@ export class CreateRequest extends Component {
           options,
           placeholder: 'Select your device type',
           required: true,
-          value: '',
+          value: request.device,
         },
       },
       textArea: {
         description: {
-          value: '',
+          value: request.description,
           required: true,
           placeholder: 'Enter the description of the request',
         },
       },
     };
+  }
+
+  componentDidMount() {
+    const {
+      match, location, fetch, isLoggedIn, user,
+    } = this.props;
+    if (!isLoggedIn) {
+      toastr.error('You must be logged to rate an article');
+      return history.push('/login', { from: location.pathname });
+    }
+    const { params } = match;
+    return fetch(user, params.requestId);
   }
 
   /**
@@ -126,10 +138,12 @@ export class CreateRequest extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     const {
-      create,
+      update,
       user,
       isLoggedIn,
       location,
+      request,
+      match,
     } = this.props;
     const {
       input,
@@ -140,19 +154,26 @@ export class CreateRequest extends Component {
       toastr.error('You must be logged to make a request');
       return history.push('/login', { from: location.pathname });
     }
-    return create({
-      title: input.title.value,
-      device: select.device.value,
-      description: textArea.description.value,
-    }, user);
+    const updatedRequest = {
+      title: input.title.value || request.title,
+      device: select.device.value || request.device,
+      description: textArea.description.value || request.description,
+    };
+    updatedRequest.id = match.params.requestId;
+    return update(updatedRequest, user);
   }
 
   /**
    * @description Renders the component on a DOM node
    */
   render() {
-    const { errors } = this.props;
+    const { errors, match } = this.props;
     const { input, select, textArea } = this.state;
+    const formLinks = {
+      label: 'Change your mind?',
+      link: `/requests/${match.params.requestId}`,
+      text: 'Go back',
+    };
     return (
       <Form
         handleInputChange={this.handleInputChange}
@@ -161,36 +182,42 @@ export class CreateRequest extends Component {
         inputs={input}
         selects={select}
         textAreas={textArea}
+        formLinks={formLinks}
         handleSubmit={this.handleSubmit}
         errors={errors}
-        formTitle="Make a Request"
+        formTitle="Edit your Request"
       />
     );
   }
 }
 
-CreateRequest.propTypes = {
+UpdateRequest.propTypes = {
   clearValidation: PropTypes.func.isRequired,
   isLoggedIn: PropTypes.bool.isRequired,
   location: PropTypes.shape({}).isRequired,
-  create: PropTypes.func.isRequired,
+  update: PropTypes.func.isRequired,
+  fetch: PropTypes.func.isRequired,
   errors: PropTypes.shape({}),
   user: PropTypes.shape({}).isRequired,
+  match: PropTypes.shape({}).isRequired,
+  request: PropTypes.shape({}).isRequired,
 };
 
-CreateRequest.defaultProps = {
+UpdateRequest.defaultProps = {
   errors: {},
 };
 
 const mapDispatchToProps = dispatch => ({
-  create: (request, user) => dispatch(createRequest(request, user)),
+  update: (request, user) => dispatch(updateRequest(request, user)),
+  fetch: (user, requestId) => dispatch(getSingleRequest(user, requestId)),
   clearValidation: field => dispatch(clearValidationErrors(field)),
 });
 
 const mapStateToProps = state => ({
   errors: state.requests.errors,
   user: state.auth.user,
+  request: state.requests.currentRequest,
   isLoggedIn: state.auth.isAuthenticated,
   location: state.router.location,
 });
-export default connect(mapStateToProps, mapDispatchToProps)(CreateRequest);
+export default connect(mapStateToProps, mapDispatchToProps)(UpdateRequest);

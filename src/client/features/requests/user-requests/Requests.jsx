@@ -31,7 +31,17 @@ export class Requests extends Component {
           <div className="request_header">
             {requests.length !== 0
               ? <p>These are your requests so far</p>
-              : <p>You don{"'"}t have any request yet</p>}
+              : (
+                <div className="no_content">
+                  <p className="no_requests">You don{"'"}t have any request yet</p>
+                  <Link
+                    to="/requests/create"
+                    className="buttons button_default"
+                  >
+                    MAKE A REQUEST
+                  </Link>
+                </div>
+              )}
           </div>
           {pending.length !== 0
             ? (

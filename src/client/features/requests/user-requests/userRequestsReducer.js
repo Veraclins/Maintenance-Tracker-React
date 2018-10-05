@@ -31,6 +31,7 @@ const userRequestsReducer = (state, action) => {
       return {
         ...state,
         errors,
+        currentRequest: {},
       };
     case USER_GET_ALL_REQUESTS_SUCCESSFUL:
       return {

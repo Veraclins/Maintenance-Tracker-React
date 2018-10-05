@@ -6,7 +6,7 @@ import { PropTypes } from 'prop-types';
 import smartphone from '../../img/smartphones.jpg';
 import laptopRepair from '../../img/laptop-repair.jpeg';
 
-const Home = ({ isLoggedIn, isAdmin, user }) => (
+export const Home = ({ isLoggedIn, isAdmin, user }) => (
   /* eslint-disable react/no-unescaped-entities */
   <section className="body_gradient home">
     <div className="content_banner">
@@ -20,7 +20,7 @@ const Home = ({ isLoggedIn, isAdmin, user }) => (
             {isLoggedIn
               ? (
                 <h1 className="home_welcome">
-                  Welcome back <strong>{user.first_name} {user.last_name}</strong>
+                  Welcome back <strong>{user.firstName} {user.lastName}</strong>
                 </h1>
               ) : false
             }
