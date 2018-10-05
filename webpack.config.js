@@ -35,9 +35,8 @@ module.exports = {
   devServer: {
     port: 8080,
     open: true,
-    proxy: {
-      '/api': 'http://localhost:4000',
-    },
+    historyApiFallback: true,
+
   },
   plugins: [
     new CleanWebpackPlugin([outputDirectory]),

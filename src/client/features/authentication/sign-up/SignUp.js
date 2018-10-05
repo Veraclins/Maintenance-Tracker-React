@@ -14,13 +14,13 @@ export class SignUp extends Component {
   constructor() {
     super();
     this.state = {
-      first_name: {
+      firstName: {
         type: 'text',
         value: '',
         placeholder: 'Enter your first name',
         required: true,
       },
-      last_name: {
+      lastName: {
         type: 'text',
         value: '',
         placeholder: 'Enter your last name',
@@ -77,16 +77,16 @@ export class SignUp extends Component {
     const { signup, location } = this.props;
     const {
       email,
-      first_name,
-      last_name,
+      firstName,
+      lastName,
       password,
       passwordConfirmation,
     } = this.state;
     signup({
       email: email.value,
       password: password.value,
-      first_name: first_name.value,
-      last_name: last_name.value,
+      firstName: firstName.value,
+      lastName: lastName.value,
       passwordConfirmation: passwordConfirmation.value,
     }, location);
   }
