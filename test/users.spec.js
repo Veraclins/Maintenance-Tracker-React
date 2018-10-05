@@ -71,7 +71,7 @@ describe('POST request to /api/v1/users/requests', () => {
       });
   });
 
-  it('should fail if the has invalid token', (done) => {
+  it('should fail if the request has invalid token', (done) => {
     chai.request(server)
       .post('/api/v1/users/requests')
       .set('x-access-token', invalidToken)
