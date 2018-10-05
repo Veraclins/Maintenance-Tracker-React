@@ -64,7 +64,7 @@ export const Home = ({ isLoggedIn, isAdmin, user }) => (
                       <div className="buttons_banner">
                         {' '}
                         <Link
-                          to="/requests/create"
+                          to="/admin"
                           className="buttons button_default"
                         >
                           GO TO ADMIN PAGE

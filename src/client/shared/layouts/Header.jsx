@@ -80,13 +80,12 @@ class Header extends Component {
                           : subMenuClass
                         }
                       >
-                        <NavLink
+                        <a
                           id="request-menu-toggle"
-                          to="#"
                           onClick={this.openSubMenu}
                         >
                           Requests
-                        </NavLink>
+                        </a>
                         <span className="arrow" />
                         <div className="clear" />
                         <ul className="sub-menu">
@@ -105,47 +104,7 @@ class Header extends Component {
                               onClick={this.closeNavbar}
                               to="/requests"
                             >
-                              All Requests
-                            </NavLink>
-                            <span className="arrow" />
-                            <div className="clear" />
-                          </li>
-                          <li className="menu-item">
-                            <NavLink
-                              onClick={this.closeNavbar}
-                              to="/requests/pending"
-                            >
-                              Pending Requests
-                            </NavLink>
-                            <span className="arrow" />
-                            <div className="clear" />
-                          </li>
-                          <li className="menu-item">
-                            <NavLink
-                              onClick={this.closeNavbar}
-                              to="/requests/approved"
-                            >
-                              Approved Requests
-                            </NavLink>
-                            <span className="arrow" />
-                            <div className="clear" />
-                          </li>
-                          <li className="menu-item">
-                            <NavLink
-                              onClick={this.closeNavbar}
-                              to="/requests/disapproved"
-                            >
-                              Disapproved Requests
-                            </NavLink>
-                            <span className="arrow" />
-                            <div className="clear" />
-                          </li>
-                          <li className="menu-item">
-                            <NavLink
-                              onClick={this.closeNavbar}
-                              to="/requests/resolved"
-                            >
-                              Resolved Requests
+                              View Requests
                             </NavLink>
                             <span className="arrow" />
                             <div className="clear" />
@@ -196,7 +155,6 @@ class Header extends Component {
                         <a
                           className="buttons button_default"
                           onClick={() => { this.closeNavbar(); logout(); }}
-                          href="#"
                         >
                           Logout
                         </a>

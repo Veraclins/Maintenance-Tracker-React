@@ -1094,10 +1094,13 @@ div.request_details:last-child {
   background-size: 8px 5px;
 }
 
-.navigation ul li.current_page_item>a {
+.navigation ul li a.current_page_item {
   color: #FFAF30;
 }
-
+.button_right {
+  float: right;
+  margin-bottom: 10px;
+}
 .banner_big_title,
 .vertical_anchor a {
   color: #fff;
