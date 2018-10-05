@@ -16,8 +16,7 @@ const fetchData = async (payload) => {
   const {
     url, method, data, headers,
   } = payload;
-  const baseURL = process.env.API_URL;
-  console.log('base url', baseURL);
+  const baseURL = 'https://veratech.herokuapp.com/api/v1';
   const response = await axios({
     baseURL,
     url,
