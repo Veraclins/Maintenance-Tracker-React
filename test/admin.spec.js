@@ -72,6 +72,41 @@ describe('GET request to /api/v1/requests', () => {
 });
 
 describe('GET request to /api/v1/requests/2/approve', () => {
+  it('Get a request with a given ID', (done) => {
+    chai.request(server)
+      .get('/api/v1/requests/4')
+      .set('x-access-token', adminToken)
+      .end((err, res) => {
+        expect(res.body).to.be.an('object');
+        expect(res.body).to.have.property('request');
+        expect(res.body.request).to.have.property('title');
+        done();
+      });
+  });
+  it('should return status 404 and an error message when an id that does not exist is provided', (done) => {
+    chai.request(server)
+      .get('/api/v1/requests/20')
+      .set('x-access-token', adminToken)
+      .end((err, res) => {
+        expect(res).to.have.status(404);
+        expect(res.body).to.have.property('status').to.equal('error');
+        done();
+      });
+  });
+
+  it('should return status 400 and an error message when the id is not a number', (done) => {
+    chai.request(server)
+      .get('/api/v1/requests/love')
+      .set('x-access-token', adminToken)
+      .end((err, res) => {
+        expect(res).to.have.status(400);
+        expect(res.body).to.have.property('status').to.equal('error');
+        done();
+      });
+  });
+});
+
+describe('PUT request to /api/v1/requests/2/approve', () => {
   it('Approve a request and return it', (done) => {
     chai.request(server)
       .put('/api/v1/requests/4/approve')
@@ -191,7 +226,7 @@ describe('GET request to /api/v1/requests/3/disapprove', () => {
   });
 });
 
-describe('GET request to /api/v1/requests/4/resolve', () => {
+describe('PUT request to /api/v1/requests/4/resolve', () => {
   it('Resolve a request and return it', (done) => {
     chai.request(server)
       .put('/api/v1/requests/4/resolve')

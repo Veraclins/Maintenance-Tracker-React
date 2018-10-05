@@ -3,7 +3,7 @@ import toastr from 'toastr';
 import {
   CLEAR_ERROR,
   CLEAR_VALIDATION_ERROR,
-  USER_LOGOUT,
+  LOGOUT_USER,
 } from '../../shared/constants/ActionTypes';
 import { clearState } from '../../shared/utilities/persistState';
 import history from '../../shared/utilities/history';
@@ -22,8 +22,8 @@ export const clearValidationErrors = errorField => async (dispatch) => {
 export const logoutUser = () => async (dispatch) => {
   clearState();
   dispatch({
-    type: USER_LOGOUT,
+    type: LOGOUT_USER,
   });
-  history.push('/login');
-  return toastr.warning('You have logged out successfully');
+  toastr.warning('You have logged out successfully');
+  return history.push('/login');
 };

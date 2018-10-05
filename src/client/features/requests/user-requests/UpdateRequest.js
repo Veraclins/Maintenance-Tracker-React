@@ -61,7 +61,7 @@ export class UpdateRequest extends Component {
       match, location, fetch, isLoggedIn, user,
     } = this.props;
     if (!isLoggedIn) {
-      toastr.error('You must be logged to rate an article');
+      toastr.error('You must be logged in to edit a request');
       return history.push('/login', { from: location.pathname });
     }
     const { params } = match;

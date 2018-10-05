@@ -2,7 +2,7 @@ import toastr from 'toastr';
 import {
   VALIDATION_ERROR,
   NETWORK_ERROR,
-  USER_LOGOUT,
+  LOGOUT_USER,
 } from '../constants/ActionTypes';
 import history from './history';
 
@@ -16,12 +16,11 @@ const errorHandler = (dispatch, data) => {
     return dispatch({ type: VALIDATION_ERROR, errors });
   }
   if (data.status === 404) {
-    history.push('/404');
     return toastr.error(data.data.message);
   }
   if (data.status === 401) {
     const errors = data.data;
-    dispatch({ type: USER_LOGOUT });
+    dispatch({ type: LOGOUT_USER });
     history.push('/login', { from: data.pathname });
     return toastr.error(errors.message);
   }

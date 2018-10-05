@@ -1,79 +1,68 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import React from 'react';
 import moment from 'moment';
-import toastr from 'toastr';
-import { PropTypes } from 'prop-types';
-import history from '../../shared/utilities/history';
-import { getSingleRequest } from './user-requests/userRequestsAction';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-
-export class ViewRequest extends Component {
-  componentDidMount() {
-    const {
-      match, location, fetchRequest, isLoggedIn, user,
-    } = this.props;
-    if (!isLoggedIn) {
-      toastr.error('You must be logged to rate an article');
-      return history.push('/login', { from: location.pathname });
-    }
-    const { params } = match;
-    return fetchRequest(user, params.requestId);
-  }
-
-  render() {
-    const { request } = this.props;
-    return (
-      <div className="request_content_layout body_gradient">
-        <div className="container">
-          {request.id
-            ? (
-              <div className="single_request_column">
-                <div className="single_request_info">
-                  <time>{moment(request.created_at).format('Do_MMMM_YYYY')}</time>
-                  <span className="request_status">{request.status}</span>
-                  <h3 className="single_request_title">{request.title}</h3>
-                  <h4>{request.device}</h4>
-                  <p className="single_request_body">
-                    {request.description}
-                  </p>
-                  {request.updatedAt > request.createdAt
-                    ? (<span className="edited_flag"><small>edited</small></span>)
-                    : false}
-                  <Link to={`/requests/${request.id}/edit`} className="edit_request_link"> <span>EDIT</span></Link>
-                </div>
-              </div>
-            ) : (
-              <div className="single_request_column">
-                <div className="single_request_info">
-                  <h3 className="no_request_found">You don{"'"}t have a request with that Id</h3>
-                </div>
-              </div>
-            )}
-        </div>
-      </div>
-    );
-  }
-}
-
+const ViewRequest = ({ request, isAdmin, updateRequest }) => (
+  <div className="single_request_column">
+    <div className="single_request_info">
+      <time>{moment(request.created_at).format('Do_MMMM_YYYY')}</time>
+      <span className="request_status">{request.status}</span>
+      <h3 className="single_request_title">{request.title}</h3>
+      <h4>{request.device}</h4>
+      <p className="single_request_body">
+        {request.description}
+      </p>
+      {!isAdmin
+        ? (
+          <div className="request_footer">
+            {request.updatedAt > request.createdAt
+              ? (<span className="edited_flag"><small>edited</small></span>)
+              : false}
+            <Link to={`/requests/${request.id}/edit`} className="edit_request_link"> <span>EDIT</span></Link>
+          </div>
+        ) : (
+          <div className="request_footer">
+            {request.status === 'pending'
+              ? (
+                <React.Fragment>
+                  <a className="buttons button_small" id="disapprove" onClick={updateRequest}>Disapprove</a>
+                  <a className="buttons button_small button_right" id="approve" onClick={updateRequest}>Approve</a>
+                </React.Fragment>
+              ) : (
+                <React.Fragment>
+                  {request.status === 'approved'
+                    ? (
+                      <React.Fragment>
+                        <a className="buttons button_small" id="disapprove" onClick={updateRequest}>Disapprove</a>
+                        <a className="buttons button_small button_right" id="resolve" onClick={updateRequest}>Resolve</a>
+                      </React.Fragment>
+                    ) : (
+                      <React.Fragment>
+                        {request.status === 'disapproved'
+                          ? (
+                            <React.Fragment>
+                              <a className="buttons button_small button_right" id="approve" onClick={updateRequest}>Approve</a>
+                            </React.Fragment>
+                          ) : false}
+                      </React.Fragment>
+                    )}
+                </React.Fragment>
+              )}
+          </div>
+        )}
+    </div>
+  </div>
+);
 
 ViewRequest.propTypes = {
-  isLoggedIn: PropTypes.bool.isRequired,
-  user: PropTypes.shape({}).isRequired,
-  fetchRequest: PropTypes.func.isRequired,
-  location: PropTypes.shape({}).isRequired,
-  match: PropTypes.shape({}).isRequired,
   request: PropTypes.shape({}).isRequired,
+  isAdmin: PropTypes.bool.isRequired,
+  updateRequest: PropTypes.func,
 };
 
-const mapStateToProps = state => ({
-  isLoggedIn: state.auth.isAuthenticated,
-  user: state.auth.user,
-  location: state.router.location,
-  request: state.requests.currentRequest,
-});
-const mapDispatchToProps = dispatch => ({
-  fetchRequest: (user, requestId) => dispatch(getSingleRequest(user, requestId)),
-});
+ViewRequest.defaultProps = {
+  updateRequest: () => null,
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(ViewRequest);
+export default ViewRequest;

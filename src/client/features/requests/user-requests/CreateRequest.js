@@ -17,6 +17,7 @@ const options = [
   { value: 'Tablet', label: 'Tablet Pc' },
   { value: 'Others', label: 'Others' },
 ];
+
 /**
  * @class Handles Account verification
  * @requires react

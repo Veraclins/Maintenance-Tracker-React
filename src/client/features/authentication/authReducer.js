@@ -33,7 +33,7 @@ const authReducer = (state = initialState, action) => {
         },
       };
 
-    case type.startsWith('USER_LOGOUT'):
+    case type.startsWith('LOGOUT_USER'):
       return initialState;
 
     case type.startsWith('@@router'):

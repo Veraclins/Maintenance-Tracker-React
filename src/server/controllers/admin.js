@@ -12,10 +12,10 @@ export const adminGetAllRequests = (req, res) => {
     }));
 };
 
-export const requestApproval = (req, res, status) => {
+export const requestApproval = (req, res, status, opposite) => {
   const qString = 'UPDATE requests SET status=($1), updated_at=($2) WHERE (id=($3) AND (status=($4) OR status=($5))) RETURNING *';
   const { requestId } = req.params;
-  const values = [status, 'NOW()', requestId, 'pending', 'approved'];
+  const values = [status, 'NOW()', requestId, 'pending', opposite];
   if (validParam(requestId)) {
     const query = {
       text: qString,
@@ -29,12 +29,28 @@ export const requestApproval = (req, res, status) => {
   });
 };
 
+export const getRequest = (req, res) => {
+  const { requestId } = req.params;
+  if (validParam(requestId)) {
+    const query = {
+      text: 'SELECT * FROM requests WHERE (id=($1))',
+      values: [requestId],
+    };
+    const errors = { message: "You don't have a request with the given id. Please check again" };
+    return handleRequest(res, query, errors);
+  }
+  return res.status(400).send({
+    status: 'error',
+    message: 'Request id must be a number',
+  });
+};
+
 export const approveRequest = (req, res) => {
-  requestApproval(req, res, 'approved');
+  requestApproval(req, res, 'approved', 'disapproved');
 };
 
 export const disapproveRequest = (req, res) => {
-  requestApproval(req, res, 'disapproved');
+  requestApproval(req, res, 'disapproved', 'approved');
 };
 
 export const resolveRequest = (req, res) => {

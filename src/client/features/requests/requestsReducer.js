@@ -1,3 +1,4 @@
+
 import userRequestsReducer from './user-requests/userRequestsReducer';
 import adminRequestsReducer from './admin-requests/adminRequestsReducer';
 
@@ -31,6 +32,9 @@ const requestsReducer = (state = initialState, action) => {
           [action.errorField]: undefined,
         },
       };
+
+    case type.startsWith('LOGOUT_USER'):
+      return initialState;
 
     case type.startsWith('@@router'):
       return {
