@@ -2,6 +2,7 @@ import { } from 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
 import logger from 'morgan';
+import path from 'path';
 import bodyParser from 'body-parser';
 import swaggerUi from 'swagger-ui-express';
 import v1Route from './routes/v1';
@@ -19,12 +20,10 @@ app.use(cors());
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDoc));
 app.use('/api/v1', v1Route);
 
+app.use(express.static(path.join(__dirname, '../../dist/client')));
 // catch un-available routes
 app.all('*', (req, res) => {
-  res.status(404).json({
-    status: 'error',
-    message: 'Oh-oh! Seems like the page you requested does not exist. Please check the URL again.',
-  });
+  res.sendFile(path.join(__dirname, '../../dist/client', 'index.html'));
 });
 
 app.listen(process.env.PORT || 3000);

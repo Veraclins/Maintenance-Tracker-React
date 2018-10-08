@@ -19,7 +19,12 @@ const ViewRequest = ({ request, isAdmin, updateRequest }) => (
             {request.updatedAt > request.createdAt
               ? (<span className="edited_flag"><small>edited</small></span>)
               : false}
-            <Link to={`/requests/${request.id}/edit`} className="edit_request_link"> <span>EDIT</span></Link>
+            {request.status === 'pending' || request.status === 'disapproved'
+              ? (
+                <Link to={`/requests/${request.id}/edit`} className="edit_request_link">
+                  <span>EDIT</span>
+                </Link>
+              ) : false}
           </div>
         ) : (
           <div className="request_footer">
