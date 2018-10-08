@@ -1,37 +1,141 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import Login from '../Login';
+import { Login, mapDispatchToProps } from '../Login';
+import Forms from '../../../../shared/components/Form';
 
 const mockFunction = jest.fn();
-const errors = {
-  password: ['The password field is required'],
-};
-const values = {
-  emailOrUsername: '',
-  password: '',
-};
+const location = {};
+const errors = {};
 
-describe('Test the login presentation component', () => {
-  it('renders without crashing', () => {
-    const wrapper = shallow(<Login
-      handleChange={mockFunction}
-      handleSubmit={mockFunction}
-      errors={errors}
-      values={values}
-    />);
-    expect(wrapper.find('div'));
-    expect(wrapper).toMatchSnapshot();
-  });
-
+describe('Tests the login component', () => {
   it('should render without errors', () => {
     const wrapper = shallow(<Login
-      handleChange={mockFunction}
-      handleSubmit={mockFunction}
+      login={mockFunction}
+      clearValidation={mockFunction}
+      location={location}
       errors={errors}
-      values={values}
     />);
-    expect(wrapper.find('form')).toHaveLength(1);
-    expect(wrapper.find('input')).toHaveLength(2);
+    expect(wrapper.find(Forms)).toHaveLength(1);
+  });
+});
+
+describe('directly invoking the handleChange method from component instance', () => {
+  it('should update the email when invoked with a value for email', () => {
+    const error = {
+      email: 'email is required',
+    };
+    const wrapper = shallow(<Login
+      login={mockFunction}
+      loading={false}
+      clearValidation={mockFunction}
+      location={location}
+      errors={error}
+    />);
+    const instance = wrapper.instance();
+    expect(wrapper.state('email')).toEqual({
+      type: 'email',
+      value: '',
+      placeholder: 'Enter your email',
+      required: true,
+    });
+    const event = {
+      target: {
+        name: 'email',
+        value: 'Veraclins',
+      },
+    };
+    instance.handleChange(event);
+    expect(wrapper.state('email')).toEqual({
+      type: 'email',
+      value: 'Veraclins',
+      placeholder: 'Enter your email',
+      required: true,
+    });
+    expect(mockFunction)
+      .toHaveBeenCalledTimes(1);
+  });
+  it('should update the password when invoked with a value for password', () => {
+    const wrapper = shallow(<Login
+      login={mockFunction}
+      loading={false}
+      clearValidation={mockFunction}
+      location={location}
+    />);
+    const instance = wrapper.instance();
+    expect(wrapper.state('password')).toEqual({
+      type: 'password',
+      value: '',
+      placeholder: 'Enter your password',
+      required: true,
+    });
+    const event = {
+      target: {
+        name: 'password',
+        value: 'passWord4',
+      },
+    };
+    instance.handleChange(event);
+    expect(wrapper.state('password')).toEqual({
+      type: 'password',
+      value: 'passWord4',
+      placeholder: 'Enter your password',
+      required: true,
+    });
+  });
+});
+
+describe('directly invoking the handleSubmit method from component instance', () => {
+  it('should reset the email and password', () => {
+    const wrapper = shallow(<Login
+      login={mockFunction}
+      loading={false}
+      clearValidation={mockFunction}
+      location={location}
+    />);
+    const instance = wrapper.instance();
+    expect(wrapper.state('email')).toEqual({
+      type: 'email',
+      value: '',
+      placeholder: 'Enter your email',
+      required: true,
+    });
+    expect(wrapper.state('password')).toEqual({
+      type: 'password',
+      value: '',
+      placeholder: 'Enter your password',
+      required: true,
+    });
+    const event = {
+      preventDefault: mockFunction,
+    };
+    instance.handleSubmit(event);
+    expect(wrapper.state('email')).toEqual({
+      type: 'email',
+      value: '',
+      placeholder: 'Enter your email',
+      required: true,
+    });
+    expect(wrapper.state('password')).toEqual({
+      type: 'password',
+      value: '',
+      placeholder: 'Enter your password',
+      required: true,
+    });
+  });
+});
+
+describe('Testing mapDispatchToProps', () => {
+  it('should correctly map dispatches to props  ', () => {
+    const user = {
+      email: 'innocent@test.com',
+      password: 'password',
+    };
+    const mockDispatch = jest.fn();
+    const newProps = mapDispatchToProps(mockDispatch);
+    newProps.login(user, location);
+    newProps.clearValidation('email');
+    expect(mockDispatch)
+      .toHaveBeenCalledTimes(2);
   });
 });

@@ -4,7 +4,7 @@ import toastr from 'toastr';
 import { PropTypes } from 'prop-types';
 import history from '../../../shared/utilities/history';
 import { getAllAdminRequests } from './adminRequestsAction';
-import Requests from '../Requests';
+import Request from '../Requests';
 
 
 export class AdminRequests extends Component {
@@ -27,7 +27,7 @@ export class AdminRequests extends Component {
     const { requests, isAdmin } = this.props;
     const noRequestMessage = 'There are no requests yet';
     return (
-      <Requests
+      <Request
         requests={requests}
         isAdmin={isAdmin}
         noRequestMessage={noRequestMessage}
@@ -45,14 +45,14 @@ AdminRequests.propTypes = {
   requests: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
 };
 
-const mapStateToProps = state => ({
+export const mapStateToProps = state => ({
   isLoggedIn: state.auth.isAuthenticated,
   isAdmin: state.auth.isAdmin,
   user: state.auth.user,
   location: state.router.location,
   requests: state.requests.requests,
 });
-const mapDispatchToProps = dispatch => ({
+export const mapDispatchToProps = dispatch => ({
   getRequests: user => dispatch(getAllAdminRequests(user)),
 });
 

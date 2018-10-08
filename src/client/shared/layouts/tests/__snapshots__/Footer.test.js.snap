@@ -1,0 +1,311 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test the Footer component renders all elements 1`] = `
+<footer>
+  <div
+    className="footer_section footer_gradient"
+  >
+    <div
+      className="container"
+    >
+      <div
+        className="footer_left_section"
+      >
+        <NavLink
+          activeClassName="active"
+          aria-current="page"
+          className="footer_logo"
+          to="/"
+        >
+          <img
+            alt="VeraTech"
+            height="42"
+            src="test-file-stub"
+            width="144"
+          />
+        </NavLink>
+      </div>
+      <div
+        className="footer_right_section"
+      >
+        <div
+          className="footer_navigation"
+        >
+          <h6>
+            Links
+          </h6>
+          <div
+            className="footer-menu-container"
+          >
+            <ul
+              className="footer_nav_list"
+              id="footer-menu"
+            >
+              <li
+                className="menu-item menu-item-type-post_type menu-item-object-page menu-item-995"
+              >
+                <NavLink
+                  activeClassName="active"
+                  aria-current="page"
+                  to="/dashboard"
+                >
+                  Dashboard
+                </NavLink>
+              </li>
+              <li
+                className="menu-item menu-item-type-post_type menu-item-object-page menu-item-39"
+              >
+                <NavLink
+                  activeClassName="active"
+                  aria-current="page"
+                  to="login"
+                >
+                  Login
+                </NavLink>
+              </li>
+              <li
+                className="menu-item menu-item-type-custom menu-item-object-custom menu-item-62473"
+              >
+                <NavLink
+                  activeClassName="active"
+                  aria-current="page"
+                  to="signup"
+                >
+                  Register
+                </NavLink>
+              </li>
+              <li
+                className="menu-item menu-item-type-post_type menu-item-object-page menu-item-37"
+              >
+                <NavLink
+                  activeClassName="active"
+                  aria-current="page"
+                  to="requests"
+                >
+                  Requests
+                </NavLink>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div
+          className="footer_contact"
+        >
+          <h4>
+            Office Address:
+          </h4>
+          <h6>
+            235 Ikorodu Road, Ilupeju, Lagos
+          </h6>
+          <address>
+            <p>
+              <small />
+            </p>
+          </address>
+          <p>
+            <small>
+              <NavLink
+                activeClassName="active"
+                aria-current="page"
+                to="mailto:info@veratech.com"
+              >
+                info@veratech.com
+              </NavLink>
+            </small>
+          </p>
+        </div>
+      </div>
+      <div
+        className="clear"
+      />
+    </div>
+    <div
+      className="container"
+    >
+      <div
+        className="footer_copyright"
+      >
+        <p>
+          <small>
+            Designed with love by 
+            <strong>
+              <a
+                href="https://twitter.com/icstps"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                Agada Clinton
+              </a>
+            </strong>
+            .
+          </small>
+           
+          <span>
+            <small>
+              Copyright © VeraTech 2018.
+            </small>
+          </span>
+        </p>
+      </div>
+    </div>
+    <div
+      className="footer_bottom_bg"
+    />
+  </div>
+</footer>
+`;
+
+exports[`Test the Footer component renders without crashing 1`] = `
+<footer>
+  <div
+    className="footer_section footer_gradient"
+  >
+    <div
+      className="container"
+    >
+      <div
+        className="footer_left_section"
+      >
+        <NavLink
+          activeClassName="active"
+          aria-current="page"
+          className="footer_logo"
+          to="/"
+        >
+          <img
+            alt="VeraTech"
+            height="42"
+            src="test-file-stub"
+            width="144"
+          />
+        </NavLink>
+      </div>
+      <div
+        className="footer_right_section"
+      >
+        <div
+          className="footer_navigation"
+        >
+          <h6>
+            Links
+          </h6>
+          <div
+            className="footer-menu-container"
+          >
+            <ul
+              className="footer_nav_list"
+              id="footer-menu"
+            >
+              <li
+                className="menu-item menu-item-type-post_type menu-item-object-page menu-item-995"
+              >
+                <NavLink
+                  activeClassName="active"
+                  aria-current="page"
+                  to="/dashboard"
+                >
+                  Dashboard
+                </NavLink>
+              </li>
+              <li
+                className="menu-item menu-item-type-post_type menu-item-object-page menu-item-39"
+              >
+                <NavLink
+                  activeClassName="active"
+                  aria-current="page"
+                  to="login"
+                >
+                  Login
+                </NavLink>
+              </li>
+              <li
+                className="menu-item menu-item-type-custom menu-item-object-custom menu-item-62473"
+              >
+                <NavLink
+                  activeClassName="active"
+                  aria-current="page"
+                  to="signup"
+                >
+                  Register
+                </NavLink>
+              </li>
+              <li
+                className="menu-item menu-item-type-post_type menu-item-object-page menu-item-37"
+              >
+                <NavLink
+                  activeClassName="active"
+                  aria-current="page"
+                  to="requests"
+                >
+                  Requests
+                </NavLink>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div
+          className="footer_contact"
+        >
+          <h4>
+            Office Address:
+          </h4>
+          <h6>
+            235 Ikorodu Road, Ilupeju, Lagos
+          </h6>
+          <address>
+            <p>
+              <small />
+            </p>
+          </address>
+          <p>
+            <small>
+              <NavLink
+                activeClassName="active"
+                aria-current="page"
+                to="mailto:info@veratech.com"
+              >
+                info@veratech.com
+              </NavLink>
+            </small>
+          </p>
+        </div>
+      </div>
+      <div
+        className="clear"
+      />
+    </div>
+    <div
+      className="container"
+    >
+      <div
+        className="footer_copyright"
+      >
+        <p>
+          <small>
+            Designed with love by 
+            <strong>
+              <a
+                href="https://twitter.com/icstps"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                Agada Clinton
+              </a>
+            </strong>
+            .
+          </small>
+           
+          <span>
+            <small>
+              Copyright © VeraTech 2018.
+            </small>
+          </span>
+        </p>
+      </div>
+    </div>
+    <div
+      className="footer_bottom_bg"
+    />
+  </div>
+</footer>
+`;

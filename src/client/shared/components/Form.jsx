@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { PropTypes } from 'prop-types';
-import Input from './Input';
-import SelectInput from './Select';
-import TextArea from './TextArea';
+import DInput from './Input';
+import DSelectInput from './Select';
+import DTextArea from './TextArea';
 
-const Form = ({
+export const Form = ({
   inputs,
   handleInputChange,
   handleSelectChange,
@@ -28,7 +28,7 @@ const Form = ({
           onSubmit={handleSubmit}
         >
           {Object.entries(inputs).map(([input, value]) => (
-            <Input
+            <DInput
               inputLabel={`${input[0].toUpperCase()}${input.slice(1)}`}
               type={value.type}
               name={input}
@@ -41,7 +41,7 @@ const Form = ({
             />
           ))}
           {Object.entries(selects).map(([select, value]) => (
-            <SelectInput
+            <DSelectInput
               inputLabel={`${select[0].toUpperCase()}${select.slice(1)}`}
               name={select}
               required={value.required}
@@ -54,7 +54,7 @@ const Form = ({
             />
           ))}
           {Object.entries(textAreas).map(([textArea, value]) => (
-            <TextArea
+            <DTextArea
               inputLabel={`${textArea[0].toUpperCase()}${textArea.slice(1)}`}
               name={textArea}
               required={value.required}
@@ -87,7 +87,7 @@ const Form = ({
 );
 
 Form.propTypes = {
-  handleInputChange: PropTypes.func,
+  handleInputChange: PropTypes.func.isRequired,
   handleSelectChange: PropTypes.func,
   handleTextAreaChange: PropTypes.func,
   handleSubmit: PropTypes.func.isRequired,
@@ -103,7 +103,6 @@ Form.defaultProps = {
   selects: {},
   textAreas: {},
   formLinks: {},
-  handleInputChange: () => null,
   handleSelectChange: () => null,
   handleTextAreaChange: () => null,
 };

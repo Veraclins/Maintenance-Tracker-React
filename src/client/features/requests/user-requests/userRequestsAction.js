@@ -50,7 +50,7 @@ export const updateRequest = (request, user) => async (dispatch) => {
   dispatch({ type: IS_COMPLETE });
   if (response.status === 200) {
     dispatch({ type: USER_UPDATE_REQUEST_SUCCESSFUL, request: response.data.request });
-    return history.push('/requests');
+    return history.push(`/requests/${request.id}`);
   }
   if (response.status > 400 && response.status < 500) {
     const errors = response.data;

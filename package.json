@@ -4,9 +4,9 @@
   "description": "A maintenance tracker app using an Expressjs REST API and React Frontend",
   "main": "src/index.js",
   "scripts": {
-    "prestart": "npm run build",
     "start": "node dist/server/index.js",
-    "build:client": "webpack",
+    "heroku-postbuild": "npm run build",
+    "build:client": "webpack -p",
     "build:server": "babel src/server -D --out-dir dist/server --source-maps",
     "client": "webpack-dev-server --mode development --devtool inline-source-map --hot",
     "server": "nodemon src/server/index.js --exec babel-node --presets babel-preset-env",
@@ -132,16 +132,16 @@
   },
   "jest": {
     "setupTestFrameworkScriptFile": "<rootDir>/src/client/setupTests.js",
-    "testMatch": [
-      "**/src/client/tests/**/*.js?(x)",
-      "**/src/client/?(*.)+(spec|test).js?(x)"
+    "testPathIgnorePatterns": [
+      "<rootDir>/src/server/",
+      "<rootDir>/test/"
     ],
     "snapshotSerializers": [
       "enzyme-to-json/serializer"
     ],
     "collectCoverageFrom": [
       "**/src/client/?(*).js?(x)",
-      "!**/src/client/index.js"
+      "!**/src/client/*.js"
     ],
     "coverageReporters": [
       "cobertura",

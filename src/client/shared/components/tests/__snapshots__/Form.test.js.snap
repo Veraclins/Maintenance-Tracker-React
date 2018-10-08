@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test the Form component renders without crashing 1`] = `
+<div
+  className="form_container"
+>
+  <div
+    className="white-popup"
+  >
+    <div
+      className="hbspt-form-title"
+    >
+      <h3>
+        <strong>
+          Default Form
+        </strong>
+      </h3>
+    </div>
+    <div
+      className="hbspt-form-container"
+    >
+      <form
+        className="hs-form stacked"
+        onSubmit={[MockFunction]}
+      >
+        <div
+          className="hs-submit"
+        >
+          <div
+            className="actions"
+          >
+            <input
+              className="hs-button primary large"
+              type="submit"
+              value="Submit"
+            />
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+`;

@@ -16,8 +16,8 @@ const fetchData = async (payload) => {
   const {
     url, method, data, headers,
   } = payload;
+  // const baseURL = 'https://veratech.herokuapp.com/api/v1';
   const baseURL = 'http://localhost:4000/api/v1';
-  // const baseURL = 'https://veraclins-m-tracker.herokuapp.com/api/v1';
   const response = await axios({
     baseURL,
     url,

@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test the Spinner component renders without crashing 1`] = `
+<Fragment>
+  <nav
+    className="loader"
+  >
+    <img
+      alt="loading........"
+      src="test-file-stub"
+    />
+  </nav>
+</Fragment>
+`;

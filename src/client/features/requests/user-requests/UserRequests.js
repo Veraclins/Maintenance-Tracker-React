@@ -4,7 +4,7 @@ import toastr from 'toastr';
 import { PropTypes } from 'prop-types';
 import history from '../../../shared/utilities/history';
 import { getAllRequests } from './userRequestsAction';
-import Requests from '../Requests';
+import Request from '../Requests';
 
 
 export class UserRequests extends Component {
@@ -23,7 +23,7 @@ export class UserRequests extends Component {
     const { requests, isAdmin } = this.props;
     const noRequestMessage = "You don't have any request yet";
     return (
-      <Requests
+      <Request
         requests={requests}
         isAdmin={isAdmin}
         noRequestMessage={noRequestMessage}
@@ -42,14 +42,14 @@ UserRequests.propTypes = {
   requests: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
 };
 
-const mapStateToProps = state => ({
+export const mapStateToProps = state => ({
   isAdmin: state.auth.isAdmin,
   isLoggedIn: state.auth.isAuthenticated,
   user: state.auth.user,
   location: state.router.location,
   requests: state.requests.requests,
 });
-const mapDispatchToProps = dispatch => ({
+export const mapDispatchToProps = dispatch => ({
   getRequests: user => dispatch(getAllRequests(user)),
 });
 

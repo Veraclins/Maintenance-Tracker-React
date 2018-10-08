@@ -4,7 +4,7 @@ import toastr from 'toastr';
 import { PropTypes } from 'prop-types';
 import history from '../../../shared/utilities/history';
 import { getSingleRequest } from './userRequestsAction';
-import ViewRequest from '../ViewRequest';
+import ViewRequests from '../ViewRequest';
 
 
 export class ViewUserRequest extends Component {
@@ -27,7 +27,7 @@ export class ViewUserRequest extends Component {
         <div className="container">
           {request.id
             ? (
-              <ViewRequest
+              <ViewRequests
                 request={request}
                 isAdmin={isAdmin}
               />
@@ -55,14 +55,14 @@ ViewUserRequest.propTypes = {
   request: PropTypes.shape({}).isRequired,
 };
 
-const mapStateToProps = state => ({
+export const mapStateToProps = state => ({
   isLoggedIn: state.auth.isAuthenticated,
   isAdmin: state.auth.isAdmin,
   user: state.auth.user,
   location: state.router.location,
   request: state.requests.currentRequest,
 });
-const mapDispatchToProps = dispatch => ({
+export const mapDispatchToProps = dispatch => ({
   fetchRequest: (user, requestId) => dispatch(getSingleRequest(user, requestId)),
 });
 

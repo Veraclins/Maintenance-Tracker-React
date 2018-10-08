@@ -6,15 +6,21 @@ import toastr from 'toastr';
 import { updateRequest, getSingleRequest } from './userRequestsAction';
 import { clearValidationErrors } from '../requestsAction';
 
-import Form from '../../../shared/components/Form';
+import Forms from '../../../shared/components/Form';
 import history from '../../../shared/utilities/history';
+import {
+  changeInput,
+  changeTextArea,
+  changeSelect,
+  handleRequestSubmit,
+} from '../RequestHelper';
 
 const options = [
-  { value: 'Laptop', label: 'Laptop Pc', className: 'hs-input' },
-  { value: 'Desktop', label: 'Desktop Pc', className: 'hs-input' },
-  { value: 'Smartphone', label: 'Smartphone', className: 'hs-input' },
-  { value: 'Tablet', label: 'Tablet Pc', className: 'hs-input' },
-  { value: 'Others', label: 'Others', className: 'hs-input' },
+  { value: 'Laptop', label: 'Laptop Pc' },
+  { value: 'Desktop', label: 'Desktop Pc' },
+  { value: 'Smartphone', label: 'Smartphone' },
+  { value: 'Tablet', label: 'Tablet Pc' },
+  { value: 'Others', label: 'Others' },
 ];
 /**
  * @class Handles Account verification
@@ -69,44 +75,32 @@ export class UpdateRequest extends Component {
   }
 
   /**
-   * @description Handles the text change for input fields
-   * @param {Object} event The event object
+   * @description clears validation errors when you start typing in the input field
+   * @param {Object} field The form field
    */
-  handleInputChange = (event) => {
+  clearErrors = (field) => {
     const { clearValidation, errors } = this.props;
-    const { input } = this.state;
-    const { type, required, placeholder } = input[event.target.name];
-    this.setState({
-      input: {
-        [event.target.name]: {
-          type,
-          required,
-          placeholder,
-          value: event.target.value,
-        },
-      },
-    });
-    if (errors[event.target.name]) clearValidation([event.target.name]);
+    if (errors[field]) clearValidation([field]);
   }
 
   /**
    * @description Handles the text change for input fields
    * @param {Object} event The event object
    */
+  handleInputChange = (event) => {
+    const newState = changeInput(event, this.state);
+    this.setState(newState);
+    this.clearErrors([event.target.name]);
+  }
+
+  /**
+   * @description Handles the text change for text areas
+   * @param {Object} event The event object
+   */
   handleTextAreaChange = (event) => {
-    const { clearValidation, errors } = this.props;
-    const { textArea } = this.state;
-    const { required, placeholder } = textArea[event.target.name];
-    this.setState({
-      textArea: {
-        [event.target.name]: {
-          required,
-          placeholder,
-          value: event.target.value,
-        },
-      },
-    });
-    if (errors[event.target.name]) clearValidation([event.target.name]);
+    const newState = changeTextArea(event, this.state);
+    this.setState(newState);
+    this.clearErrors([event.target.name]);
   }
 
   /**
@@ -114,20 +108,9 @@ export class UpdateRequest extends Component {
    * @param {Object} event The event object
    */
   handleSelectChange = (event) => {
-    const { clearValidation, errors } = this.props;
-    const { select } = this.state;
-    const { required, placeholder } = select[event.target.name];
-    this.setState({
-      select: {
-        [event.target.name]: {
-          options,
-          required,
-          placeholder,
-          value: event.target.value,
-        },
-      },
-    });
-    if (errors[event.target.name]) clearValidation([event.target.name]);
+    const newState = changeSelect(event, this.state);
+    this.setState(newState);
+    this.clearErrors([event.target.name]);
   }
 
   /**
@@ -136,31 +119,13 @@ export class UpdateRequest extends Component {
    * @returns {Object}
    */
   handleSubmit = (event) => {
-    event.preventDefault();
-    const {
-      update,
-      user,
-      isLoggedIn,
-      location,
-      request,
-      match,
-    } = this.props;
-    const {
-      input,
-      select,
-      textArea,
-    } = this.state;
-    if (!isLoggedIn) {
-      toastr.error('You must be logged to make a request');
-      return history.push('/login', { from: location.pathname });
-    }
-    const updatedRequest = {
+    const { input, select, textArea } = this.state;
+    const { request } = this.props;
+    handleRequestSubmit(event, this.props, {
       title: input.title.value || request.title,
       device: select.device.value || request.device,
       description: textArea.description.value || request.description,
-    };
-    updatedRequest.id = match.params.requestId;
-    return update(updatedRequest, user);
+    });
   }
 
   /**
@@ -175,7 +140,7 @@ export class UpdateRequest extends Component {
       text: 'Go back',
     };
     return (
-      <Form
+      <Forms
         handleInputChange={this.handleInputChange}
         handleSelectChange={this.handleSelectChange}
         handleTextAreaChange={this.handleTextAreaChange}
@@ -195,7 +160,6 @@ UpdateRequest.propTypes = {
   clearValidation: PropTypes.func.isRequired,
   isLoggedIn: PropTypes.bool.isRequired,
   location: PropTypes.shape({}).isRequired,
-  update: PropTypes.func.isRequired,
   fetch: PropTypes.func.isRequired,
   errors: PropTypes.shape({}),
   user: PropTypes.shape({}).isRequired,
@@ -207,13 +171,13 @@ UpdateRequest.defaultProps = {
   errors: {},
 };
 
-const mapDispatchToProps = dispatch => ({
+export const mapDispatchToProps = dispatch => ({
   update: (request, user) => dispatch(updateRequest(request, user)),
   fetch: (user, requestId) => dispatch(getSingleRequest(user, requestId)),
   clearValidation: field => dispatch(clearValidationErrors(field)),
 });
 
-const mapStateToProps = state => ({
+export const mapStateToProps = state => ({
   errors: state.requests.errors,
   user: state.auth.user,
   request: state.requests.currentRequest,

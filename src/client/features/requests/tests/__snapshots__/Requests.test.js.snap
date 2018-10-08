@@ -1,0 +1,599 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test the Requests component renders with the right view for a logged in user 1`] = `
+<div
+  className="request_content_layout body_gradient"
+>
+  <div
+    className="container"
+  >
+    <div
+      className="request_header"
+    >
+      <p>
+        These are all the  requests
+      </p>
+    </div>
+    <div
+      className="request_category"
+    >
+      <h3
+        className="category_name"
+      >
+        Pending
+      </h3>
+      <div
+        className="span_desc"
+      >
+        <div
+          className="request_details"
+          key="13"
+        >
+          <span
+            className="request_title"
+          >
+            General repainting
+          </span>
+          <span
+            className="request_button"
+          >
+            <Link
+              className="buttons button_small"
+              replace={false}
+              to="/admin/13"
+            >
+              View
+            </Link>
+          </span>
+        </div>
+        <div
+          className="request_details"
+          key="12"
+        >
+          <span
+            className="request_title"
+          >
+            General repainting
+          </span>
+          <span
+            className="request_button"
+          >
+            <Link
+              className="buttons button_small"
+              replace={false}
+              to="/admin/12"
+            >
+              View
+            </Link>
+          </span>
+        </div>
+        <div
+          className="request_details"
+          key="7"
+        >
+          <span
+            className="request_title"
+          >
+            Routine Maintenance
+          </span>
+          <span
+            className="request_button"
+          >
+            <Link
+              className="buttons button_small"
+              replace={false}
+              to="/admin/7"
+            >
+              View
+            </Link>
+          </span>
+        </div>
+        <div
+          className="request_details"
+          key="8"
+        >
+          <span
+            className="request_title"
+          >
+            Routine Maintenance
+          </span>
+          <span
+            className="request_button"
+          >
+            <Link
+              className="buttons button_small"
+              replace={false}
+              to="/admin/8"
+            >
+              View
+            </Link>
+          </span>
+        </div>
+        <div
+          className="request_details"
+          key="2"
+        >
+          <span
+            className="request_title"
+          >
+            Browsers Crash Always
+          </span>
+          <span
+            className="request_button"
+          >
+            <Link
+              className="buttons button_small"
+              replace={false}
+              to="/admin/2"
+            >
+              View
+            </Link>
+          </span>
+        </div>
+        <div
+          className="request_details"
+          key="10"
+        >
+          <span
+            className="request_title"
+          >
+            Routine Maintenance
+          </span>
+          <span
+            className="request_button"
+          >
+            <Link
+              className="buttons button_small"
+              replace={false}
+              to="/admin/10"
+            >
+              View
+            </Link>
+          </span>
+        </div>
+        <div
+          className="request_details"
+          key="11"
+        >
+          <span
+            className="request_title"
+          >
+            Battery Problem
+          </span>
+          <span
+            className="request_button"
+          >
+            <Link
+              className="buttons button_small"
+              replace={false}
+              to="/admin/11"
+            >
+              View
+            </Link>
+          </span>
+        </div>
+        <div
+          className="request_details"
+          key="9"
+        >
+          <span
+            className="request_title"
+          >
+            Faulty Touch Pad
+          </span>
+          <span
+            className="request_button"
+          >
+            <Link
+              className="buttons button_small"
+              replace={false}
+              to="/admin/9"
+            >
+              View
+            </Link>
+          </span>
+        </div>
+        <div
+          className="request_details"
+          key="3"
+        >
+          <span
+            className="request_title"
+          >
+            Screen Problems
+          </span>
+          <span
+            className="request_button"
+          >
+            <Link
+              className="buttons button_small"
+              replace={false}
+              to="/admin/3"
+            >
+              View
+            </Link>
+          </span>
+        </div>
+        <div
+          className="request_details"
+          key="5"
+        >
+          <span
+            className="request_title"
+          >
+            Routine Maintenance
+          </span>
+          <span
+            className="request_button"
+          >
+            <Link
+              className="buttons button_small"
+              replace={false}
+              to="/admin/5"
+            >
+              View
+            </Link>
+          </span>
+        </div>
+        <div
+          className="request_details"
+          key="6"
+        >
+          <span
+            className="request_title"
+          >
+            Intermitent freezing of apps
+          </span>
+          <span
+            className="request_button"
+          >
+            <Link
+              className="buttons button_small"
+              replace={false}
+              to="/admin/6"
+            >
+              View
+            </Link>
+          </span>
+        </div>
+      </div>
+      <div
+        className="clear"
+      />
+    </div>
+    <div
+      className="clear"
+    />
+    <div
+      className="clear"
+    />
+    <div
+      className="request_category"
+    >
+      <h3
+        className="category_name"
+      >
+        Disapproved
+      </h3>
+      <div
+        className="span_desc"
+      >
+        <div
+          className="request_details"
+          key="1"
+        >
+          <span
+            className="request_title"
+          >
+            Excellent Work
+          </span>
+          <span
+            className="request_button"
+          >
+            <Link
+              className="buttons button_small"
+              replace={false}
+              to="/admin/1"
+            >
+              View
+            </Link>
+          </span>
+        </div>
+      </div>
+      <div
+        className="clear"
+      />
+    </div>
+    <div
+      className="clear"
+    />
+    <div
+      className="request_category"
+    >
+      <h3
+        className="category_name"
+      >
+        Resolved
+      </h3>
+      <div
+        className="span_desc"
+      >
+        <div
+          className="request_details"
+          key="4"
+        >
+          <span
+            className="request_title"
+          >
+            Routine Maintenance
+          </span>
+          <span
+            className="request_button"
+          >
+            <Link
+              className="buttons button_small"
+              replace={false}
+              to="/admin/4"
+            >
+              View
+            </Link>
+          </span>
+        </div>
+      </div>
+      <div
+        className="clear"
+      />
+    </div>
+    <div
+      className="clear"
+    />
+  </div>
+</div>
+`;
+
+exports[`Test the Requests component renders with the right view for a logged in user with no request 1`] = `
+<div
+  className="request_content_layout body_gradient"
+>
+  <div
+    className="container"
+  >
+    <div
+      className="request_header"
+    >
+      <div
+        className="no_content"
+      >
+        <p
+          className="no_requests"
+        >
+          You don't have any request yet
+        </p>
+        <Link
+          className="buttons button_default"
+          replace={false}
+          to="/requests/create"
+        >
+          MAKE A REQUEST
+        </Link>
+      </div>
+    </div>
+    <div
+      className="clear"
+    />
+    <div
+      className="clear"
+    />
+    <div
+      className="clear"
+    />
+    <div
+      className="clear"
+    />
+  </div>
+</div>
+`;
+
+exports[`Test the Requests component renders with the right view for a logged in user with some requests 1`] = `
+<div
+  className="request_content_layout body_gradient"
+>
+  <div
+    className="container"
+  >
+    <div
+      className="request_header"
+    >
+      <p>
+        These are all your  requests
+      </p>
+    </div>
+    <div
+      className="request_category"
+    >
+      <h3
+        className="category_name"
+      >
+        Pending
+      </h3>
+      <div
+        className="span_desc"
+      >
+        <div
+          className="request_details"
+          key="13"
+        >
+          <span
+            className="request_title"
+          >
+            General repainting
+          </span>
+          <span
+            className="request_button"
+          >
+            <Link
+              className="buttons button_small"
+              replace={false}
+              to="/requests/13"
+            >
+              View
+            </Link>
+          </span>
+        </div>
+        <div
+          className="request_details"
+          key="12"
+        >
+          <span
+            className="request_title"
+          >
+            General repainting
+          </span>
+          <span
+            className="request_button"
+          >
+            <Link
+              className="buttons button_small"
+              replace={false}
+              to="/requests/12"
+            >
+              View
+            </Link>
+          </span>
+        </div>
+        <div
+          className="request_details"
+          key="7"
+        >
+          <span
+            className="request_title"
+          >
+            Routine Maintenance
+          </span>
+          <span
+            className="request_button"
+          >
+            <Link
+              className="buttons button_small"
+              replace={false}
+              to="/requests/7"
+            >
+              View
+            </Link>
+          </span>
+        </div>
+        <div
+          className="request_details"
+          key="8"
+        >
+          <span
+            className="request_title"
+          >
+            Routine Maintenance
+          </span>
+          <span
+            className="request_button"
+          >
+            <Link
+              className="buttons button_small"
+              replace={false}
+              to="/requests/8"
+            >
+              View
+            </Link>
+          </span>
+        </div>
+      </div>
+      <div
+        className="clear"
+      />
+    </div>
+    <div
+      className="clear"
+    />
+    <div
+      className="clear"
+    />
+    <div
+      className="request_category"
+    >
+      <h3
+        className="category_name"
+      >
+        Disapproved
+      </h3>
+      <div
+        className="span_desc"
+      >
+        <div
+          className="request_details"
+          key="1"
+        >
+          <span
+            className="request_title"
+          >
+            Excellent Work
+          </span>
+          <span
+            className="request_button"
+          >
+            <Link
+              className="buttons button_small"
+              replace={false}
+              to="/requests/1"
+            >
+              View
+            </Link>
+          </span>
+        </div>
+      </div>
+      <div
+        className="clear"
+      />
+    </div>
+    <div
+      className="clear"
+    />
+    <div
+      className="request_category"
+    >
+      <h3
+        className="category_name"
+      >
+        Resolved
+      </h3>
+      <div
+        className="span_desc"
+      >
+        <div
+          className="request_details"
+          key="4"
+        >
+          <span
+            className="request_title"
+          >
+            Routine Maintenance
+          </span>
+          <span
+            className="request_button"
+          >
+            <Link
+              className="buttons button_small"
+              replace={false}
+              to="/requests/4"
+            >
+              View
+            </Link>
+          </span>
+        </div>
+      </div>
+      <div
+        className="clear"
+      />
+    </div>
+    <div
+      className="clear"
+    />
+  </div>
+</div>
+`;

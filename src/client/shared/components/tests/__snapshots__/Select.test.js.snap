@@ -1,0 +1,60 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test the Form component renders without crashing 1`] = `
+<Fragment>
+  <div
+    className="field hs-form-field"
+  >
+    <label
+      className="hs-form-label"
+      htmlFor="input"
+    >
+      <span>
+        Text input
+         
+      </span>
+      <span
+        className="hs-form-required"
+      >
+        *
+      </span>
+    </label>
+    <div
+      className="input"
+    >
+      <select
+        className="hs-input"
+        name="input"
+        onChange={[MockFunction]}
+        options={
+          Array [
+            Object {
+              "label": "Select Device Type",
+              "value": "",
+            },
+            Object {
+              "label": "Laptop Pc",
+              "value": "Laptop",
+            },
+          ]
+        }
+        placeholder="enter text"
+        value=""
+      >
+        <option
+          key="Select Device Type"
+          value=""
+        >
+          Select Device Type
+        </option>
+        <option
+          key="Laptop Pc"
+          value="Laptop"
+        >
+          Laptop Pc
+        </option>
+      </select>
+    </div>
+  </div>
+</Fragment>
+`;
