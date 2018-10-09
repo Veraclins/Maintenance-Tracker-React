@@ -3,7 +3,7 @@ import moment from 'moment';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-const ViewRequest = ({ request, isAdmin, updateRequest }) => (
+export const ViewRequest = ({ request, isAdmin, updateRequest }) => (
   <div className="single_request_column">
     <div className="single_request_info">
       <time>{moment(request.created_at).format('Do_MMMM_YYYY')}</time>
@@ -19,7 +19,12 @@ const ViewRequest = ({ request, isAdmin, updateRequest }) => (
             {request.updatedAt > request.createdAt
               ? (<span className="edited_flag"><small>edited</small></span>)
               : false}
-            <Link to={`/requests/${request.id}/edit`} className="edit_request_link"> <span>EDIT</span></Link>
+            {request.status === 'pending' || request.status === 'disapproved'
+              ? (
+                <Link to={`/requests/${request.id}/edit`} className="edit_request_link">
+                  <span>EDIT</span>
+                </Link>
+              ) : false}
           </div>
         ) : (
           <div className="request_footer">

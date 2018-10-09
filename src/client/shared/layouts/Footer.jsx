@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 import logo from '../../img/veratech-logo_burned.png';
 
 
-const Footer = () => (
+export const Footer = () => (
   <footer>
     <div className="footer_section footer_gradient">
       <div className="container">

@@ -2,7 +2,7 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
 
-const TextArea = ({
+export const TextArea = ({
   name, value, handleChange, inputLabel, required, error, placeholder,
 }) => (
   <React.Fragment>

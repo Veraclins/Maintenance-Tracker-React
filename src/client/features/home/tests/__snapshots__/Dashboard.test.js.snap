@@ -1,0 +1,107 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test the Dashboard component renders with the right view for a logged in user 1`] = `
+<section
+  className="body_gradient home"
+>
+  <div
+    className="dashboard_top"
+  >
+    <div
+      className="container"
+    >
+      <h1
+        className="home_welcome"
+      >
+        Welcome back 
+        <strong>
+          Clinton
+           
+          Agada
+        </strong>
+      </h1>
+    </div>
+  </div>
+  <div
+    className="content_section_1 section_viewer"
+    data-section="deliver"
+  >
+    <div
+      className="container"
+    >
+      <div
+        className="layout_content wow fadeInUp"
+        data-wow-offset="150"
+      >
+        <h1>
+          What do you want to do today?
+        </h1>
+        <span
+          className="banner_big_title_2"
+        >
+          DASHBOARD
+        </span>
+      </div>
+    </div>
+    <div
+      className="section_1_bg"
+    />
+    <div
+      className="how_section_bg"
+    />
+  </div>
+  <div
+    className="home_timeline_section"
+  >
+    <div
+      className="container"
+    >
+      <div
+        className="timeline_section_row"
+      >
+        <div
+          className="timeline_buttons timeline_button_left"
+        >
+          <div
+            className="wow fadeInLeft"
+          >
+             
+            <Link
+              className="buttons button_default"
+              replace={false}
+              to="/requests/create"
+            >
+              CREATE A NEW REQUEST
+            </Link>
+          </div>
+        </div>
+        <div
+          className="timeline_buttons timeline_button_right"
+        >
+          <div
+            className="wow fadeInRight"
+          >
+             
+            <Link
+              className="buttons button_blank"
+              replace={false}
+              to="/requests"
+            >
+              VIEW ALL REQUESTS
+            </Link>
+          </div>
+        </div>
+        <div
+          className="clear"
+        />
+      </div>
+    </div>
+    <div
+      className="timeline_section_bg"
+    />
+    <div
+      className="footer_top_bg"
+    />
+  </div>
+</section>
+`;

@@ -13,7 +13,7 @@ const validateRequest = (req, res, next) => {
     title, device, description,
   } = request;
 
-  // Validate each field
+  // Validate each field of the request body
   if (title.length < 10 || !paraRegex.test(title)) errors.title = 'must be string and at least 10 characters long';
   if (device.length < 3 || !paraRegex.test(device)) errors.device = 'must be a string';
   if (description.length < 20 || !paraRegex.test(description)) errors.description = 'must be at least 20 characters long';

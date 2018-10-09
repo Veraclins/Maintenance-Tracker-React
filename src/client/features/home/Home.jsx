@@ -341,7 +341,7 @@ export const Home = ({ isLoggedIn, isAdmin, user }) => (
       ) : false}
   </section>
 );
-const mapStateToProps = state => ({
+export const mapStateToProps = state => ({
   isLoggedIn: state.auth.isAuthenticated,
   isAdmin: state.auth.isAdmin,
   user: state.auth.user,

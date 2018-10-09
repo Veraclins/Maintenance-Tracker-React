@@ -6,7 +6,13 @@ import toastr from 'toastr';
 import { createRequest } from './userRequestsAction';
 import { clearValidationErrors } from '../requestsAction';
 
-import Form from '../../../shared/components/Form';
+import Forms from '../../../shared/components/Form';
+import {
+  changeInput,
+  changeTextArea,
+  changeSelect,
+  handleRequestSubmit,
+} from '../RequestHelper';
 import history from '../../../shared/utilities/history';
 
 const options = [
@@ -57,45 +63,42 @@ export class CreateRequest extends Component {
     };
   }
 
+  componentDidMount() {
+    const { location, isLoggedIn } = this.props;
+    if (!isLoggedIn) {
+      toastr.error('You must be logged in to create a request');
+      return history.push('/login', { from: location.pathname });
+    }
+    return true;
+  }
+
   /**
-   * @description Handles the text change for input fields
-   * @param {Object} event The event object
+   * @description clears validation errors when you start typing in the input field
+   * @param {Object} field The form field
    */
-  handleInputChange = (event) => {
+  clearErrors = (field) => {
     const { clearValidation, errors } = this.props;
-    const { input } = this.state;
-    const { type, required, placeholder } = input[event.target.name];
-    this.setState({
-      input: {
-        [event.target.name]: {
-          type,
-          required,
-          placeholder,
-          value: event.target.value,
-        },
-      },
-    });
-    if (errors[event.target.name]) clearValidation([event.target.name]);
+    if (errors[field]) clearValidation([field]);
   }
 
   /**
    * @description Handles the text change for input fields
    * @param {Object} event The event object
    */
+  handleInputChange = (event) => {
+    const newState = changeInput(event, this.state);
+    this.setState(newState);
+    this.clearErrors([event.target.name]);
+  }
+
+  /**
+   * @description Handles the text change for text areas
+   * @param {Object} event The event object
+   */
   handleTextAreaChange = (event) => {
-    const { clearValidation, errors } = this.props;
-    const { textArea } = this.state;
-    const { required, placeholder } = textArea[event.target.name];
-    this.setState({
-      textArea: {
-        [event.target.name]: {
-          required,
-          placeholder,
-          value: event.target.value,
-        },
-      },
-    });
-    if (errors[event.target.name]) clearValidation([event.target.name]);
+    const newState = changeTextArea(event, this.state);
+    this.setState(newState);
+    this.clearErrors([event.target.name]);
   }
 
   /**
@@ -103,20 +106,9 @@ export class CreateRequest extends Component {
    * @param {Object} event The event object
    */
   handleSelectChange = (event) => {
-    const { clearValidation, errors } = this.props;
-    const { select } = this.state;
-    const { required, placeholder } = select[event.target.name];
-    this.setState({
-      select: {
-        [event.target.name]: {
-          options,
-          required,
-          placeholder,
-          value: event.target.value,
-        },
-      },
-    });
-    if (errors[event.target.name]) clearValidation([event.target.name]);
+    const newState = changeSelect(event, this.state);
+    this.setState(newState);
+    this.clearErrors([event.target.name]);
   }
 
   /**
@@ -125,27 +117,12 @@ export class CreateRequest extends Component {
    * @returns {Object}
    */
   handleSubmit = (event) => {
-    event.preventDefault();
-    const {
-      create,
-      user,
-      isLoggedIn,
-      location,
-    } = this.props;
-    const {
-      input,
-      select,
-      textArea,
-    } = this.state;
-    if (!isLoggedIn) {
-      toastr.error('You must be logged to make a request');
-      return history.push('/login', { from: location.pathname });
-    }
-    return create({
+    const { input, select, textArea } = this.state;
+    handleRequestSubmit(event, this.props, {
       title: input.title.value,
       device: select.device.value,
       description: textArea.description.value,
-    }, user);
+    });
   }
 
   /**
@@ -155,7 +132,7 @@ export class CreateRequest extends Component {
     const { errors } = this.props;
     const { input, select, textArea } = this.state;
     return (
-      <Form
+      <Forms
         handleInputChange={this.handleInputChange}
         handleSelectChange={this.handleSelectChange}
         handleTextAreaChange={this.handleTextAreaChange}
@@ -174,7 +151,6 @@ CreateRequest.propTypes = {
   clearValidation: PropTypes.func.isRequired,
   isLoggedIn: PropTypes.bool.isRequired,
   location: PropTypes.shape({}).isRequired,
-  create: PropTypes.func.isRequired,
   errors: PropTypes.shape({}),
   user: PropTypes.shape({}).isRequired,
 };
@@ -183,12 +159,12 @@ CreateRequest.defaultProps = {
   errors: {},
 };
 
-const mapDispatchToProps = dispatch => ({
+export const mapDispatchToProps = dispatch => ({
   create: (request, user) => dispatch(createRequest(request, user)),
   clearValidation: field => dispatch(clearValidationErrors(field)),
 });
 
-const mapStateToProps = state => ({
+export const mapStateToProps = state => ({
   errors: state.requests.errors,
   user: state.auth.user,
   isLoggedIn: state.auth.isAuthenticated,

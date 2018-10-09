@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import toastr from 'toastr';
 import { PropTypes } from 'prop-types';
 import history from '../../../shared/utilities/history';
-import ViewRequest from '../ViewRequest';
+import ViewRequests from '../ViewRequest';
 import { adminViewRequest, adminUpdateRequest } from './adminRequestsAction';
 
 
@@ -37,7 +37,7 @@ export class ViewAdminRequest extends Component {
         <div className="container">
           {request.id
             ? (
-              <ViewRequest
+              <ViewRequests
                 request={request}
                 isAdmin={isAdmin}
                 updateRequest={this.updateRequest}
@@ -67,7 +67,7 @@ ViewAdminRequest.propTypes = {
   request: PropTypes.shape({}).isRequired,
 };
 
-const mapStateToProps = state => ({
+export const mapStateToProps = state => ({
   isLoggedIn: state.auth.isAuthenticated,
   isAdmin: state.auth.isAdmin,
   user: state.auth.user,
@@ -75,7 +75,7 @@ const mapStateToProps = state => ({
   request: state.requests.currentRequest,
 });
 
-const mapDispatchToProps = dispatch => ({
+export const mapDispatchToProps = dispatch => ({
   viewRequest: (user, requestId) => dispatch(adminViewRequest(user, requestId)),
   updateRequest: (request, status, user) => dispatch(adminUpdateRequest(request, status, user)),
 });

@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 
-import loginUser from './loginAction';
-import { clearValidationErrors } from '../authAction';
+import { clearValidationErrors, loginUser } from '../authAction';
 
-import Form from '../../../shared/components/Form';
+import Forms from '../../../shared/components/Form';
+import { handleInputChange } from '../authHelper';
 
 /**
  * @class Handles user login into the application
@@ -35,16 +35,8 @@ export class Login extends Component {
    */
   handleChange = (event) => {
     const { clearValidation, errors } = this.props;
-    const type = this.state[event.target.name].type; // eslint-disable-line
-    const { required, placeholder } = this.state[event.target.name]; // eslint-disable-line
-    this.setState({
-      [event.target.name]: {
-        type,
-        placeholder,
-        required,
-        value: event.target.value,
-      },
-    });
+    const newState = handleInputChange(event, this.state);
+    this.setState(newState);
     if (errors[event.target.name]) clearValidation(event.target.name);
   }
 
@@ -74,7 +66,7 @@ export class Login extends Component {
       text: 'Create one',
     };
     return (
-      <Form
+      <Forms
         handleInputChange={this.handleChange}
         inputs={this.state}
         handleSubmit={this.handleSubmit}
@@ -98,12 +90,12 @@ Login.defaultProps = {
   errors: {},
 };
 
-const mapDispatchToProps = dispatch => ({
+export const mapDispatchToProps = dispatch => ({
   login: (user, location) => dispatch(loginUser(user, location)),
   clearValidation: field => dispatch(clearValidationErrors(field)),
 });
 
-const mapStateToProps = state => ({
+export const mapStateToProps = state => ({
   errors: state.auth.errors,
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

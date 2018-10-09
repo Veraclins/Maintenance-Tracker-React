@@ -4,19 +4,19 @@ import { connect } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
 import './styles/styles.css';
 import routes from './routes/routes';
-import Header from './shared/layouts/Header';
-import Footer from './shared/layouts/Footer';
+import DHeader from './shared/layouts/Header';
+import DFooter from './shared/layouts/Footer';
 import Spinner from './shared/loaders/Spinner';
 
 export const App = ({ history, loading }) => (
   <ConnectedRouter history={history}>
     <React.Fragment>
-      <Header />
+      <DHeader />
       {loading ? <Spinner /> : false}
       <main className="main-app-body">
         { routes }
       </main>
-      <Footer />
+      <DFooter />
     </React.Fragment>
   </ConnectedRouter>
 );
@@ -31,7 +31,7 @@ App.propTypes = {
   loading: PropTypes.bool.isRequired,
 };
 
-const mapStateToProps = state => ({
+export const mapStateToProps = state => ({
   loading: state.common.loading,
 });
 

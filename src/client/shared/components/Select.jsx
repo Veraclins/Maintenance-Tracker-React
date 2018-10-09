@@ -2,7 +2,7 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
 
-const SelectInput = ({
+export const SelectInput = ({
   name,
   handleChange,
   placeholder,

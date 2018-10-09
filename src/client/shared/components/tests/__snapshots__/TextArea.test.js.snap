@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test the Form component renders without crashing 1`] = `
+<Fragment>
+  <div
+    className="field hs-form-field"
+  >
+    <label
+      className="hs-form-label"
+      htmlFor="input"
+    >
+      <span>
+        Text input
+         
+      </span>
+      <span
+        className="hs-form-required"
+      >
+        *
+      </span>
+    </label>
+    <div
+      className="input"
+    >
+      <textarea
+        autoComplete="on"
+        className="hs-input"
+        name="input"
+        onChange={[MockFunction]}
+        placeholder="enter text"
+        required={true}
+        value=""
+      />
+    </div>
+  </div>
+</Fragment>
+`;

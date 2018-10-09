@@ -1,6 +1,7 @@
 
 import userRequestsReducer from './user-requests/userRequestsReducer';
 import adminRequestsReducer from './admin-requests/adminRequestsReducer';
+import sharedReducer from '../../shared/common/sharedReducer';
 
 const initialState = {
   requests: [],
@@ -9,7 +10,11 @@ const initialState = {
 };
 
 const requestsReducer = (state = initialState, action) => {
-  const { type, errors } = action;
+  const { type } = action;
+  const shared = type.startsWith('VALIDATION')
+    || type.startsWith('CLEAR')
+    || type.startsWith('LOGOUT_USER')
+    || type.startsWith('@@router');
   switch (true) {
     case type.startsWith('USER'):
       return userRequestsReducer(state, action);
@@ -17,30 +22,8 @@ const requestsReducer = (state = initialState, action) => {
     case type.startsWith('ADMIN'):
       return adminRequestsReducer(state, action);
 
-    case type.startsWith('VALIDATION'):
-      return {
-        ...state,
-        errors,
-      };
-
-    case type.startsWith('CLEAR'):
-      return {
-        ...state,
-        errors: {
-          ...state.errors,
-          message: '',
-          [action.errorField]: undefined,
-        },
-      };
-
-    case type.startsWith('LOGOUT_USER'):
-      return initialState;
-
-    case type.startsWith('@@router'):
-      return {
-        ...state,
-        errors: {},
-      };
+    case shared:
+      return sharedReducer(state, initialState, action);
 
     default:
       return state;

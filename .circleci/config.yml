@@ -1,4 +1,7 @@
 version: 2
+machine:
+  node:
+    version: 8.11.3
 jobs:
   build:
     docker:

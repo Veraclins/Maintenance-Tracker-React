@@ -4,14 +4,14 @@
   "description": "A maintenance tracker app using an Expressjs REST API and React Frontend",
   "main": "src/index.js",
   "scripts": {
-    "prestart": "npm run build",
     "start": "node dist/server/index.js",
-    "build:client": "webpack",
+    "heroku-postbuild": "npm run build",
+    "build:client": "webpack -p",
     "build:server": "babel src/server -D --out-dir dist/server --source-maps",
     "client": "webpack-dev-server --mode development --devtool inline-source-map --hot",
     "server": "nodemon src/server/index.js --exec babel-node --presets babel-preset-env",
     "test:server": "cross-env NODE_ENV=test nyc --reporter=lcov --reporter=text mocha --file test/prep/PrepDb.js --exit",
-    "test:client": "jest --coverage",
+    "test:client": "jest --coverage -u",
     "test": "npm run test:server && npm run test:client",
     "update:snap": "jest --coverage -u",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
@@ -113,7 +113,7 @@
     "webpack-dev-server": "^3.1.9"
   },
   "engines": {
-    "node": "8.7.0"
+    "node": "8.11.3"
   },
   "nyc": {
     "require": [
@@ -132,16 +132,16 @@
   },
   "jest": {
     "setupTestFrameworkScriptFile": "<rootDir>/src/client/setupTests.js",
-    "testMatch": [
-      "**/src/client/tests/**/*.js?(x)",
-      "**/src/client/?(*.)+(spec|test).js?(x)"
+    "testPathIgnorePatterns": [
+      "<rootDir>/src/server/",
+      "<rootDir>/test/"
     ],
     "snapshotSerializers": [
       "enzyme-to-json/serializer"
     ],
     "collectCoverageFrom": [
       "**/src/client/?(*).js?(x)",
-      "!**/src/client/index.js"
+      "!**/src/client/*.js"
     ],
     "coverageReporters": [
       "cobertura",
