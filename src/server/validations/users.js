@@ -17,8 +17,8 @@ export const validateSignUp = (req, res, next) => {
   } = user;
 
     // Validate each field
-  if (firstName.length < 3 || !alphaRegex.test(firstName)) errors.firstName = 'must be string and at least three characters';
-  if (lastName.length < 3 || !alphaRegex.test(lastName)) errors.lastName = 'must be string and at least three characters';
+  if (firstName.length < 3 || !alphaRegex.test(firstName)) errors.firstName = 'must start with a capital letter and at least three characters';
+  if (lastName.length < 3 || !alphaRegex.test(lastName)) errors.lastName = 'must start with a capital letter and at least three characters';
   if (!emailRegex.test(email)) errors.email = 'must be a valid email';
   if (password.length < 6) errors.password = 'must be at least six characters';
   if (password !== passwordConfirmation) errors.passwordConfirmation = 'must match password';

@@ -134,7 +134,7 @@ h2 span {
 
 body {
   min-width: 300px;
-  min-height: 100%;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   -ms-font-smoothing: antialiased;
@@ -1798,6 +1798,7 @@ div.request_details:last-child {
 .hbspt-form-container .field.hs-form-field input, .hbspt-form-container .field.hs-form-field textarea, .hbspt-form-container .field.hs-form-field select {
 
   padding: 9px;
+  border-radius: 0;
 
   transition: .5s all ease;
 
@@ -1811,8 +1812,6 @@ div.request_details:last-child {
 
   width: 100%;
 
-  border-radius: 6px;
-
   -moz-box-sizing: border-box;
 
   -webkit-box-sizing: border-box;
@@ -1822,6 +1821,10 @@ div.request_details:last-child {
   height: auto;
 
   resize: vertical
+}
+
+.hbspt-form-container .field.hs-form-field input:focus, .hbspt-form-container .field.hs-form-field textarea:focus, .hbspt-form-container .field.hs-form-field select:focus {
+  border: 1px solid#ffaf30;
 }
 
 .hbspt-form-container .field.hs-form-field input[type=checkbox] {
@@ -1897,9 +1900,6 @@ div.request_details:last-child {
 
 .hbspt-form-container .field.hs-form-field input.hs-input.error:focus, .hs-form-f2496890-b543-423f-8e7e-814e0c7405c1_a00cec41-2d26-4c5b-afc4-da0d5162c848 div.field.error input:focus, .hbspt-form-container .field.hs-form-field .hs-form-f2496890-b543-423f-8e7e-814e0c7405c1_a00cec41-2d26-4c5b-afc4-da0d5162c848 div.field.error textarea:focus, .hbspt-form-container .field.hs-form-field .hs-form-f2496890-b543-423f-8e7e-814e0c7405c1_a00cec41-2d26-4c5b-afc4-da0d5162c848 div.field.error .chzn-choices:focus, textarea.hs-input.error:focus {
   border-bottom: 2px solid #f99293;
-}
-.hs-input {
-  border-radius: 10px;
 }
 .hbspt-form-container .hs-submit .hs-button.primary {
   color: #000;
