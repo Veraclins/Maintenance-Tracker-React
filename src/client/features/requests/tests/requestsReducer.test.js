@@ -150,16 +150,18 @@ describe('Tests requests reducer for admins', () => {
       });
   });
   it('should return default user request state if invalid type is sent', () => {
-    expect(requestsReducer({
-      default: 'anything at all',
-    },
-    {
-      type: 'ADMIN_UNKNOWN',
-      requests: {
-        one: 1,
-        zero: 'like seriously?',
+    expect(
+      requestsReducer({
+        default: 'anything at all',
       },
-    }))
+      {
+        type: 'ADMIN_UNKNOWN',
+        requests: {
+          one: 1,
+          zero: 'like seriously?',
+        },
+      }),
+    )
       .toEqual({ default: 'anything at all' });
   });
 });

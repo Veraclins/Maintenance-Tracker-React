@@ -47,7 +47,6 @@ export const handleInputChange = (event, state) => {
     },
   };
 };
-
 const authenticate = async (dispatch, payload) => {
   const { user, action, location } = payload;
   const path = action.toLowerCase();
