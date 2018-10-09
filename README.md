@@ -10,9 +10,9 @@ FRONTEND: [![Test Coverage](https://api.codeclimate.com/v1/badges/aaff7874bad3ba
 [![Maintainability](https://api.codeclimate.com/v1/badges/aaff7874bad3bad9b21e/maintainability)](https://codeclimate.com/github/Veraclins/Maintenance-Tracker-React/maintainability)
 
 Maintenance tracker is an app that makes managing of repair/maintenance operations very easy and seamless.
-With a very intuitive  [frontend](https://veraclins-m-tracker.herokuapp.com) and a robust `Express js` [REST API](https://veraclins-m-tracker.herokuapp.com/api/v1), the app is very easy to use. 
+With a very intuitive  [frontend](https://veratech.herokuapp.com) and a robust `Express js` [REST API](https://https://veratech.herokuapp.com/api/v1), the app is very easy to use.
 
-To use the app, register an account on the [frontend](https://veraclins-m-tracker.herokuapp.com) and create a request.
+To use the app, register an account on the [frontend](https://veratech.herokuapp.com) and create a request.
 
 ## Features
 
@@ -54,4 +54,4 @@ To run the tests:
 
 The API runs on PORT 3000 by default but you can run it on any port you want by updating the port in .env file.
 
-The API docs is available [here](https://veraclins-m-tracker.herokuapp.com/api-docs)
+The API docs is available [here](https://veratech.herokuapp.com/api-docs)
