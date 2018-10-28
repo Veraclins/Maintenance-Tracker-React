@@ -34,7 +34,7 @@ export class ViewUserRequest extends Component {
             ) : (
               <div className="single_request_column">
                 <div className="single_request_info">
-                  <h3 className="no_request_found">You don{"'"}t have a request with that Id</h3>
+                  <h3 className="no_request_found">You don{"'"}t have a request with that ID</h3>
                 </div>
               </div>
             )}

@@ -14,3 +14,8 @@ it('renders without crashing', () => {
   expect(wrapper.find('Switch'));
   expect(wrapper).toMatchSnapshot();
 });
+it('renders the loader', () => {
+  const wrapper = shallow(<App history={history} loading />);
+  expect(wrapper.find('div'));
+  expect(wrapper.find('Spinner'));
+});

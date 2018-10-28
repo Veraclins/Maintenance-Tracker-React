@@ -1,6 +1,5 @@
 import axios from 'axios';
 
-
 /**
  * @description This is a utility function that handles all API calls.
  * It simplifies the payload of the request to a single object.

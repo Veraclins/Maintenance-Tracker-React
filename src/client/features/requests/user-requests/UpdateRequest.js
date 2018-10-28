@@ -13,7 +13,7 @@ import {
   changeTextArea,
   changeSelect,
   handleRequestSubmit,
-} from '../RequestHelper';
+} from '../requestHelper';
 
 const options = [
   { value: 'Laptop', label: 'Laptop Pc' },

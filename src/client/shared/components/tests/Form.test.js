@@ -123,4 +123,12 @@ describe('Test the Form component', () => {
     expect(wrapper.find(DTextArea)).toHaveLength(1);
     expect(wrapper.find('input.hs-button')).toHaveLength(1);
   });
+  it('uses default props when not supplied', () => {
+    expect(Form.defaultProps.handleSelectChange).toBeDefined();
+    expect(Form.defaultProps.handleTextAreaChange).toBeDefined();
+    const result = Form.defaultProps.handleTextAreaChange();
+    expect(result).toBe(null);
+    const select = Form.defaultProps.handleSelectChange();
+    expect(select).toBe(null);
+  });
 });
