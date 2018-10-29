@@ -2,14 +2,16 @@ import prepTablesQuery from '../database/queries/prep-tables';
 import pool from '../database';
 
 
-const prepTable = async (req, res) => {
+const prepTable = async () => {
   const client = await pool.connect();
   try {
     const response = await client.query(prepTablesQuery);
-    return res.status(200).send({ response });
+    return response;
   } finally {
     client.release();
   }
 };
+
+prepTable();
 
 export default prepTable;

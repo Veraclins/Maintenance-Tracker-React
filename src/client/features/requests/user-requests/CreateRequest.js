@@ -12,7 +12,7 @@ import {
   changeTextArea,
   changeSelect,
   handleRequestSubmit,
-} from '../RequestHelper';
+} from '../requestHelper';
 import history from '../../../shared/utilities/history';
 
 const options = [

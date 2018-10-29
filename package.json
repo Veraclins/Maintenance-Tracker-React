@@ -16,6 +16,7 @@
     "update:snap": "jest --coverage -u",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "coveralls": "nyc --reporter=lcov --reporter=text-lcov npm test",
+    "migrate": "babel-node src/server/controllers/data.js",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "build": "npm run build:client && npm run build:server"
   },
