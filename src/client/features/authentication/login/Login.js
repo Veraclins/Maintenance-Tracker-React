@@ -3,9 +3,8 @@ import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 
 import { clearValidationErrors, loginUser } from '../authAction';
-
-import Forms from '../../../shared/components/Form';
 import { handleInputChange } from '../authHelper';
+import AuthRender from '../AuthRender';
 
 /**
  * @class Handles user login into the application
@@ -34,10 +33,8 @@ export class Login extends Component {
    * @param {Object} event The event object
    */
   handleChange = (event) => {
-    const { clearValidation, errors } = this.props;
-    const newState = handleInputChange(event, this.state);
+    const newState = handleInputChange(event, this.state, this.props);
     this.setState(newState);
-    if (errors[event.target.name]) clearValidation(event.target.name);
   }
 
 
@@ -59,28 +56,15 @@ export class Login extends Component {
    * @description Renders the component on a DOM node
    */
   render() {
-    const { errors } = this.props;
-    const formLinks = {
-      label: "Don't have an account?",
-      link: '/signup',
-      text: 'Create one',
-    };
+    this.action = 'Login';
     return (
-      <Forms
-        handleInputChange={this.handleChange}
-        inputs={this.state}
-        handleSubmit={this.handleSubmit}
-        errors={errors}
-        formLinks={formLinks}
-        formTitle="Log into Your Account"
-      />
+      <AuthRender self={this} />
     );
   }
 }
 
 
 Login.propTypes = {
-  clearValidation: PropTypes.func.isRequired,
   location: PropTypes.shape({}).isRequired,
   login: PropTypes.func.isRequired,
   errors: PropTypes.shape({}),

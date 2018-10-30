@@ -35,9 +35,11 @@ const handleFailure = (payload) => {
   return errorHandler(dispatch, response);
 };
 
-export const handleInputChange = (event, state) => {
+export const handleInputChange = (event, state, props) => {
+  const { clearValidation, errors } = props;
   const { type } = state[event.target.name];
   const { required, placeholder } = state[event.target.name];
+  if (errors[event.target.name]) clearValidation(event.target.name);
   return {
     [event.target.name]: {
       type,
@@ -72,5 +74,6 @@ const authenticate = async (dispatch, payload) => {
     action,
   });
 };
+
 
 export default authenticate;

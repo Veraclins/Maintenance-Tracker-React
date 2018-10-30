@@ -4,8 +4,8 @@ import { PropTypes } from 'prop-types';
 
 import { clearValidationErrors, signUpUser } from '../authAction';
 
-import Forms from '../../../shared/components/Form';
 import { handleInputChange } from '../authHelper';
+import AuthRender from '../AuthRender';
 
 /**
  * @class Handles Account registration
@@ -52,10 +52,8 @@ export class SignUp extends Component {
    * @param {Object} event The event object
    */
   handleChange = (event) => {
-    const { clearValidation, errors } = this.props;
-    const newState = handleInputChange(event, this.state);
+    const newState = handleInputChange(event, this.state, this.props);
     this.setState(newState);
-    if (errors[event.target.name]) clearValidation(event.target.name);
   }
 
 
@@ -87,28 +85,15 @@ export class SignUp extends Component {
    * @description Renders the component on a DOM node
    */
   render() {
-    const { errors } = this.props;
-    const formLinks = {
-      label: 'Already Registered?',
-      link: '/login',
-      text: 'Login',
-    };
+    this.action = 'SignUp';
     return (
-      <Forms
-        handleInputChange={this.handleChange}
-        inputs={this.state}
-        handleSubmit={this.handleSubmit}
-        errors={errors}
-        formLinks={formLinks}
-        formTitle="Create an Account"
-      />
+      <AuthRender self={this} />
     );
   }
 }
 
 
 SignUp.propTypes = {
-  clearValidation: PropTypes.func.isRequired,
   location: PropTypes.shape({}).isRequired,
   signup: PropTypes.func.isRequired,
   errors: PropTypes.shape({}),

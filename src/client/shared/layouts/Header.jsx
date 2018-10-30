@@ -5,7 +5,7 @@ import { PropTypes } from 'prop-types';
 
 import logo from '../../img/veratech-logo_burned.png';
 import { logoutUser } from '../../features/authentication/authAction';
-
+import NavItem from './NavItem';
 
 export class Header extends Component {
   constructor() {
@@ -29,52 +29,13 @@ export class Header extends Component {
 
   guestNav = () => (
     <React.Fragment>
-      <li className="menu-item">
-        <NavLink
-          onClick={this.closeNavbar}
-          to="/login"
-        >
-          Login
-        </NavLink>
-        <span className="arrow" />
-        <div className="clear" />
-      </li>
-      <li className="menu-item">
-        <NavLink
-          onClick={this.closeNavbar}
-          to="/signup"
-        >
-          Register
-        </NavLink>
-        <span className="arrow" />
-        <div className="clear" />
-      </li>
+      <NavItem closeNavbar={this.closeNavbar} link="/login">
+        Login
+      </NavItem>
+      <NavItem closeNavbar={this.closeNavbar} link="/signup">
+        Register
+      </NavItem>
     </React.Fragment>
-  )
-
-  requestNav = () => (
-    <ul className="sub-menu">
-      <li className="menu-item">
-        <NavLink
-          onClick={this.closeNavbar}
-          to="/requests/create"
-        >
-          Create a Request
-        </NavLink>
-        <span className="arrow" />
-        <div className="clear" />
-      </li>
-      <li className="menu-item">
-        <NavLink
-          onClick={this.closeNavbar}
-          to="/requests"
-        >
-          View Requests
-        </NavLink>
-        <span className="arrow" />
-        <div className="clear" />
-      </li>
-    </ul>
   )
 
   loggedInNav = () => {
@@ -83,16 +44,9 @@ export class Header extends Component {
     const subMenuClass = 'has-submenu';
     return (
       <React.Fragment>
-        <li className="menu-item">
-          <NavLink
-            onClick={this.closeNavbar}
-            to="/dashboard"
-          >
-            Dashboard
-          </NavLink>
-          <span className="arrow" />
-          <div className="clear" />
-        </li>
+        <NavItem closeNavbar={this.closeNavbar} link="/dashboard">
+          Dashboard
+        </NavItem>
         <li
           className={activeSubMenu === 'request-menu-toggle'
             ? subMenuActiveClass
@@ -107,7 +61,14 @@ export class Header extends Component {
           </a>
           <span className="arrow" />
           <div className="clear" />
-          {this.requestNav()}
+          <ul className="sub-menu">
+            <NavItem closeNavbar={this.closeNavbar} link="/requests/create">
+            Create a Request
+            </NavItem>
+            <NavItem closeNavbar={this.closeNavbar} link="/requests">
+            View Requests
+            </NavItem>
+          </ul>
         </li>
       </React.Fragment>
     );
@@ -133,16 +94,9 @@ export class Header extends Component {
           <ul id="top-menu" className="menu">
             {isLoggedIn ? this.loggedInNav() : false}
             {isAdmin ? (
-              <li className="menu-item">
-                <NavLink
-                  onClick={this.closeNavbar}
-                  to="/admin"
-                >
-                  Admin Page
-                </NavLink>
-                <span className="arrow" />
-                <div className="clear" />
-              </li>
+              <NavItem closeNavbar={this.closeNavbar} link="/admin">
+                Admin Page
+              </NavItem>
             ) : false}
             {!isLoggedIn ? this.guestNav() : (
               <li className="menu-item">

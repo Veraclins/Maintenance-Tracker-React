@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test the Header component renders without crashing 1`] = `
+<li
+  className="menu-item"
+>
+  <NavLink
+    activeClassName="active"
+    aria-current="page"
+    onClick={[MockFunction]}
+    to="login"
+  >
+    Login
+  </NavLink>
+  <span
+    className="arrow"
+  />
+  <div
+    className="clear"
+  />
+</li>
+`;

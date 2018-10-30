@@ -3,6 +3,7 @@ import { shallow } from 'enzyme';
 import { NavLink } from 'react-router-dom';
 
 import { Header, mapDispatchToProps } from '../Header';
+import NavItem from '../NavItem';
 
 const mockFunction = jest.fn();
 
@@ -28,9 +29,8 @@ describe('Test the Header component', () => {
       isLoggedIn={isLoggedIn}
       logout={mockFunction}
     />);
-    expect(wrapper.find(NavLink)).toHaveLength(3);
-    expect(wrapper.find(NavLink).get(1).props.children).toEqual('Login');
-    expect(wrapper.find(NavLink).get(2).props.children).toEqual('Register');
+    expect(wrapper.find(NavLink)).toHaveLength(1);
+    expect(wrapper.find(NavItem)).toHaveLength(2);
     expect(wrapper).toMatchSnapshot();
   });
 
@@ -42,9 +42,8 @@ describe('Test the Header component', () => {
       isLoggedIn={isLoggedIn}
       logout={mockFunction}
     />);
-    expect(wrapper.find(NavLink)).toHaveLength(4);
-    expect(wrapper.find(NavLink).get(1).props.children).toEqual('Dashboard');
-    expect(wrapper.find(NavLink).get(2).props.children).toEqual('Create a Request');
+    expect(wrapper.find(NavLink)).toHaveLength(1);
+    expect(wrapper.find(NavItem)).toHaveLength(3);
     expect(wrapper).toMatchSnapshot();
   });
 
@@ -56,13 +55,12 @@ describe('Test the Header component', () => {
       isLoggedIn={isLoggedIn}
       logout={mockFunction}
     />);
-    expect(wrapper.find(NavLink)).toHaveLength(5);
-    expect(wrapper.find(NavLink).get(1).props.children).toEqual('Dashboard');
-    expect(wrapper.find(NavLink).get(4).props.children).toEqual('Admin Page');
+    expect(wrapper.find(NavLink)).toHaveLength(1);
+    expect(wrapper.find(NavItem)).toHaveLength(4);
     expect(wrapper).toMatchSnapshot();
   });
 
-  it('renders the right nav elements for an admin', () => {
+  it('it runs the logout function on click of the button', () => {
     const isAdmin = true;
     const isLoggedIn = true;
     const wrapper = shallow(<Header

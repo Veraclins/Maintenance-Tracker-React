@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import { Login, mapDispatchToProps } from '../Login';
-import Forms from '../../../../shared/components/Form';
+import AuthRender from '../../AuthRender';
 
 const mockFunction = jest.fn();
 const location = {};
@@ -16,7 +16,7 @@ describe('Tests the login component', () => {
       location={location}
       errors={errors}
     />);
-    expect(wrapper.find(Forms)).toHaveLength(1);
+    expect(wrapper.find(AuthRender)).toHaveLength(1);
   });
 });
 
