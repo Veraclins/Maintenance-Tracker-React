@@ -1,0 +1,191 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test the HomeBannerSection component renders with the right view for a logged in user 1`] = `
+<div
+  className="content_banner"
+>
+  <div
+    className="content_banner_inner"
+  >
+    <div
+      className="banner_top_bg"
+    />
+    <div
+      className="banner_left_bg"
+    />
+    <div
+      className="container"
+    >
+      <div
+        className="inner_layout wow fadeInUp"
+      >
+        <h1
+          className="home_welcome"
+        >
+          Welcome back
+           
+          <strong>
+            Clinton
+             
+            Agada
+          </strong>
+        </h1>
+        <h1>
+          <strong>
+            This is VeraTech Solutions Hub.
+          </strong>
+        </h1>
+        <h1>
+          The Home of World Class Maintenance and Repairs for your
+           
+          <i>
+            Modern Devices.
+          </i>
+        </h1>
+        <div
+          className="buttons_banner"
+        >
+           
+          <Link
+            className="buttons button_default"
+            replace={false}
+            to="/requests/create"
+          >
+            CREATE A NEW REQUEST
+          </Link>
+           
+          <Link
+            className="buttons button_blank"
+            replace={false}
+            to="/dashboard"
+          >
+            GO TO YOUR DASHBOARD
+          </Link>
+        </div>
+      </div>
+    </div>
+     
+    <span
+      className="banner_big_title"
+    >
+      RELIABILITY
+    </span>
+    <div
+      className="vertical_anchor left_vertical wow fadeInLeft"
+      data-wow-delay="0.4s"
+    >
+       
+      <Link
+        replace={false}
+        to="/signup"
+      >
+        CREATE_A_NEW_ACCOUNT
+      </Link>
+    </div>
+    <div
+      className="vertical_anchor right_vertical wow fadeInRight"
+      data-wow-delay="0.4s"
+    >
+       
+      <Link
+        replace={false}
+        to="/login"
+      >
+        LOGIN_TO_YOUR_ACCOUNT
+      </Link>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Test the HomeBannerSection component renders without crashing for a guest 1`] = `
+<div
+  className="content_banner"
+>
+  <div
+    className="content_banner_inner"
+  >
+    <div
+      className="banner_top_bg"
+    />
+    <div
+      className="banner_left_bg"
+    />
+    <div
+      className="container"
+    >
+      <div
+        className="inner_layout wow fadeInUp"
+      >
+        <h1>
+          <strong>
+            This is VeraTech Solutions Hub.
+          </strong>
+        </h1>
+        <h1>
+          The Home of World Class Maintenance and Repairs for your
+           
+          <i>
+            Modern Devices.
+          </i>
+        </h1>
+        <h5>
+          VeraTech Solutions Hub gives you the peace of mind you need. We care for your devices so you won
+          '
+          t lose sleep. Whatever the need of your device, we got you covered.
+        </h5>
+        <div
+          className="buttons_banner"
+        >
+           
+          <Link
+            className="buttons button_default"
+            replace={false}
+            to="/signup"
+          >
+            CREATE A NEW ACCOUNT
+          </Link>
+           
+          <Link
+            className="buttons button_blank"
+            replace={false}
+            to="/login"
+          >
+            LOGIN TO YOUR ACCOUNT
+          </Link>
+        </div>
+      </div>
+    </div>
+     
+    <span
+      className="banner_big_title"
+    >
+      RELIABILITY
+    </span>
+    <div
+      className="vertical_anchor left_vertical wow fadeInLeft"
+      data-wow-delay="0.4s"
+    >
+       
+      <Link
+        replace={false}
+        to="/signup"
+      >
+        CREATE_A_NEW_ACCOUNT
+      </Link>
+    </div>
+    <div
+      className="vertical_anchor right_vertical wow fadeInRight"
+      data-wow-delay="0.4s"
+    >
+       
+      <Link
+        replace={false}
+        to="/login"
+      >
+        LOGIN_TO_YOUR_ACCOUNT
+      </Link>
+    </div>
+  </div>
+</div>
+`;

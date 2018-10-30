@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
-import toastr from 'toastr';
 
 import { updateRequest, getSingleRequest } from './userRequestsAction';
 import { clearValidationErrors } from '../requestsAction';
-
 import Forms from '../../../shared/components/Form';
-import history from '../../../shared/utilities/history';
 import {
   changeInput,
   changeTextArea,
@@ -63,13 +60,7 @@ export class UpdateRequest extends Component {
   }
 
   componentDidMount() {
-    const {
-      match, location, fetch, isLoggedIn, user,
-    } = this.props;
-    if (!isLoggedIn) {
-      toastr.error('You must be logged in to edit a request');
-      return history.push('/login', { from: location.pathname });
-    }
+    const { match, fetch, user } = this.props;
     const { params } = match;
     return fetch(user, params.requestId);
   }
@@ -158,8 +149,6 @@ export class UpdateRequest extends Component {
 
 UpdateRequest.propTypes = {
   clearValidation: PropTypes.func.isRequired,
-  isLoggedIn: PropTypes.bool.isRequired,
-  location: PropTypes.shape({}).isRequired,
   fetch: PropTypes.func.isRequired,
   errors: PropTypes.shape({}),
   user: PropTypes.shape({}).isRequired,
@@ -181,7 +170,5 @@ export const mapStateToProps = state => ({
   errors: state.requests.errors,
   user: state.auth.user,
   request: state.requests.currentRequest,
-  isLoggedIn: state.auth.isAuthenticated,
-  location: state.router.location,
 });
 export default connect(mapStateToProps, mapDispatchToProps)(UpdateRequest);

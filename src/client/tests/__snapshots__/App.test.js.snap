@@ -30,15 +30,6 @@ exports[`renders without crashing 1`] = `
     <Switch>
       <Route
         component={[Function]}
-        path="/requests/create"
-      />
-      <Route
-        component={[Function]}
-        exact={true}
-        path="/dashboard"
-      />
-      <Route
-        component={[Function]}
         path="/login"
       />
       <Route
@@ -48,31 +39,10 @@ exports[`renders without crashing 1`] = `
       <Route
         component={[Function]}
         exact={true}
-        path="/requests"
-      />
-      <Route
-        component={[Function]}
-        exact={true}
-        path="/admin"
-      />
-      <Route
-        component={[Function]}
-        exact={true}
-        path="/admin/:requestId"
-      />
-      <Route
-        component={[Function]}
-        exact={true}
-        path="/requests/:requestId"
-      />
-      <Route
-        component={[Function]}
-        path="/requests/:requestId/edit"
-      />
-      <Route
-        component={[Function]}
-        exact={true}
         path="/"
+      />
+      <Route
+        component={[Function]}
       />
     </Switch>
   </main>

@@ -1,23 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import toastr from 'toastr';
 import { PropTypes } from 'prop-types';
-import history from '../../../shared/utilities/history';
 import { getSingleRequest } from './userRequestsAction';
 import ViewRequests from '../ViewRequest';
 
 
 export class ViewUserRequest extends Component {
   componentDidMount() {
-    const {
-      match, location, fetchRequest, isLoggedIn, user,
-    } = this.props;
-    if (!isLoggedIn) {
-      toastr.error('You must be logged in to view a request');
-      return history.push('/login', { from: location.pathname });
-    }
+    const { match, fetch, user } = this.props;
     const { params } = match;
-    return fetchRequest(user, params.requestId);
+    return fetch(user, params.requestId);
   }
 
   render() {
@@ -46,24 +38,20 @@ export class ViewUserRequest extends Component {
 
 
 ViewUserRequest.propTypes = {
-  isLoggedIn: PropTypes.bool.isRequired,
   isAdmin: PropTypes.bool.isRequired,
   user: PropTypes.shape({}).isRequired,
-  fetchRequest: PropTypes.func.isRequired,
-  location: PropTypes.shape({}).isRequired,
+  fetch: PropTypes.func.isRequired,
   match: PropTypes.shape({}).isRequired,
   request: PropTypes.shape({}).isRequired,
 };
 
 export const mapStateToProps = state => ({
-  isLoggedIn: state.auth.isAuthenticated,
   isAdmin: state.auth.isAdmin,
   user: state.auth.user,
-  location: state.router.location,
   request: state.requests.currentRequest,
 });
 export const mapDispatchToProps = dispatch => ({
-  fetchRequest: (user, requestId) => dispatch(getSingleRequest(user, requestId)),
+  fetch: (user, requestId) => dispatch(getSingleRequest(user, requestId)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ViewUserRequest);

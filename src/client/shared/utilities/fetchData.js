@@ -15,7 +15,8 @@ const fetchData = async (payload) => {
   const {
     url, method, data, headers,
   } = payload;
-  const baseURL = 'https://veratech.herokuapp.com/api/v1';
+  const dev = process.env.NODE_ENV === 'development';
+  const baseURL = dev ? 'http://localhost:4000/api/v1' : 'https://veratech.herokuapp.com/api/v1';
   const response = await axios({
     baseURL,
     url,

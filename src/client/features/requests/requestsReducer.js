@@ -11,10 +11,6 @@ const initialState = {
 
 const requestsReducer = (state = initialState, action) => {
   const { type } = action;
-  const shared = type.startsWith('VALIDATION')
-    || type.startsWith('CLEAR')
-    || type.startsWith('LOGOUT_USER')
-    || type.startsWith('@@router');
   switch (true) {
     case type.startsWith('USER'):
       return userRequestsReducer(state, action);
@@ -22,11 +18,8 @@ const requestsReducer = (state = initialState, action) => {
     case type.startsWith('ADMIN'):
       return adminRequestsReducer(state, action);
 
-    case shared:
-      return sharedReducer(state, initialState, action);
-
     default:
-      return state;
+      return sharedReducer(state, initialState, action);
   }
 };
 

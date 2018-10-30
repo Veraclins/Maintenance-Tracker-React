@@ -2,7 +2,7 @@ import React from 'react';
 import toastr from 'toastr';
 import { shallow } from 'enzyme';
 
-import { AdminRequests } from '../AdminRequests';
+import { AdminRequests, mapDispatchToProps } from '../AdminRequests';
 import Request from '../../Requests';
 
 const mockFunction = jest.fn();
@@ -96,5 +96,15 @@ describe('directly invoking the componentDidMount method from component instance
     toastr.error = mockFunction;
     instance.componentDidMount();
     expect(toastr.error).toHaveBeenCalled();
+  });
+});
+
+describe('Calling mapDispatchToProps', () => {
+  it('should correctly map dispatches to props  ', () => {
+    const mockDispatch = jest.fn();
+    const newProps = mapDispatchToProps(mockDispatch);
+    newProps.getRequests(user);
+    expect(mockDispatch)
+      .toHaveBeenCalledTimes(1);
   });
 });

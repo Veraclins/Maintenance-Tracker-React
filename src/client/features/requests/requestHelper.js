@@ -1,35 +1,13 @@
-import toastr from 'toastr';
-import history from '../../shared/utilities/history';
 
-export const changeInput = (event, state) => {
-  const { input } = state;
-  const {
-    type,
-    required,
-    placeholder,
-  } = input[event.target.name];
-  return {
-    input: {
-      [event.target.name]: {
-        type,
-        required,
-        placeholder,
-        value: event.target.value,
-      },
-    },
-  };
-};
-
-export const changeSelect = (event, state) => {
-  const { select } = state;
+const handleChange = (input, event, field) => {
   const {
     type,
     required,
     options,
     placeholder,
-  } = select[event.target.name];
+  } = input[event.target.name];
   return {
-    select: {
+    [field]: {
       [event.target.name]: {
         type,
         options,
@@ -41,23 +19,19 @@ export const changeSelect = (event, state) => {
   };
 };
 
+export const changeInput = (event, state) => {
+  const { input } = state;
+  return handleChange(input, event, 'input');
+};
+
+export const changeSelect = (event, state) => {
+  const { select } = state;
+  return handleChange(select, event, 'select');
+};
+
 export const changeTextArea = (event, state) => {
   const { textArea } = state;
-  const {
-    type,
-    required,
-    placeholder,
-  } = textArea[event.target.name];
-  return {
-    textArea: {
-      [event.target.name]: {
-        type,
-        required,
-        placeholder,
-        value: event.target.value,
-      },
-    },
-  };
+  return handleChange(textArea, event, 'textArea');
 };
 
 export const handleRequestSubmit = (event, props, data) => {
@@ -66,8 +40,6 @@ export const handleRequestSubmit = (event, props, data) => {
     create,
     update,
     user,
-    isLoggedIn,
-    location,
     request,
   } = props;
   const {
@@ -75,10 +47,6 @@ export const handleRequestSubmit = (event, props, data) => {
     device,
     description,
   } = data;
-  if (!isLoggedIn) {
-    toastr.error('You must be logged to make a request');
-    return history.push('/login', { from: location.pathname });
-  }
   const id = update ? request.id : undefined;
   const callBack = create || update;
   return callBack({

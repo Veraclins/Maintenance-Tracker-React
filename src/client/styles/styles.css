@@ -657,6 +657,16 @@ section {
   z-index: 5;
   top: 40px;
 }
+.banner_big_title_4 {
+  font-size: 220px;
+  opacity: .04;
+  position: absolute;
+  bottom: 0;
+  left: -50%;
+  right: -50%;
+  z-index: 5;
+  top: 40px;
+}
 
 .vertical_anchor {
   position: absolute;

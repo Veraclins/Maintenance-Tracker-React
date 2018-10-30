@@ -179,33 +179,6 @@ describe('directly invoking the handleSubmit method from component instance', ()
       },
     });
   });
-
-  it('should give error message if not logged in', () => {
-    const wrapper = shallow(<UpdateRequest
-      clearValidation={mockFunction}
-      fetch={mockFunction}
-      location={location}
-      isLoggedIn={false}
-      update={mockFunction}
-      user={user}
-      request={request}
-      match={match}
-    />);
-    const instance = wrapper.instance();
-    const event = {
-      preventDefault: mockFunction,
-    };
-    instance.handleSubmit(event);
-    expect(mockFunction)
-      .toHaveBeenCalledTimes(8);
-    expect(wrapper.state('input')).toEqual({
-      title: {
-        value: 'General repainting',
-        placeholder: 'Enter the title of the request',
-        required: true,
-      },
-    });
-  });
 });
 
 describe('Testing mapDispatchToProps', () => {
