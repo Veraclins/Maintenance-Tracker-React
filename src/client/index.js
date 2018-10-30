@@ -9,7 +9,6 @@ import history from './shared/utilities/history';
 
 const store = configureStore();
 
-
 ReactDOM.render(
   <Provider store={store}>
     <RootApp history={history} />
