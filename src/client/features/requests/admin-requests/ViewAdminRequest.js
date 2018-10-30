@@ -1,25 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import toastr from 'toastr';
 import { PropTypes } from 'prop-types';
-import history from '../../../shared/utilities/history';
 import ViewRequests from '../ViewRequest';
 import { adminViewRequest, adminUpdateRequest } from './adminRequestsAction';
 
 
 export class ViewAdminRequest extends Component {
   componentDidMount() {
-    const {
-      match, location, viewRequest, isLoggedIn, user, isAdmin,
-    } = this.props;
-    if (!isLoggedIn) {
-      toastr.error('You must be logged in to view a request');
-      return history.push('/login', { from: location.pathname });
-    }
-    if (!isAdmin) {
-      toastr.error('You you do not have permission to view that page');
-      return history.push('/dashboard');
-    }
+    const { match, viewRequest, user } = this.props;
+
     const { params } = match;
     return viewRequest(user, params.requestId);
   }
@@ -57,21 +46,17 @@ export class ViewAdminRequest extends Component {
 
 
 ViewAdminRequest.propTypes = {
-  isLoggedIn: PropTypes.bool.isRequired,
   isAdmin: PropTypes.bool.isRequired,
   user: PropTypes.shape({}).isRequired,
   viewRequest: PropTypes.func.isRequired,
   updateRequest: PropTypes.func.isRequired,
-  location: PropTypes.shape({}).isRequired,
   match: PropTypes.shape({}).isRequired,
   request: PropTypes.shape({}).isRequired,
 };
 
 export const mapStateToProps = state => ({
-  isLoggedIn: state.auth.isAuthenticated,
   isAdmin: state.auth.isAdmin,
   user: state.auth.user,
-  location: state.router.location,
   request: state.requests.currentRequest,
 });
 

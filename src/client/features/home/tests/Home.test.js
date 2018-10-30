@@ -2,6 +2,8 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import { Home } from '../Home';
+import HomeContentSection from '../HomeContentSection';
+import HomeBannerSection from '../HomeBannerSection';
 
 const user = {
   firstName: 'Clinton',
@@ -18,8 +20,8 @@ describe('Test the Home component', () => {
       user={user}
     />);
     expect(wrapper.find('section')).toHaveLength(1);
-    expect(wrapper.find('h1')).toHaveLength(8);
-    expect(wrapper.find('div')).toHaveLength(70);
+    expect(wrapper.find(HomeContentSection)).toHaveLength(1);
+    expect(wrapper.find(HomeBannerSection)).toHaveLength(1);
     expect(wrapper).toMatchSnapshot();
   });
   it('renders with the right view for a logged in user', () => {
@@ -31,8 +33,7 @@ describe('Test the Home component', () => {
       user={user}
     />);
     expect(wrapper.find('section')).toHaveLength(1);
-    expect(wrapper.find('h1')).toHaveLength(3);
-    expect(wrapper.find('div')).toHaveLength(9);
+    expect(wrapper.find(HomeContentSection)).toHaveLength(0);
     expect(wrapper).toMatchSnapshot();
   });
 });

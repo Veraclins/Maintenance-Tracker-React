@@ -40,4 +40,9 @@ describe('Test the ViewRequest component', () => {
     expect(wrapper.find('a')).toHaveLength(2);
     expect(wrapper).toMatchSnapshot();
   });
+  it('uses default props when not supplied', () => {
+    expect(ViewRequest.defaultProps.updateRequest).toBeDefined();
+    const result = ViewRequest.defaultProps.updateRequest();
+    expect(result).toBe(null);
+  });
 });

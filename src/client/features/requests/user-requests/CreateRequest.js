@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
-import toastr from 'toastr';
 
 import { createRequest } from './userRequestsAction';
 import { clearValidationErrors } from '../requestsAction';
-
 import Forms from '../../../shared/components/Form';
 import {
   changeInput,
@@ -13,7 +11,6 @@ import {
   changeSelect,
   handleRequestSubmit,
 } from '../requestHelper';
-import history from '../../../shared/utilities/history';
 
 const options = [
   { value: '', label: 'Select Device Type' },
@@ -61,15 +58,6 @@ export class CreateRequest extends Component {
         },
       },
     };
-  }
-
-  componentDidMount() {
-    const { location, isLoggedIn } = this.props;
-    if (!isLoggedIn) {
-      toastr.error('You must be logged in to create a request');
-      return history.push('/login', { from: location.pathname });
-    }
-    return true;
   }
 
   /**
@@ -149,8 +137,6 @@ export class CreateRequest extends Component {
 
 CreateRequest.propTypes = {
   clearValidation: PropTypes.func.isRequired,
-  isLoggedIn: PropTypes.bool.isRequired,
-  location: PropTypes.shape({}).isRequired,
   errors: PropTypes.shape({}),
   user: PropTypes.shape({}).isRequired,
 };
@@ -167,7 +153,5 @@ export const mapDispatchToProps = dispatch => ({
 export const mapStateToProps = state => ({
   errors: state.requests.errors,
   user: state.auth.user,
-  isLoggedIn: state.auth.isAuthenticated,
-  location: state.router.location,
 });
 export default connect(mapStateToProps, mapDispatchToProps)(CreateRequest);

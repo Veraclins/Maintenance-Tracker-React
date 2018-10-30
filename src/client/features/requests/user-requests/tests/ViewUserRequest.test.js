@@ -23,7 +23,7 @@ describe('Tests the admin request component', () => {
     };
     const isAdmin = false;
     const wrapper = shallow(<ViewUserRequest
-      fetchRequest={mockFunction}
+      fetch={mockFunction}
       isAdmin={isAdmin}
       isLoggedIn={isLoggedIn}
       location={location}
@@ -41,7 +41,7 @@ describe('directly invoking the componentDidMount method from component instance
     const isAdmin = false;
     const request = {};
     const wrapper = shallow(<ViewUserRequest
-      fetchRequest={mockFunction}
+      fetch={mockFunction}
       isAdmin={isAdmin}
       isLoggedIn={isLoggedIn}
       location={location}
@@ -60,7 +60,7 @@ describe('directly invoking the componentDidMount method from component instance
     const isAdmin = false;
     const request = {};
     const wrapper = shallow(<ViewUserRequest
-      fetchRequest={mockFunction}
+      fetch={mockFunction}
       isAdmin={isAdmin}
       isLoggedIn={isLoggedIn}
       location={location}
@@ -78,7 +78,7 @@ describe('Testing mapDispatchToProps', () => {
   it('should correctly map dispatches to props  ', () => {
     const mockDispatch = jest.fn();
     const newProps = mapDispatchToProps(mockDispatch);
-    newProps.fetchRequest(user, 2);
+    newProps.fetch(user, 2);
     expect(mockDispatch)
       .toHaveBeenCalledTimes(1);
   });

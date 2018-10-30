@@ -13,7 +13,8 @@ exports[`Test the Dashboard component renders with the right view for a logged i
       <h1
         className="home_welcome"
       >
-        Welcome back 
+        Welcome back
+         
         <strong>
           Clinton
            
@@ -37,7 +38,7 @@ exports[`Test the Dashboard component renders with the right view for a logged i
           What do you want to do today?
         </h1>
         <span
-          className="banner_big_title_2"
+          className="banner_big_title_4"
         >
           DASHBOARD
         </span>
@@ -65,7 +66,6 @@ exports[`Test the Dashboard component renders with the right view for a logged i
           <div
             className="wow fadeInLeft"
           >
-             
             <Link
               className="buttons button_default"
               replace={false}
@@ -81,7 +81,6 @@ exports[`Test the Dashboard component renders with the right view for a logged i
           <div
             className="wow fadeInRight"
           >
-             
             <Link
               className="buttons button_blank"
               replace={false}
