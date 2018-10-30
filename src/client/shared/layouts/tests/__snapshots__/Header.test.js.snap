@@ -43,42 +43,18 @@ exports[`Test the Header component renders the right nav elements for a guest 1`
             className="menu"
             id="top-menu"
           >
-            <li
-              className="menu-item"
+            <NavItem
+              closeNavbar={[Function]}
+              link="/login"
             >
-              <NavLink
-                activeClassName="active"
-                aria-current="page"
-                onClick={[Function]}
-                to="/login"
-              >
-                Login
-              </NavLink>
-              <span
-                className="arrow"
-              />
-              <div
-                className="clear"
-              />
-            </li>
-            <li
-              className="menu-item"
+              Login
+            </NavItem>
+            <NavItem
+              closeNavbar={[Function]}
+              link="/signup"
             >
-              <NavLink
-                activeClassName="active"
-                aria-current="page"
-                onClick={[Function]}
-                to="/signup"
-              >
-                Register
-              </NavLink>
-              <span
-                className="arrow"
-              />
-              <div
-                className="clear"
-              />
-            </li>
+              Register
+            </NavItem>
           </ul>
         </div>
       </div>
@@ -130,24 +106,12 @@ exports[`Test the Header component renders the right nav elements for a logged i
             className="menu"
             id="top-menu"
           >
-            <li
-              className="menu-item"
+            <NavItem
+              closeNavbar={[Function]}
+              link="/dashboard"
             >
-              <NavLink
-                activeClassName="active"
-                aria-current="page"
-                onClick={[Function]}
-                to="/dashboard"
-              >
-                Dashboard
-              </NavLink>
-              <span
-                className="arrow"
-              />
-              <div
-                className="clear"
-              />
-            </li>
+              Dashboard
+            </NavItem>
             <li
               className="has-submenu"
             >
@@ -166,42 +130,18 @@ exports[`Test the Header component renders the right nav elements for a logged i
               <ul
                 className="sub-menu"
               >
-                <li
-                  className="menu-item"
+                <NavItem
+                  closeNavbar={[Function]}
+                  link="/requests/create"
                 >
-                  <NavLink
-                    activeClassName="active"
-                    aria-current="page"
-                    onClick={[Function]}
-                    to="/requests/create"
-                  >
-                    Create a Request
-                  </NavLink>
-                  <span
-                    className="arrow"
-                  />
-                  <div
-                    className="clear"
-                  />
-                </li>
-                <li
-                  className="menu-item"
+                  Create a Request
+                </NavItem>
+                <NavItem
+                  closeNavbar={[Function]}
+                  link="/requests"
                 >
-                  <NavLink
-                    activeClassName="active"
-                    aria-current="page"
-                    onClick={[Function]}
-                    to="/requests"
-                  >
-                    View Requests
-                  </NavLink>
-                  <span
-                    className="arrow"
-                  />
-                  <div
-                    className="clear"
-                  />
-                </li>
+                  View Requests
+                </NavItem>
               </ul>
             </li>
             <li
@@ -271,24 +211,12 @@ exports[`Test the Header component renders the right nav elements for an admin 1
             className="menu"
             id="top-menu"
           >
-            <li
-              className="menu-item"
+            <NavItem
+              closeNavbar={[Function]}
+              link="/dashboard"
             >
-              <NavLink
-                activeClassName="active"
-                aria-current="page"
-                onClick={[Function]}
-                to="/dashboard"
-              >
-                Dashboard
-              </NavLink>
-              <span
-                className="arrow"
-              />
-              <div
-                className="clear"
-              />
-            </li>
+              Dashboard
+            </NavItem>
             <li
               className="has-submenu"
             >
@@ -307,62 +235,26 @@ exports[`Test the Header component renders the right nav elements for an admin 1
               <ul
                 className="sub-menu"
               >
-                <li
-                  className="menu-item"
+                <NavItem
+                  closeNavbar={[Function]}
+                  link="/requests/create"
                 >
-                  <NavLink
-                    activeClassName="active"
-                    aria-current="page"
-                    onClick={[Function]}
-                    to="/requests/create"
-                  >
-                    Create a Request
-                  </NavLink>
-                  <span
-                    className="arrow"
-                  />
-                  <div
-                    className="clear"
-                  />
-                </li>
-                <li
-                  className="menu-item"
+                  Create a Request
+                </NavItem>
+                <NavItem
+                  closeNavbar={[Function]}
+                  link="/requests"
                 >
-                  <NavLink
-                    activeClassName="active"
-                    aria-current="page"
-                    onClick={[Function]}
-                    to="/requests"
-                  >
-                    View Requests
-                  </NavLink>
-                  <span
-                    className="arrow"
-                  />
-                  <div
-                    className="clear"
-                  />
-                </li>
+                  View Requests
+                </NavItem>
               </ul>
             </li>
-            <li
-              className="menu-item"
+            <NavItem
+              closeNavbar={[Function]}
+              link="/admin"
             >
-              <NavLink
-                activeClassName="active"
-                aria-current="page"
-                onClick={[Function]}
-                to="/admin"
-              >
-                Admin Page
-              </NavLink>
-              <span
-                className="arrow"
-              />
-              <div
-                className="clear"
-              />
-            </li>
+              Admin Page
+            </NavItem>
             <li
               className="menu-item"
             >
@@ -430,42 +322,18 @@ exports[`Test the Header component renders without crashing 1`] = `
             className="menu"
             id="top-menu"
           >
-            <li
-              className="menu-item"
+            <NavItem
+              closeNavbar={[Function]}
+              link="/login"
             >
-              <NavLink
-                activeClassName="active"
-                aria-current="page"
-                onClick={[Function]}
-                to="/login"
-              >
-                Login
-              </NavLink>
-              <span
-                className="arrow"
-              />
-              <div
-                className="clear"
-              />
-            </li>
-            <li
-              className="menu-item"
+              Login
+            </NavItem>
+            <NavItem
+              closeNavbar={[Function]}
+              link="/signup"
             >
-              <NavLink
-                activeClassName="active"
-                aria-current="page"
-                onClick={[Function]}
-                to="/signup"
-              >
-                Register
-              </NavLink>
-              <span
-                className="arrow"
-              />
-              <div
-                className="clear"
-              />
-            </li>
+              Register
+            </NavItem>
           </ul>
         </div>
       </div>

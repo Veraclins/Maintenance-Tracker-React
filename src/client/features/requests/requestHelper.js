@@ -56,3 +56,5 @@ export const handleRequestSubmit = (event, props, data) => {
     description,
   }, user);
 };
+
+export const fetchRequest = ({ getRequests, user }) => getRequests(user);

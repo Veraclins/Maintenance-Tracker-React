@@ -3,12 +3,12 @@ import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import { getAllRequests } from './userRequestsAction';
 import Request from '../Requests';
+import { fetchRequest } from '../requestHelper';
 
 
 export class UserRequests extends Component {
   componentDidMount() {
-    const { getRequests, user } = this.props;
-    return getRequests(user);
+    return fetchRequest(this.props);
   }
 
   render() {
@@ -28,7 +28,6 @@ export class UserRequests extends Component {
 UserRequests.propTypes = {
   isAdmin: PropTypes.bool.isRequired,
   user: PropTypes.shape({}).isRequired,
-  getRequests: PropTypes.func.isRequired,
   requests: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
 };
 

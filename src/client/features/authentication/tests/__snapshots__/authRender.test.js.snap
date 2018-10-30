@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tests the login component should render without errors 1`] = `
+<Form
+  formLinks={
+    Object {
+      "label": "Already Registered?",
+      "link": "login",
+      "text": "Login",
+    }
+  }
+  formTitle="Create an Account"
+  handleSelectChange={[Function]}
+  handleTextAreaChange={[Function]}
+  selects={Object {}}
+  textAreas={Object {}}
+/>
+`;
